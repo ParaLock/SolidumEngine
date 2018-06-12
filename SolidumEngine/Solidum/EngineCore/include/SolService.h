@@ -10,28 +10,28 @@ namespace SolService {
 
 	struct Request {
 
-		bool		   isAsync;
+		bool           isAsync;
 		bool           isBuilderCall;
 
-		ClientID	   client;
+		ClientID       client;
 		std::string    callName;
 
 	};
 
 	class ISolService {
 	public:
-		virtual SolServiceResponse	 submitRequest(Request& request) = 0;
+		virtual SolServiceResponse   submitRequest(Request& request) = 0;
 
-		virtual std::string           getName() = 0;
-		virtual void				  setName(std::string name) = 0;
+		virtual std::string          getName() = 0;
+		virtual void		     setName(std::string name) = 0;
 
-		virtual ISolServiceProxy*     connectClient() = 0;
-		virtual void				  disconnectClient(ISolServiceProxy*) = 0;
+		virtual ISolServiceProxy*    connectClient() = 0;
+		virtual void		     disconnectClient(ISolServiceProxy*) = 0;
 	};
 
 	class SolServiceProxy : public ISolServiceProxy {
 	private:
-		ClientID	 m_id;
+		ClientID       m_id;
 
 		ISolService*   m_service;
 	public:
@@ -49,7 +49,7 @@ namespace SolService {
 		}
 
 		SolServiceResponse submitRequest(bool isBuilderCall, std::string requestName);
-		void			   submitRequestAsync(bool isBuilderCall, std::string requestName, std::function<void(SolServiceResponse&)> callback);
+		void		   submitRequestAsync(bool isBuilderCall, std::string requestName, std::function<void(SolServiceResponse&)> callback);
 
 		void clientBuilderFinalize() {
 
