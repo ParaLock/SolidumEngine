@@ -16,21 +16,21 @@ typedef unsigned int ClientID;
 
 struct SolServiceResponse {
 
-	bool		   isValid;
+	bool		   				  isValid;
 
-	ISolFunction*									  call;
+	ISolFunction*	   				  call;
 	std::function<void(ISolFunction*, ISolFunction*)> boundReturnCallback;
 };
 
 class ISolServiceProxy {
 private:
 
-	virtual void			   submitRequestAsync(bool isBuilderCall, std::string requestName, std::function<void(SolServiceResponse&)> callback) = 0;
+	virtual void		   submitRequestAsync(bool isBuilderCall, std::string requestName, std::function<void(SolServiceResponse&)> callback) = 0;
 	virtual SolServiceResponse submitRequest(bool isBuilderCall, std::string requestName) = 0;
 
 
 public:
-	virtual ClientID           ID() = 0;
+	virtual ClientID ID() = 0;
 
 	template<typename T>
 	ISolServiceProxy* clientBuilder(std::string attrib, T value) {
@@ -93,7 +93,8 @@ struct SolInterface : ISolInterface {
 
 	std::array<ISolServiceProxy*, T_SERVICE_ENUM::Count>	registeredServices;
 	std::list<std::pair<std::string, ISolServiceProxy**>>	requestedServices;
-	IEngine*												m_engine;
+	
+	IEngine*						m_engine;
 
 	SolInterface(IEngine* engine) {
 
