@@ -27,6 +27,9 @@
     <ClCompile Include="Solidum\EngineCore\src\SolService.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Solidum\ResourceService\src\ResourceService.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Solidum\Containers\include\IndexedTypeTree.h">
@@ -57,6 +60,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="SolidumAPI\include\EngineAPI.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Solidum\ResourceService\include\ResourceService.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Solidum\ResourceService\include\ResourcePool.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

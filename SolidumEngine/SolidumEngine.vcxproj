@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -149,6 +149,7 @@
     <ClCompile Include="Solidum\EngineCore\src\EngineInstance.cpp" />
     <ClCompile Include="Solidum\EngineCore\src\ServiceManager.cpp" />
     <ClCompile Include="Solidum\EngineCore\src\SolService.cpp" />
+    <ClCompile Include="Solidum\ResourceService\src\ResourceService.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SolidumAPI\include\EngineAPI.h" />
@@ -161,6 +162,8 @@
     <ClInclude Include="Solidum\EngineCore\include\EngineInstance.h" />
     <ClInclude Include="Solidum\EngineCore\include\ServiceManager.h" />
     <ClInclude Include="Solidum\EngineCore\include\SolService.h" />
+    <ClInclude Include="Solidum\ResourceService\include\ResourcePool.h" />
+    <ClInclude Include="Solidum\ResourceService\include\ResourceService.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

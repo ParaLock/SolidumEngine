@@ -49,9 +49,13 @@ namespace SolService {
 		}
 
 		SolServiceResponse submitRequest(bool isBuilderCall, std::string requestName);
-		void		   submitRequestAsync(bool isBuilderCall, std::string requestName, std::function<void(SolServiceResponse&)> callback);
+		void			   submitRequestAsync(bool isBuilderCall, std::string requestName, std::function<void(SolServiceResponse&)> callback);
 
-		void clientBuilderFinalize() {
+		bool acceptAndVerifyRuntimeContract(ISolContract* contract) {
+			return false;
+		}
+
+		void endBuilder() {
 
 			SolServiceResponse response = submitRequest(true, "BUILDER_FINALIZE");
 	
@@ -102,9 +106,9 @@ namespace SolService {
 
 			ClientState& client = m_clients.at(request.client);
 
-			IFunctionTable* functions = &client.currentClientBuilder.FUNCTIONS;
+			ISolContract* contract = &client.currentClientBuilder.DynamicContract;
 
-			auto call = functions->getCalls().at(request.callName);
+			auto call = contract->getFunctions().at(request.callName);
 
 			if (request.callName == "BUILDER_FINALIZE") {
 				
@@ -123,11 +127,11 @@ namespace SolService {
 		~Service() {
 		}
 
-		void registerFunctionTable(IFunctionTable* table) {
+		void registerContract(ISolContract* contract) {
 
-			auto tableCalls = table->getCalls();
+			auto calls = contract->getFunctions();
 
-			for (auto itr = tableCalls.begin(); itr != tableCalls.end(); itr++) {
+			for (auto itr = calls.begin(); itr != calls.end(); itr++) {
 				
 				CallInfo info;
 				info.callFunctor = itr->second;
@@ -187,7 +191,7 @@ namespace SolService {
 			state.proxy.ID(m_lastID);
 			state.proxy.setService(this);
 
-			state.currentClientBuilder.FUNCTIONS.getCalls().insert({ "BUILDER_FINALIZE", m_calls.at("BUILDER_FINALIZE").callFunctor });
+			state.currentClientBuilder.DynamicContract.getFunctions().insert({"BUILDER_FINALIZE", m_calls.at("BUILDER_FINALIZE").callFunctor });
 
 			return &state.proxy;
 

@@ -34,6 +34,14 @@ public:
 
 	}
 
+	SolAnyImpl<T> operator=(SolAnyImpl<T>& other) {
+
+		m_data = other.m_data;
+
+		return *this;
+
+	}
+
 	void* pData() {
 		return &m_data;
 	}
@@ -205,80 +213,3 @@ template<typename R, typename C, typename... Args>
 std::function<R(Args...)> objectBind(R(C::* func)(Args...) const, C const& instance) {
 	return [=](Args... args) { return (instance.*func)(args...); };
 }
-
-template<typename T_PTR>
-struct TableSlot {
-	T_PTR							m_func;
-	std::string						m_name;
-
-	TableSlot(T_PTR funcPtr, std::string name) {
-		m_name = name;
-		m_func = funcPtr;
-	}
-};
-
-struct IFunctionTable {
-	virtual const std::map<std::string, ISolFunction*>& getCalls() = 0;
-	virtual ISolFunction*								getCallByIndex(unsigned int index) = 0;
-};
-
-template<typename T_THIS, typename... T>
-struct FunctionTable : IFunctionTable {
-
-	std::map<std::string, ISolFunction*>								functionsByName;
-	std::tuple<T...>													functions;
-	std::array<std::function<ISolFunction*()>, sizeof...(T)>			functionGetters;
-
-	std::map<std::string, ISolFunction*>& getCalls() {
-		return functionsByName;
-	}
-
-	ISolFunction* getCallByIndex(unsigned int index) {
-		return functionGetters[index]();
-	}
-
-	template<unsigned INDEX, typename FirstArg>
-	void setFunction(FirstArg wrapper) {
-
-		auto& callImpl = std::get<INDEX>(functions);
-
-		callImpl.set(wrapper.m_func);
-
-		functionGetters[INDEX] = [&]() {
-
-			return &std::get<INDEX>(functions);
-
-		};
-
-		functionsByName.insert({ wrapper.m_name, &callImpl });
-	}
-
-	template<unsigned INDEX, typename FirstArg>
-	void setFunctions(FirstArg wrapper) {
-
-		setFunction<INDEX, FirstArg>(wrapper);
-	}
-
-	template<unsigned INDEX, typename FirstArg, typename SecondArg>
-	void setFunctions(FirstArg wrapper, SecondArg wrapper2)
-	{
-		setFunction<INDEX, FirstArg>(wrapper);
-
-		setFunctions<INDEX + 1, SecondArg>(wrapper2);
-	}
-
-	template<unsigned INDEX, typename FirstArg, typename... RestOfArgs>
-	void setFunctions(FirstArg wrapper, RestOfArgs... otherWrappers)
-	{
-		setFunction<INDEX, FirstArg>(wrapper);
-
-		setFunctions<INDEX + 1, RestOfArgs...>(otherWrappers...);
-	}
-
-	template<typename... T_WRAPPER>
-	void setAll(T_WRAPPER... funcs) {
-
-		setFunctions<0, T_WRAPPER...>(funcs...);
-
-	}
-};
