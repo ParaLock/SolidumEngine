@@ -185,7 +185,6 @@ struct SolContract : ISolContract {
 	template<unsigned INDEX, typename T>
 	constexpr void processElements(T first)
 	{
-
 		processElement<true, INDEX, T>(nullptr, first);
 	}
 
@@ -239,6 +238,9 @@ struct SolInterface : ISolInterface {
 	}
 
 	~SolInterface() {
+
+		m_engine->unregisterClient(this);
+
 	}
 
 	static T_STATIC_CONTRACT& getStaticContractConcrete() {

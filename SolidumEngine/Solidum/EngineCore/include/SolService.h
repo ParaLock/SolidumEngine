@@ -68,9 +68,8 @@ namespace SolService {
 	class Service : public ISolService {
 	private:
 
-		ClientID    m_lastID;
-
-		std::string m_name;
+		std::string			m_name;
+		std::list<ClientID>	m_freeIDs;
 
 		struct CallInfo {
 
@@ -102,6 +101,37 @@ namespace SolService {
 
 		std::deque<ClientState> m_clients;
 
+		ClientState* getFreeClientState() {
+
+			ClientState* state = nullptr;
+
+			if (m_freeIDs.size() == 0) {
+
+				m_clients.emplace_back(ClientState());
+				state = &m_clients.back();
+
+				state->proxy.ID(m_clients.size() - 1);
+			}
+			else {
+
+				state = &m_clients.at(m_freeIDs.back());
+
+				*state = ClientState();
+
+				state->proxy.ID(m_freeIDs.back());
+
+				m_freeIDs.pop_back();
+
+			}
+
+			return state;
+		}
+
+		void freeClientState(ClientState* state) {
+			
+			m_freeIDs.push_back(state->proxy.ID());
+		}
+
 		ISolFunction* getBuilderCall(Request& request) {
 
 			ClientState& client = m_clients.at(request.client);
@@ -118,10 +148,12 @@ namespace SolService {
 
 			return call;
 		}
+
+
 	public:
 
 		Service() {
-			m_lastID = -1;
+			
 		}
 
 		~Service() {
@@ -175,25 +207,20 @@ namespace SolService {
 
 		void disconnectClient(ISolServiceProxy* client) {
 
-			//@IMPLEMENT, lol
+			freeClientState(&m_clients.at(client->ID()));
 
 		}
 
 		ISolServiceProxy* connectClient() {
 
-			m_lastID++;
+			ClientState* state = getFreeClientState();
 
-			m_clients.emplace_back(ClientState());
+			state->currentClientBuilder.init();
+			state->proxy.setService(this);
 
-			ClientState& state = m_clients.back();
+			state->currentClientBuilder.DynamicContract.getFunctions().insert({"BUILDER_FINALIZE", m_calls.at("BUILDER_FINALIZE").callFunctor });
 
-			state.currentClientBuilder.init();
-			state.proxy.ID(m_lastID);
-			state.proxy.setService(this);
-
-			state.currentClientBuilder.DynamicContract.getFunctions().insert({"BUILDER_FINALIZE", m_calls.at("BUILDER_FINALIZE").callFunctor });
-
-			return &state.proxy;
+			return &state->proxy;
 
 		}
 	};
