@@ -148,21 +148,23 @@
     <ClCompile Include="SolidumEngine.cpp" />
     <ClCompile Include="Solidum\EngineCore\src\EngineInstance.cpp" />
     <ClCompile Include="Solidum\EngineCore\src\ServiceManager.cpp" />
+    <ClCompile Include="Solidum\EngineCore\src\SolAllocator.cpp" />
     <ClCompile Include="Solidum\EngineCore\src\SolService.cpp" />
+    <ClCompile Include="Solidum\EngineCore\src\TypeCollection.cpp" />
     <ClCompile Include="Solidum\ResourceService\src\ResourceService.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SolidumAPI\include\EngineAPI.h" />
     <ClInclude Include="SolidumAPI\include\ResourceAPI.h" />
     <ClInclude Include="SolidumAPI\include\ServiceAPI.h" />
-    <ClInclude Include="Solidum\Containers\include\IndexedTypeTree.h" />
-    <ClInclude Include="Solidum\Containers\include\IndexList.h" />
+    <ClInclude Include="Solidum\Containers\include\ObjectPool.h" />
     <ClInclude Include="Solidum\Containers\include\OrderedQueue.h" />
     <ClInclude Include="Solidum\Containers\include\SolQueue.h" />
     <ClInclude Include="Solidum\EngineCore\include\EngineInstance.h" />
     <ClInclude Include="Solidum\EngineCore\include\ServiceManager.h" />
+    <ClInclude Include="Solidum\EngineCore\include\SolAllocator.h" />
     <ClInclude Include="Solidum\EngineCore\include\SolService.h" />
-    <ClInclude Include="Solidum\ResourceService\include\ResourcePool.h" />
+    <ClInclude Include="Solidum\EngineCore\include\TypeCollection.h" />
     <ClInclude Include="Solidum\ResourceService\include\ResourceService.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

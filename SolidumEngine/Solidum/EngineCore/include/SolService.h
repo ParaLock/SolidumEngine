@@ -1,21 +1,29 @@
 #pragma once
 
-#include <deque>
+#include "../../Containers/include/ObjectPool.h"
 
 #include "../../../SolidumAPI/include/EngineAPI.h"
 #include "../../../SolidumAPI/include/ServiceAPI.h"
 #include "../../../SolidumAPI/include/ResourceAPI.h"
 
+using namespace ObjectPool;
+
 namespace SolService {
 
 	struct Request {
 
+		Request() {
+			ret = nullptr;
+		}
+
 		bool           isAsync;
 		bool           isBuilderCall;
 
-		ClientID       client;
+		ObjectID       client;
 		std::string    callName;
 
+		std::vector<void*>          args;
+		void*                       ret;
 	};
 
 	class ISolService {
@@ -23,24 +31,26 @@ namespace SolService {
 		virtual SolServiceResponse   submitRequest(Request& request) = 0;
 
 		virtual std::string          getName() = 0;
-		virtual void		     setName(std::string name) = 0;
+		virtual void				 setName(std::string name) = 0;
 
 		virtual ISolServiceProxy*    connectClient() = 0;
-		virtual void		     disconnectClient(ISolServiceProxy*) = 0;
+		virtual void				 disconnectClient(ISolServiceProxy*) = 0;
+
+		virtual bool				 acceptAndVerifyClientRuntimeContract(ObjectID client, ISolContract* contract) = 0;
 	};
 
 	class SolServiceProxy : public ISolServiceProxy {
 	private:
-		ClientID       m_id;
+		ObjectID       m_id;
 
 		ISolService*   m_service;
 	public:
 
-		ClientID ID() {
+		ObjectID ID() {
 			return m_id;
 		}
 
-		void ID(ClientID id) {
+		void ID(ObjectID id) {
 			m_id = id;
 		}
 
@@ -48,48 +58,53 @@ namespace SolService {
 			m_service = service;
 		}
 
-		SolServiceResponse submitRequest(bool isBuilderCall, std::string requestName);
-		void			   submitRequestAsync(bool isBuilderCall, std::string requestName, std::function<void(SolServiceResponse&)> callback);
+		SolServiceResponse submitRequest(bool isBuilderCall, std::string requestName, std::vector<void*> args, void* ret);
+		void			   submitRequestAsync(bool isBuilderCall, std::string requestName, std::vector<void*> args, void* ret, std::function<void(SolServiceResponse&)> callback);
 
-		bool acceptAndVerifyRuntimeContract(ISolContract* contract) {
-			return false;
+	    bool acceptAndVerifyRuntimeContract(ISolContract* contract) {
+
+			return m_service->acceptAndVerifyClientRuntimeContract(m_id, contract);
 		}
 
 		void endBuilder() {
 
-			SolServiceResponse response = submitRequest(true, "BUILDER_FINALIZE");
-	
-			response.call->invokeBound();
+			SolServiceResponse response = submitRequest(true, "BUILDER_FINALIZE", {}, nullptr);
 
 		}
 	};
 
-	template<typename T_CLIENT_INFO, typename T_CLIENT_BUILDER>
+	template<typename T_CLIENT_INFO, typename T_CLIENT_BUILDER, typename T_DYNAMIC_CONTRACT>
 	class Service : public ISolService {
 	private:
 
+		T_DYNAMIC_CONTRACT  DYNAMIC_CONTRACT;
+
 		std::string			m_name;
-		std::list<ClientID>	m_freeIDs;
+		IEngine*            m_engine;
 
 		struct CallInfo {
 
 			ISolFunction* callFunctor;
 		};
 
-		std::map<std::string, CallInfo> m_calls;
-
 		struct ClientState {
 
-			ClientState() {}
+			ClientState() {
+			
+				runtimeContract = nullptr;
+			
+			}
 
 			ClientState(const ClientState& other) {
 
-				proxy = other.proxy;
-				clientInfo = other.clientInfo;
+				proxy				 = other.proxy;
+				clientInfo			 = other.clientInfo;
 				currentClientBuilder = other.currentClientBuilder;
 
-				pendingRequests = other.pendingRequests;
+				pendingRequests		 = other.pendingRequests;
 			}
+
+			ISolContract*      runtimeContract;
 
 			SolServiceProxy    proxy;
 
@@ -99,77 +114,64 @@ namespace SolService {
 			std::list<Request> pendingRequests;
 		};
 
-		std::deque<ClientState> m_clients;
+		Pool<ClientState> m_clients;
 
-		ClientState* getFreeClientState() {
+		PooledWrapper<ClientState>& getFreeClientState() {
 
-			ClientState* state = nullptr;
+			auto& stateWrapper = m_clients.getFree();
 
-			if (m_freeIDs.size() == 0) {
+			stateWrapper.getVal().proxy.ID(stateWrapper.ID);
 
-				m_clients.emplace_back(ClientState());
-				state = &m_clients.back();
-
-				state->proxy.ID(m_clients.size() - 1);
-			}
-			else {
-
-				state = &m_clients.at(m_freeIDs.back());
-
-				*state = ClientState();
-
-				state->proxy.ID(m_freeIDs.back());
-
-				m_freeIDs.pop_back();
-
-			}
-
-			return state;
+			return stateWrapper;
 		}
 
-		void freeClientState(ClientState* state) {
-			
-			m_freeIDs.push_back(state->proxy.ID());
-		}
+		void callBuilder(Request& request) {
 
-		ISolFunction* getBuilderCall(Request& request) {
+			PooledWrapper<ClientState>& client = m_clients.getObject(request.client);
 
-			ClientState& client = m_clients.at(request.client);
+			auto& contract = client.getVal().currentClientBuilder.DynamicContract;
 
-			ISolContract* contract = &client.currentClientBuilder.DynamicContract;
-
-			auto call = contract->getFunctions().at(request.callName);
+			auto call = contract.getFunctions().at(request.callName);
 
 			if (request.callName == "BUILDER_FINALIZE") {
 				
-				call->bindNext(SolAnyImpl<T_CLIENT_INFO*>(&client.clientInfo));
-				call->bindNext(SolAnyImpl<T_CLIENT_BUILDER*>(&client.currentClientBuilder));
+				T_CLIENT_BUILDER* builder = &client.getVal().currentClientBuilder;
+				T_CLIENT_INFO*    clientInfo = &client.getVal().clientInfo;
+
+				request.args.push_back(clientInfo);
+				request.args.push_back(builder);
 			}
 
-			return call;
+			call->invoke(request.args);
 		}
 
 
 	public:
 
-		Service() {
-			
+		Service(IEngine* engine) {
+			m_engine = engine;
 		}
 
 		~Service() {
 		}
 
-		void registerContract(ISolContract* contract) {
+		T_DYNAMIC_CONTRACT& getDynamicContract() {
+			return DYNAMIC_CONTRACT;
+		}
 
-			auto calls = contract->getFunctions();
+		PooledWrapper<ClientState>& getClientState(ObjectID id) {
+			return m_clients.getObject(id);
+		}
 
-			for (auto itr = calls.begin(); itr != calls.end(); itr++) {
-				
-				CallInfo info;
-				info.callFunctor = itr->second;
+		ISolFunction* callClient(ObjectID id, std::string functionName) {
+			return m_clients.getObject(id).getVal().runtimeContract->getFunctions().at(functionName);
+		}
 
-				m_calls.insert({itr->first, info});
-			}
+		bool acceptAndVerifyClientRuntimeContract(ObjectID client, ISolContract* contract) {
+
+			m_clients.getObject(client).getVal().runtimeContract = contract;
+
+			return true;
 		}
 
 		SolServiceResponse submitRequest(Request& request) {
@@ -178,20 +180,24 @@ namespace SolService {
 
 			response.isValid = true;
 
-			ClientState& clientState = m_clients.at(request.client);
+			PooledWrapper<ClientState>& clientState = m_clients.getObject(request.client);
 
 			if (request.isBuilderCall) {
 
-				response.call = getBuilderCall(request);
+				callBuilder(request);
 			}
 			else {
 
-				ISolFunction* call = m_calls.at(request.callName).callFunctor;
+				ISolFunction* call = DYNAMIC_CONTRACT.getFunctions().at(request.callName);
 
-				call->bindNext(SolAnyImpl<T_CLIENT_INFO*>(&clientState.clientInfo));
+				request.args.insert(request.args.begin(), &clientState.getVal().clientInfo);
 
-				response.call = call;
-				
+				if (request.ret == nullptr) {
+					call->invoke(request.args);
+				}
+				else {
+					call->invoke(request.ret, request.args);
+				}
 			}
 
 			return response;
@@ -207,21 +213,26 @@ namespace SolService {
 
 		void disconnectClient(ISolServiceProxy* client) {
 
-			freeClientState(&m_clients.at(client->ID()));
+			m_clients.free(client->ID());
 
 		}
 
 		ISolServiceProxy* connectClient() {
 
-			ClientState* state = getFreeClientState();
+			PooledWrapper<ClientState>& stateWrapper = getFreeClientState();
+			ClientState& state = stateWrapper.getVal();
 
-			state->currentClientBuilder.init();
-			state->proxy.setService(this);
+			state.currentClientBuilder.init();
+			state.proxy.setService(this);
 
-			state->currentClientBuilder.DynamicContract.getFunctions().insert({"BUILDER_FINALIZE", m_calls.at("BUILDER_FINALIZE").callFunctor });
+			state.currentClientBuilder.DynamicContract.getFunctions().insert({"BUILDER_FINALIZE", DYNAMIC_CONTRACT.getFunctions().at("BUILDER_FINALIZE") });
 
-			return &state->proxy;
+			return &state.proxy;
 
+		}
+
+		IEngine* getEngine() {
+			return m_engine;
 		}
 	};
 }

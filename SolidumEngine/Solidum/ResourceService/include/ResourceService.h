@@ -4,46 +4,51 @@
 
 #include "../../EngineCore/include/SolService.h"
 
-#include "ResourcePool.h"
-
 namespace ResourceFramework {
 
-	class ResourceInfo {
-		ResourceInfo* m_creatorInfo;
+	using namespace ObjectPool;
 
-		ResourceID	  m_resID;
+	struct ResourceInfo {
+		ResourceInfo* m_parentCreatorInfo;
+		ObjectID	  m_resClientID;
+
+		bool		  m_isPooled;
 	};
 
-	class ResourceBuilder {
-	private:
-		bool		m_isHotSwapable;
-		bool		m_isDiskLoadable;
-		bool        m_isPooled;
-		std::string m_typeName;
-		size_t      m_typeSize;
+	struct ResourceBuilder {
 
-
-		FunctionTable
+		SolContract
 		<
+			ResourceBuilder,
 			SolFunction<void, std::string>,
 			SolFunction<void, size_t>,
 			SolFunction<void, bool>,
 			SolFunction<void, bool>,
 			SolFunction<void, bool>
 		> 
-			FUNCTIONS;
-	public:
+			DynamicContract;
+
+		bool		m_isHotSwapable;
+		bool		m_isDiskLoadable;
+		bool        m_isPooled;
+		std::string m_typeName;
+		size_t      m_typeSize;
 
 		ResourceBuilder() {
 
-			FUNCTIONS.setAll(
-				TableSlot(objectBind(&ResourceBuilder::typeName, this), "typeName"),
-				TableSlot(objectBind(&ResourceBuilder::typeSize, this), "typeSize"),
-				TableSlot(objectBind(&ResourceBuilder::isDiskLoadable, this), "isDiskLoadable"),
-				TableSlot(objectBind(&ResourceBuilder::isHotSwapable, this), "isHotSwapable"),
-				TableSlot(objectBind(&ResourceBuilder::isPooled, this), "isPooled")
-			);
 
+		}
+
+		void init() {
+
+			DynamicContract.setAll(
+				this,
+				ContractSlot(&ResourceBuilder::typeName, "typeName"),
+				ContractSlot(&ResourceBuilder::typeSize, "typeSize"),
+				ContractSlot(&ResourceBuilder::isDiskLoadable, "isDiskLoadable"),
+				ContractSlot(&ResourceBuilder::isHotSwapable, "isHotSwapable"),
+				ContractSlot(&ResourceBuilder::isPooled, "isPooled")
+			);
 		}
 
 		void isPooled(bool val) {
@@ -70,30 +75,88 @@ namespace ResourceFramework {
 	class ResourceService {
 	private:
 		//Contains pool of resource instances.. Makes use of allocator 
-		ResourcePool                                       m_resPool;
+		Pool<ResourceInfo*>        m_resPool;
 
-		FunctionTable
+		typedef SolContract
 			<
-				SolFunction<void, ResourceInfo*, GenericHandle>
+				ResourceService,
+				SolFunction<bool, ResourceInfo*, void**, ObjectID>,
+				SolFunction<void, ResourceInfo*, ResourceBuilder*>,
+				SolFunction<ObjectID, ResourceInfo*, std::string, std::vector<SolAny*>*>
 			>
-			FUNCTIONS;
+			DynamicContract;
 
-		SolService::Service<ResourceInfo, ResourceBuilder> SOL_SERVICE;
+
 	public:
+		SolService::Service<ResourceInfo, ResourceBuilder, DynamicContract> SOL_SERVICE;
 
-		void unloadResource(ResourceInfo* info, GenericHandle resHandle) {
+		ResourceService(IEngine* engine) 
+			: SOL_SERVICE(engine)
+		{
+			SOL_SERVICE.getDynamicContract().setAll
+			(
+				this,
+				ContractSlot(&ResourceService::getResource, "get_resource"),
+				ContractSlot(&ResourceService::resourceBuilderFinalize, "BUILDER_FINALIZE"),
+				ContractSlot(&ResourceService::createResourceInstance, "create_resource_instance")
+			);
 			
-			
+			SOL_SERVICE.setName("ResourceService");
+		}
+
+		void resourceBuilderFinalize(ResourceInfo* res, ResourceBuilder* builderInfo) {
+
+			res->m_isPooled = builderInfo->m_isPooled;
 
 		}
 
-		GenericHandle createResourceInstance(ResourceInfo* parentCreatorInfo, std::string typeName, std::vector<SolAny*>& args) {
+		void unloadResource(ResourceInfo* callerInfo, ObjectID resHandle) {
 			
-			
+			PooledWrapper<ResourceInfo*>& resourceWrapper = m_resPool.getObject(resHandle);
+
+			ResourceInfo* resource = resourceWrapper.getVal();
+
+			if (resource->m_isPooled) {
+
+				m_resPool.free(resourceWrapper);
+
+			} else {
+
+				SOL_SERVICE.disconnectClient(&SOL_SERVICE.getClientState(resourceWrapper.ID).getVal().proxy);
+
+			}
 		}
 
-		ResourceService(IEngine* engine) {
-			
+		bool getResource(ResourceInfo* callerInfo, void** resPtr, ObjectID resHandle) {
+
+			SOL_SERVICE.callClient(resHandle, "get_resource_ptr")->invoke({ *resPtr });
+
+			return true;
+
 		}
+
+		ObjectID createResourceInstance(ResourceInfo* parentCreatorInfo, std::string typeName, std::vector<SolAny*>* args) {
+
+			ISolContract* staticContract = SOL_SERVICE.getEngine()->getTypeStaticContract(typeName);
+			size_t		  resSize		 = staticContract->getValues().at("size")->data<size_t>();
+
+			void* mem = SOL_SERVICE.getEngine()->getAllocator()->getMemory(resSize);
+
+			std::vector<void*> create_args;
+
+			create_args.push_back(mem);
+			create_args.push_back(SOL_SERVICE.getEngine());
+
+			ObjectID id = 0;
+			staticContract->getFunctions().at("create_resource")->invoke(&id, create_args);
+
+			ResourceInfo& clientInstanceInfo = SOL_SERVICE.getClientState(id).getVal().clientInfo;
+
+			clientInstanceInfo.m_parentCreatorInfo = parentCreatorInfo;
+			clientInstanceInfo.m_resClientID = id;
+
+			return id;
+		}
+
 	};
 }

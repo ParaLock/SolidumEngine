@@ -14,28 +14,20 @@ EngineInstance::~EngineInstance()
 
 void EngineInstance::registerClient(ISolInterface* clientInterface)
 {
-	auto& requestedServices = clientInterface->getRequestedServices();
-
-	for (auto itr = requestedServices.begin(); itr != requestedServices.end(); itr++) {
-		
-		std::string			serviceName = itr->first;
-		ISolServiceProxy**	proxyPtr	= itr->second;
-
-		SolService::ISolService* service = m_serviceManager.getService(serviceName);
-
-		*proxyPtr = service->connectClient();
-	}
+	m_serviceManager.registerServiceClient(clientInterface);
 }
 
 void EngineInstance::unregisterClient(ISolInterface * clientInterface)
 {
-	auto& requestedServices = clientInterface->getRequestedServices();
+	m_serviceManager.unregisterServiceClient(clientInterface);
+}
 
-	for (auto itr = requestedServices.begin(); itr != requestedServices.end(); itr++) {
+void EngineInstance::registerTypeStaticContract(ISolContract * contract, std::string name)
+{
+	m_typeCollection.addTypeContract(name, contract);
+}
 
-		SolService::ISolService* service = m_serviceManager.getService(itr->first);
-
-		service->disconnectClient(*itr->second);
-
-	}
+ISolContract * EngineInstance::getTypeStaticContract(std::string name)
+{
+	return m_typeCollection.getTypeContract(name);
 }

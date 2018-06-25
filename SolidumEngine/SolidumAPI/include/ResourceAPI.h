@@ -15,29 +15,52 @@
 
 class ISolFunction;
 
+typedef unsigned int ObjectID;
+
 class SolAny {
 public:
+
+	template<typename T>
+	T data() {
+		return *(T*)pData();
+	}
+	
 	virtual void* pData() = 0;
+	virtual std::function<void(void*, void*)>& getSetter() = 0;
 };
 
 template<typename T>
 class SolAnyImpl : public SolAny {
 private:
-	T m_data;
+	T						   m_data;
+	std::function<void(void*, void*)> m_setter;
 public:
 
 	SolAnyImpl(T data) {
+		
 		m_data = data;
+
+		m_setter = [&](void* src, void* dest) {
+
+			new(dest) T();
+
+			*(T*)dest = *(T*)src;
+
+		}
 	}
 
 	SolAnyImpl() {
 
 	}
 
+	std::function<void(void*, void*)>& getSetter() {
+		return m_setter;
+	}
+
 	SolAnyImpl<T> operator=(SolAnyImpl<T>& other) {
 
 		m_data = other.m_data;
-
+		m_setter = other.m_setter;
 		return *this;
 
 	}
@@ -50,6 +73,10 @@ public:
 		return m_data;
 	}
 
+	void data(T data) {
+		m_data = data;
+	}
+
 };
 
 class ISolFunction {
@@ -57,55 +84,33 @@ private:
 public:
 
 	virtual std::string   getSignature()			  = 0;
+	virtual size_t        getArgsSize() = 0;
 
-	template<typename T_RET, typename... T_ARGS>
-	T_RET invoke(T_ARGS... args) {
-		return dynamic_cast<SolFunction<T_RET, T_ARGS...>*>(this)->m_funcPtr(args...);
-	}
-
-	virtual void invokeBound() = 0;
-
-	virtual void bindNext(SolAny& src) = 0;
-	virtual void bindRet(SolAny& ret) = 0;
+	virtual void invoke(void* ret, std::vector<void*> args) = 0;
+	virtual void invoke(std::vector<void*> args) = 0;
 };
 
 template<typename T_RET, typename... T_ARGS>
 class SolFunction : public ISolFunction {
 private:
 
+	template<typename T>
+	constexpr T getArg(unsigned int& index, std::vector<void*>& args) {
+
+		if constexpr(std::is_pointer<T>::value) {
+			return (T)args.at(index--);
+		}
+		else {
+			return *(T*)args.at(index--);
+		}
+	}
+
 	std::string				 	 m_signature;
-	T_RET*                       m_retBuff;
-	int                          m_nextUnboundArg;
+	size_t                       m_callBufferSize;
 
-	std::array<std::function<void(void*, SolFunction<T_RET, T_ARGS...>*)>, sizeof...(T_ARGS)>	m_argSetters;
-	std::tuple<T_ARGS...>																		m_args;
 
-	template<unsigned index, typename T>
-	void generateSetter() {
-
-		m_argSetters[index] = [](void* src, SolFunction<T_RET, T_ARGS...>* func) {
-
-			auto& arg = std::get<index>(func->m_args);
-
-			arg = *(T*)src;
-		};
-	}
-
-	template<unsigned numArgs>
-	void generateArgHelpers() {}
-
-	template<unsigned numArgs, typename FirstArg>
-	void generateArgHelpers()
-	{
-		generateSetter<numArgs, FirstArg>();
-	}
-
-	template<unsigned numArgs, typename FirstArg, typename SecondArg, typename... RestOfArgs>
-	void generateArgHelpers()
-	{
-		generateSetter<numArgs, FirstArg>();
-
-		generateArgHelpers<numArgs + 1, SecondArg, RestOfArgs...>();
+	size_t getArgsSize() {
+		return m_callBufferSize;
 	}
 
 public:
@@ -125,31 +130,20 @@ public:
 			0, ((void)(stream << typeid(T_ARGS).name()), 0) ...
 		};
 
-
 		return stream.str();
 
 	}
 
-	template<typename Function, typename Tuple, size_t ... I>
-	auto call(Function f, Tuple t, std::index_sequence<I ...>)
-	{
-		return f(std::get<I>(t) ...);
-	}
-
-	template<typename Function, typename Tuple>
-	auto call(Function f, Tuple t)
-	{
-		static constexpr auto size = std::tuple_size<Tuple>::value;
-		return call(f, t, std::make_index_sequence<size>{});
-	}
-
 	void init() {
 
-		m_retBuff = nullptr;
 		m_signature = generateSignature<T_RET, T_ARGS...>();
-		m_nextUnboundArg = 0;
+		m_callBufferSize = 0;
 
-		generateArgHelpers<0, T_ARGS...>();
+		using List = int[];
+		(void)List {
+			0, ((void)(m_callBufferSize += sizeof(T_ARGS)), 0) ...
+		};
+
 	}
 
 	SolFunction() {
@@ -171,34 +165,28 @@ public:
 		return m_signature;
 	}
 
-	void bindNext(SolAny& src) {
+	void invoke(void* ret, std::vector<void*> args) {
 
-		m_argSetters[m_nextUnboundArg++](src.pData(), this);
+		unsigned int count = sizeof...(T_ARGS) - 1;
 
-	}
+		//Darn it c++ :(
+		if constexpr(!std::is_void<T_RET>::value) {
 
-	void bindRet(SolAny& ret) {
-		
-		m_retBuff = (T_RET*)ret.pData();
+			*(T_RET*)ret = m_funcPtr((getArg<T_ARGS>(count, args))...);
 
-	}
-
-	void invokeBound() {
-
-		if constexpr(std::is_void<T_RET>::value) {
-			call(m_funcPtr, m_args);
 		}
 		else {
-			*m_retBuff = call(m_funcPtr, m_args);
-		}
 
-		bindFinish();
-
+			m_funcPtr((getArg<T_ARGS>(count, args))...);
+		}		 
 	}
 
-	void bindFinish() {
-		m_nextUnboundArg = 0;
-		m_retBuff = nullptr;
+	void invoke(std::vector<void*> args) {
+
+		unsigned int count = sizeof...(T_ARGS) - 1;
+
+		m_funcPtr((getArg<T_ARGS>(count, args))...);
+
 	}
 
 	std::function<T_RET(T_ARGS...)>			m_funcPtr;

@@ -6,15 +6,15 @@
 #include <vector>
 #include <map>
 
+#include <tuple>
+#include <utility> 
+#include <stack>
+
 #include "../include/ResourceAPI.h"
 
 #include "EngineAPI.h"
 
 class IEngine;
-
-typedef unsigned int ClientID;
-typedef unsigned int GenericHandle;
-
 struct ISolContract;
 
 
@@ -22,31 +22,23 @@ struct SolServiceResponse {
 
 	bool		   				  isValid;
 
-	ISolFunction*	   				  call;
-	std::function<void(ISolFunction*, ISolFunction*)> boundReturnCallback;
 };
 
 class ISolServiceProxy {
 private:
 
-	virtual void			   submitRequestAsync(bool isBuilderCall, std::string requestName, std::function<void(SolServiceResponse&)> callback) = 0;
-	virtual SolServiceResponse submitRequest(bool isBuilderCall, std::string requestName) = 0;
+	virtual void			   submitRequestAsync(bool isBuilderCall, std::string requestName, std::vector<void*> args, void* ret, std::function<void(SolServiceResponse&)> callback) = 0;
+	virtual SolServiceResponse submitRequest(bool isBuilderCall, std::string requestName, std::vector<void*> args, void* ret) = 0;
 
 
 public:
-	virtual ClientID ID() = 0;
+	virtual ObjectID ID() = 0;
 
 	template<typename T>
 	void setClientProperty(std::string name, T val) {
 
-		SolServiceResponse response = submitRequest(true, name);
 
-		if (response.isValid) {
-
-			response.call->bindNext(SolAnyImpl<T>(val));
-
-			response.call->invokeBound();
-		}
+		SolServiceResponse response = submitRequest(true, name, {&val}, nullptr);
 	}
 
 	template<typename... T>
@@ -60,37 +52,32 @@ public:
 		endBuilder();
 	}
 
-	virtual bool acceptAndVerifyRuntimeContract(ISolContract*) = 0;
+	virtual bool acceptAndVerifyRuntimeContract(ISolContract* contract) = 0;
 
 	virtual void endBuilder() = 0;
 
 	template<typename T, typename... T_ARGS>
 	void callServiceAsync(std::string name, ISolFunction* callback, T_ARGS... args) {
 
-		SolServiceResponse response = submitRequestAsync(false, name, callback);
+		SolServiceResponse response = submitRequestAsync(false, name, { &args... }, callback);
 	}
 
 	template<typename T_RET, typename... T_ARGS>
 	T_RET callService(std::string name, T_ARGS... args) {
 
-		SolServiceResponse response = submitRequest(false, name);
+		SolServiceResponse response;
+		std::vector<void*> argBuff = { &args... };
 
-		using List = int[];
-		(void)List {
-			0, ((void)(response.call->bindNext(SolAnyImpl<T_ARGS>(args))), 0) ...
-		};
-			
-		if constexpr(std::is_void<T_RET>::value) {
-			response.call->invokeBound();
-		}
-		else {
+		if constexpr(!std::is_void<T_RET>::value) {
 
 			SolAnyImpl<T_RET> result;
 
-			response.call->bindRet(result);
-			response.call->invokeBound();
+			response = submitRequest(false, name, argBuff, result.pData());
 
 			return result.data();
+		}
+		else {
+			response = submitRequest(false, name, argBuff, nullptr);
 		}
 	}
 };
@@ -99,7 +86,6 @@ public:
 template<typename T>
 struct ContractSlot {
 	typedef T INNER;
-
 	T				m_val;
 	std::string		m_name;
 
@@ -109,24 +95,39 @@ struct ContractSlot {
 	}
 };
 
+typedef unsigned int ContractElementID;
 
 struct ISolContract {
 	virtual std::map<std::string, ISolFunction*>& getFunctions() = 0;
-	virtual std::map<std::string, SolAny*>&		 getValues() = 0;
+	virtual std::map<std::string, SolAny*>&		  getValues() = 0;
 };
 
 
 template<typename T_PARENT, typename... T_ELEMENT>
 struct SolContract : ISolContract {
 
-	template<typename T>
+	size_t m_totalBufferSize;
+
 	struct ElementWrapper {
+		std::stack<void*>					bufferList;
+
+		size_t								elementBufferSize;
+	};
+
+	template<typename T>
+	struct ElementWrapperImpl : ElementWrapper {
 
 		T							 element;
 		std::string					 name;
+
+		ElementWrapperImpl() {
+			elementBufferSize = 0;
+		}
 	};
 
-	std::tuple<ElementWrapper<T_ELEMENT>...>			 elements;
+	std::tuple<ElementWrapperImpl<T_ELEMENT>...>			 elementStorage;
+
+	std::array<ElementWrapper*, sizeof...(T_ELEMENT)>		 elementPtrs;
 
 	std::map<std::string, ISolFunction*>	 functions;
 	std::map<std::string, SolAny*>			 values;
@@ -134,27 +135,38 @@ struct SolContract : ISolContract {
 	template<bool IS_STATIC, unsigned INDEX, typename T_PARENT, typename T>
 	void processElement(T_PARENT* parent, T slot) {
 
-		auto& wrapper = std::get<INDEX>(elements);
+		auto& wrapper = std::get<INDEX>(elementStorage);
 		wrapper.name = slot.m_name;
 
-		if constexpr(std::is_member_function_pointer<typename T::INNER>::value) {
+		if constexpr
+			(
+				std::is_pointer<decltype(slot.m_val)>::value ||
+				std::is_member_function_pointer<decltype(slot.m_val)>::value
+				
+			) 
+		{
+
 			if constexpr (IS_STATIC) {
+
 				wrapper.element.set(slot.m_val);
+
 			}
 			else {
 				wrapper.element.set(objectBind(slot.m_val, parent));
+
 			}
-	
+
 			functions.insert({ wrapper.name, &wrapper.element });
 		}
 		else {
 
-			wrapper.element = SolAnyImpl<typename T::INNER>(slot.m_val);
+			wrapper.element.data(slot.m_val);
 
 			values.insert({ wrapper.name, &wrapper.element });
 		}
 
-
+		wrapper.elementBufferSize += sizeof(decltype(wrapper.element));
+		elementPtrs[INDEX] = &wrapper;
 	}
 
 	//--------------------RECURSION MADNESS BEGIN-----------------//
@@ -192,7 +204,7 @@ struct SolContract : ISolContract {
 	constexpr void processElements(T first, Rest... rest)
 	{
 
-		processElement<true, INDEX, T>(first);
+		processElement<true, INDEX, T>(nullptr, first);
 
 		processElements<INDEX + 1, Rest...>(rest...);
 	}
@@ -200,7 +212,13 @@ struct SolContract : ISolContract {
 	//Starting case
 	template<typename... T>
 	void setAll(T... args) {
+
 		processElements<0, T...>(args...);
+	}
+
+	void cacheData(std::list<SolAny*> items, ContractElementID id) {
+
+		ElementWrapper* element = elementPtrs[id];
 	}
 
 	std::map<std::string, ISolFunction*>& getFunctions() {

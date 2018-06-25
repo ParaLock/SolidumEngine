@@ -1,5 +1,6 @@
 #pragma once
 
+#include "../../../SolidumAPI/include/EngineAPI.h"
 #include "SolService.h"
 
 #include <map>
@@ -12,5 +13,8 @@ public:
 
 	void addService(SolService::ISolService* service);
 	SolService::ISolService* getService(std::string name);
+
+	void registerServiceClient(ISolInterface* clientInterface);
+	void unregisterServiceClient(ISolInterface* clientInterface);
 
 };
