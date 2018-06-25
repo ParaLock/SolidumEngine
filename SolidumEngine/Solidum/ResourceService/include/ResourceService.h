@@ -10,7 +10,9 @@ namespace ResourceFramework {
 
 	struct ResourceInfo {
 		ResourceInfo* m_parentCreatorInfo;
+
 		ObjectID	  m_resClientID;
+		ObjectID      m_resID;
 
 		bool		  m_isPooled;
 	};
@@ -82,7 +84,8 @@ namespace ResourceFramework {
 				ResourceService,
 				SolFunction<bool, ResourceInfo*, void**, ObjectID>,
 				SolFunction<void, ResourceInfo*, ResourceBuilder*>,
-				SolFunction<ObjectID, ResourceInfo*, std::string, std::vector<SolAny*>*>
+				SolFunction<ObjectID, ResourceInfo*, std::string, std::vector<SolAny*>*>,
+				SolFunction<void, ResourceInfo*, ObjectID>
 			>
 			DynamicContract;
 
@@ -98,7 +101,8 @@ namespace ResourceFramework {
 				this,
 				ContractSlot(&ResourceService::getResource, "get_resource"),
 				ContractSlot(&ResourceService::resourceBuilderFinalize, "BUILDER_FINALIZE"),
-				ContractSlot(&ResourceService::createResourceInstance, "create_resource_instance")
+				ContractSlot(&ResourceService::createResourceInstance, "create_resource_instance"),
+				ContractSlot(&ResourceService::unloadResource, "unload_resource")
 			);
 			
 			SOL_SERVICE.setName("ResourceService");
@@ -152,10 +156,15 @@ namespace ResourceFramework {
 
 			ResourceInfo& clientInstanceInfo = SOL_SERVICE.getClientState(id).getVal().clientInfo;
 
+			PooledWrapper<ResourceInfo*>& instanceTrackPtr = m_resPool.getFree();
+
+			instanceTrackPtr.getVal() = &clientInstanceInfo;
+
 			clientInstanceInfo.m_parentCreatorInfo = parentCreatorInfo;
 			clientInstanceInfo.m_resClientID = id;
+			clientInstanceInfo.m_resID = instanceTrackPtr.ID;
 
-			return id;
+			return instanceTrackPtr.ID;
 		}
 
 	};
