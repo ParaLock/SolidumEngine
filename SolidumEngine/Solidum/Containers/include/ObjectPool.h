@@ -43,12 +43,17 @@ namespace ObjectPool {
 
 				PooledWrapper<T>& obj = m_pool.at(m_freeIDs.back());
 
-				obj.val = T();
+				//if constexpr(!std::is_pointer<T>::value)
+				//	obj.val = T();
 
 				m_freeIDs.pop_back();
 
 				return obj;
 			}
+		}
+
+		bool hasFree() {
+			return m_freeIDs.size() != 0;
 		}
 
 		void free(PooledWrapper<T>& obj) {

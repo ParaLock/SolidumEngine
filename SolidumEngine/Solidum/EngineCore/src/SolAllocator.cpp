@@ -7,5 +7,5 @@ void * SolAllocator::getMemory(size_t size)
 
 void SolAllocator::freeMemory(size_t size, void * ptr)
 {
-	delete ptr;
+	free(ptr);
 }

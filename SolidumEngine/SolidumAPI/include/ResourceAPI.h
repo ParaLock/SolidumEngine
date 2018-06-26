@@ -108,15 +108,49 @@ private:
 	std::string				 	 m_signature;
 	size_t                       m_callBufferSize;
 
+	template<typename T>
+	constexpr size_t& nextOffset(size_t& offset) {
 
-	size_t getArgsSize() {
-		return m_callBufferSize;
+		offset += sizeof(T);
+		
+		return offset;
 	}
 
 public:
 
 	typedef								    T_RET T_RETURN;
 	typedef std::function<T_RET(T_ARGS...)> T_FUNC;
+
+	std::vector<void*> getArgVector(void* buff) {
+		
+		std::vector<void*> args;
+		size_t offset = 0;
+		std::tuple<T_ARGS...> bla;
+
+		using List = int[];
+		(void)List {
+			0, ((void)(args.push_back((char*)buff + nextOffset<T_ARGS>(offset))), 0) ...
+		};
+
+		size_t sizeOfFirstElement = sizeof(decltype(std::get<0>(bla)));
+
+		char* p = (char*)args[0]; 
+		p -= sizeof(decltype(std::get<0>(bla)));
+		args[0] = p;
+
+		//for (int i = 0; i < args.size(); i++) {
+		//	char* p = (char*)args[i];
+		//	p = p - sizeof(decltype(std::get<0>(bla)));
+		//	args[i] = p;
+		//}
+
+		return args;
+	}
+
+	size_t getArgsSize() {
+		return m_callBufferSize;
+	}
+
 
 	template<typename T_RET, typename... T_ARGS>
 	static std::string generateSignature() {

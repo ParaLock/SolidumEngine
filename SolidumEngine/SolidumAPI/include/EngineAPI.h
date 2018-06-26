@@ -27,6 +27,8 @@ public:
 
 		T::initStaticContract();
 
+		T::SOL_INTERFACE::STATIC_CONTRACT.setEngine(this);
+
 		registerTypeStaticContract(&T::SOL_INTERFACE::getStaticContractConcrete(), name);
 	}
 

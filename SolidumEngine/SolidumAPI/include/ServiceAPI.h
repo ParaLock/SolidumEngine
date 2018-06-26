@@ -11,12 +11,14 @@
 #include <stack>
 
 #include "../include/ResourceAPI.h"
+#include "../../Solidum/Containers/include/ObjectPool.h"
 
 #include "EngineAPI.h"
 
 class IEngine;
 struct ISolContract;
 
+using namespace ObjectPool;
 
 struct SolServiceResponse {
 
@@ -102,16 +104,32 @@ struct ISolContract {
 	virtual std::map<std::string, SolAny*>&		  getValues() = 0;
 };
 
+struct ElementBuffer {
+
+	ElementBuffer(void* _mem, ObjectID _id, ContractElementID _elementID) {
+		mem = _mem;
+		memID = _id;
+		elementID = _elementID;
+	}
+
+	ElementBuffer() {
+
+	}
+
+	ContractElementID                   elementID;
+	void* mem;
+	ObjectID memID;
+};
 
 template<typename T_PARENT, typename... T_ELEMENT>
 struct SolContract : ISolContract {
 
-	size_t m_totalBufferSize;
 
 	struct ElementWrapper {
-		std::stack<void*>					bufferList;
+		ObjectPool::Pool<void*>				bufferPool;
 
-		size_t								elementBufferSize;
+
+		size_t								size;
 	};
 
 	template<typename T>
@@ -121,13 +139,24 @@ struct SolContract : ISolContract {
 		std::string					 name;
 
 		ElementWrapperImpl() {
-			elementBufferSize = 0;
+			
 		}
 	};
 
-	std::tuple<ElementWrapperImpl<T_ELEMENT>...>			 elementStorage;
+	SolContract() {
 
+	}
+
+	SolContract(IEngine* engine) {
+		m_engine = engine;
+	}
+
+	IEngine*                                                 m_engine;
+
+	std::tuple<ElementWrapperImpl<T_ELEMENT>...>			 elementStorage;
 	std::array<ElementWrapper*, sizeof...(T_ELEMENT)>		 elementPtrs;
+
+	std::map<std::string, ContractElementID>                 elementIDMap;
 
 	std::map<std::string, ISolFunction*>	 functions;
 	std::map<std::string, SolAny*>			 values;
@@ -146,6 +175,8 @@ struct SolContract : ISolContract {
 			) 
 		{
 
+			wrapper.size = wrapper.element.getArgsSize();
+
 			if constexpr (IS_STATIC) {
 
 				wrapper.element.set(slot.m_val);
@@ -160,12 +191,15 @@ struct SolContract : ISolContract {
 		}
 		else {
 
+			wrapper.size = sizeof(decltype(wrapper.element));
+
 			wrapper.element.data(slot.m_val);
 
 			values.insert({ wrapper.name, &wrapper.element });
 		}
 
-		wrapper.elementBufferSize += sizeof(decltype(wrapper.element));
+		elementIDMap.insert({slot.m_name, INDEX});
+
 		elementPtrs[INDEX] = &wrapper;
 	}
 
@@ -216,9 +250,48 @@ struct SolContract : ISolContract {
 		processElements<0, T...>(args...);
 	}
 
-	void cacheData(std::list<SolAny*> items, ContractElementID id) {
+	void setEngine(IEngine* engine) {
+		m_engine = engine;
+	}
 
-		ElementWrapper* element = elementPtrs[id];
+	ElementBuffer cacheData(std::string elementName) {
+
+		ContractElementID elementid = elementIDMap.at(elementName);
+
+		ElementWrapper* element = elementPtrs[elementid];
+
+		void*		mem = nullptr;
+		ObjectID	id = 0;
+
+
+		if (element->bufferPool.hasFree()) {
+
+			PooledWrapper<void*>& buff = element->bufferPool.getFree();
+
+			mem = buff.getVal();
+
+			id = buff.ID;
+
+		}
+		else {
+
+			PooledWrapper<void*>& buff = element->bufferPool.getFree();
+
+			buff.getVal() = m_engine->getAllocator()->getMemory(element->size);
+			mem = buff.getVal();
+			id = buff.ID;
+		}
+
+
+		return ElementBuffer(mem, id, elementid);
+	}
+
+	void clearCacheData(ElementBuffer buff) {
+
+		ElementWrapper* element = elementPtrs[buff.elementID];
+
+		element->bufferPool.free(buff.memID);
+
 	}
 
 	std::map<std::string, ISolFunction*>& getFunctions() {
@@ -249,7 +322,8 @@ struct SolInterface : ISolInterface {
 	
 	IEngine*												m_engine;
 
-	SolInterface(IEngine* engine) {
+	SolInterface(IEngine* engine) 
+		: DYNAMIC_CONTRACT(engine) {
 
 		m_engine = engine;
 
@@ -260,6 +334,8 @@ struct SolInterface : ISolInterface {
 		m_engine->unregisterClient(this);
 
 	}
+
+
 
 	static T_STATIC_CONTRACT& getStaticContractConcrete() {
 		return STATIC_CONTRACT;
