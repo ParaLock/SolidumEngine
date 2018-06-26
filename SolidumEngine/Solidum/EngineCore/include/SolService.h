@@ -188,15 +188,28 @@ namespace SolService {
 			}
 			else {
 
-				ISolFunction* call = DYNAMIC_CONTRACT.getFunctions().at(request.callName);
+				if (request.isAsync) {
 
-				request.args.insert(request.args.begin(), &clientState.getVal().clientInfo);
+					ISolFunction* call = DYNAMIC_CONTRACT.getFunctions().at(request.callName);
+					
+					
+					//std::vector<void*> args = call->argCopy(request.args);
 
-				if (request.ret == nullptr) {
-					call->invoke(request.args);
+
+
 				}
 				else {
-					call->invoke(request.ret, request.args);
+
+					ISolFunction* call = DYNAMIC_CONTRACT.getFunctions().at(request.callName);
+
+					request.args.insert(request.args.begin(), &clientState.getVal().clientInfo);
+
+					if (request.ret == nullptr) {
+						call->invoke(request.args);
+					}
+					else {
+						call->invoke(request.ret, request.args);
+					}
 				}
 			}
 

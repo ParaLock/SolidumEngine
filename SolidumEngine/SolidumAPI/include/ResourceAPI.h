@@ -88,6 +88,8 @@ public:
 
 	virtual void invoke(void* ret, std::vector<void*> args) = 0;
 	virtual void invoke(std::vector<void*> args) = 0;
+
+	virtual void argCopy(void* dest, std::vector<void*> args) = 0;
 };
 
 template<typename T_RET, typename... T_ARGS>
@@ -109,11 +111,16 @@ private:
 	size_t                       m_callBufferSize;
 
 	template<typename T>
-	constexpr size_t& nextOffset(size_t& offset) {
+	void copyArg(unsigned int& index, size_t& offset, char* dest, std::vector<void*>& args) {
+		
+		char* p_dest = (dest + offset);
+		char* p_src = (char*)args[index++];
+
+		new(p_dest) T;
+
+		*(T*)p_dest = *(T*)p_src;
 
 		offset += sizeof(T);
-		
-		return offset;
 	}
 
 public:
@@ -121,24 +128,17 @@ public:
 	typedef								    T_RET T_RETURN;
 	typedef std::function<T_RET(T_ARGS...)> T_FUNC;
 
-	std::vector<void*> getArgVector(void* buff) {
+	void argCopy(void* dest, std::vector<void*> args) {
 		
-		std::vector<void*> args;
 		size_t offset = 0;
-		std::tuple<T_ARGS...> bla;
+		unsigned int index = 0;
 
 		using List = int[];
 		(void)List {
-			0, ((void)(args.push_back((char*)buff + nextOffset<T_ARGS>(offset))), 0) ...
+			0, ((void)(copyArg<T_ARGS>(index, offset, (char*)dest, args)), 0) ...
 		};
 
-		size_t sizeOfFirstElement = sizeof(decltype(std::get<0>(bla)));
 
-		char* p = (char*)args[0]; 
-		p -= sizeof(decltype(std::get<0>(bla)));
-		args[0] = p;
-
-		return args;
 	}
 
 	size_t getArgsSize() {
