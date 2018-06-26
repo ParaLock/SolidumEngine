@@ -138,12 +138,6 @@ public:
 		p -= sizeof(decltype(std::get<0>(bla)));
 		args[0] = p;
 
-		//for (int i = 0; i < args.size(); i++) {
-		//	char* p = (char*)args[i];
-		//	p = p - sizeof(decltype(std::get<0>(bla)));
-		//	args[i] = p;
-		//}
-
 		return args;
 	}
 

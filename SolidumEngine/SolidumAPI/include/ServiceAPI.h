@@ -254,7 +254,7 @@ struct SolContract : ISolContract {
 		m_engine = engine;
 	}
 
-	ElementBuffer cacheData(std::string elementName) {
+	ElementBuffer getElementBuffer(std::string elementName) {
 
 		ContractElementID elementid = elementIDMap.at(elementName);
 
@@ -286,7 +286,7 @@ struct SolContract : ISolContract {
 		return ElementBuffer(mem, id, elementid);
 	}
 
-	void clearCacheData(ElementBuffer buff) {
+	void freeElementBuffer(ElementBuffer buff) {
 
 		ElementWrapper* element = elementPtrs[buff.elementID];
 
