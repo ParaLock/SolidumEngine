@@ -24,6 +24,8 @@ namespace SolService {
 
 		std::vector<void*>          args;
 		void*                       ret;
+
+		ElementBuffer               argBuffer;
 	};
 
 	class ISolService {
@@ -114,11 +116,11 @@ namespace SolService {
 			std::list<Request> pendingRequests;
 		};
 
-		Pool<ClientState> m_clients;
-
+		Pool<ClientState, std::string>	 m_clients;
+		
 		PooledWrapper<ClientState>& getFreeClientState() {
 
-			auto& stateWrapper = m_clients.getFree();
+			auto& stateWrapper = m_clients.getFree(0);
 
 			stateWrapper.getVal().proxy.ID(stateWrapper.ID);
 
@@ -148,7 +150,8 @@ namespace SolService {
 
 	public:
 
-		Service(IEngine* engine) {
+		Service(IEngine* engine)
+		{
 			m_engine = engine;
 		}
 
@@ -191,12 +194,13 @@ namespace SolService {
 				if (request.isAsync) {
 
 					ISolFunction* call = DYNAMIC_CONTRACT.getFunctions().at(request.callName);
-					
-					
-					//std::vector<void*> args = call->argCopy(request.args);
+					ElementBuffer buff = DYNAMIC_CONTRACT.getElementBuffer(request.callName);
 
+					call->argCopy(buff.mem, request.args);
 
+					request.argBuffer = buff;
 
+					clientState.getVal().pendingRequests.push_back(request);
 				}
 				else {
 

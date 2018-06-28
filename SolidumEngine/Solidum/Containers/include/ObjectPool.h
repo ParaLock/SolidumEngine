@@ -17,53 +17,107 @@ namespace ObjectPool {
 
 	};
 
-	template<typename T>
+	template<typename T, typename T_GROUP_KEY>
 	class Pool {
 	private:
-		std::list<unsigned int> m_freeIDs;
-		std::deque<PooledWrapper<T>> m_pool;
-	public:
 
-		PooledWrapper<T>& getObject(ObjectID& id) {
-			return m_pool.at(id);
+		struct PoolStorage {
+			std::list<unsigned int>		 idList;
+			std::deque<PooledWrapper<T>> storage;
+		};
+
+		std::map<T_GROUP_KEY, unsigned int>	m_groupIDMap;
+		std::vector<PoolStorage>			m_pools;
+
+		void addGroup(T_GROUP_KEY key) {
+
+			m_pools.push_back(PoolStorage());
+			m_groupIDMap.insert({key, m_pools.size() - 1});
+
 		}
 
-		PooledWrapper<T>& getFree() {
+		PooledWrapper<T>& getFreeInner(unsigned int groupID) {
 
-			if (m_freeIDs.size() == 0) {
+			auto& pool = m_pools.at(groupID);
+
+			if (pool.idList.size() == 0) {
 
 				PooledWrapper<T> obj;
-			
-				obj.ID = m_pool.size();
-				m_pool.emplace_back(obj);
 
-				return m_pool.back();
+				ObjectID id;
+
+				id.instanceID = pool.storage.size();
+				id.groupID = groupID;
+
+				obj.ID = id;
+
+				pool.storage.emplace_back(obj);
+
+				return pool.storage.back();
 			}
 			else {
 
-				PooledWrapper<T>& obj = m_pool.at(m_freeIDs.back());
+				PooledWrapper<T>& obj = pool.storage.at(pool.idList.back());
 
-				//if constexpr(!std::is_pointer<T>::value)
-				//	obj.val = T();
-
-				m_freeIDs.pop_back();
+				pool.idList.pop_back();
 
 				return obj;
 			}
 		}
 
-		bool hasFree() {
-			return m_freeIDs.size() != 0;
+
+
+	public:
+
+		Pool() {
+			//Create index zero type pool for systems that only pool a single type.
+			m_pools.push_back(PoolStorage());
+		}
+
+		PooledWrapper<T>& getObject(ObjectID& id) {
+			
+			auto& pool = m_pools.at(id.groupID);
+			return pool.storage.at(id.instanceID);
+		}
+
+		PooledWrapper<T>& getFree(T_GROUP_KEY groupID) {
+
+			unsigned int id = m_groupIDMap.at(groupID);
+
+			return getFreeInner(id);
+		}
+
+		PooledWrapper<T>& getFree(unsigned int groupID) {
+
+			return getFreeInner(groupID);
+		}
+
+		bool hasFree(unsigned int groupID) {
+
+			return m_pools.at(groupID).idList.size() != 0;
+		}
+
+		bool hasFree(T_GROUP_KEY key) {
+
+			if (m_groupIDMap.find(key) == m_groupIDMap.end()) {
+				addGroup(key);
+			}
+
+			return hasFree(m_groupIDMap.at(key));
 		}
 
 		void free(PooledWrapper<T>& obj) {
 
-			m_freeIDs.push_back(obj.ID);
+			auto& pool = m_pools.at(obj.ID.groupID);
+
+			pool.idList.push_back(obj.ID.instanceID);
 		}
 
 		void free(ObjectID id) {
 
-			m_freeIDs.push_back(id);
+			auto& pool = m_pools.at(id.groupID);
+
+			pool.idList.push_back(id.instanceID);
 
 		}
 	};

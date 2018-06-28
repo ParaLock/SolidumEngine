@@ -126,10 +126,10 @@ struct SolContract : ISolContract {
 
 
 	struct ElementWrapper {
-		ObjectPool::Pool<void*>				bufferPool;
+		ObjectPool::Pool<void*, std::string> bufferPool;
 
 
-		size_t								size;
+		size_t								 size;
 	};
 
 	template<typename T>
@@ -261,12 +261,12 @@ struct SolContract : ISolContract {
 		ElementWrapper* element = elementPtrs[elementid];
 
 		void*		mem = nullptr;
-		ObjectID	id = 0;
+		ObjectID	id;
 
 
-		if (element->bufferPool.hasFree()) {
+		if (element->bufferPool.hasFree(0)) {
 
-			PooledWrapper<void*>& buff = element->bufferPool.getFree();
+			PooledWrapper<void*>& buff = element->bufferPool.getFree(0);
 
 			mem = buff.getVal();
 
@@ -275,7 +275,7 @@ struct SolContract : ISolContract {
 		}
 		else {
 
-			PooledWrapper<void*>& buff = element->bufferPool.getFree();
+			PooledWrapper<void*>& buff = element->bufferPool.getFree(0);
 
 			buff.getVal() = m_engine->getAllocator()->getMemory(element->size);
 			mem = buff.getVal();

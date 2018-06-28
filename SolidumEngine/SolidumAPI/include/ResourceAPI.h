@@ -15,7 +15,12 @@
 
 class ISolFunction;
 
-typedef unsigned int ObjectID;
+typedef struct {
+
+	int			 groupID;
+	unsigned int instanceID;
+
+} ObjectID;
 
 class SolAny {
 public:

@@ -11,8 +11,12 @@ namespace ResourceFramework {
 	struct ResourceInfo {
 		ResourceInfo* m_parentCreatorInfo;
 
-		ObjectID	  m_resClientID;
+		std::string   m_typeName;
+
+		ObjectID	  m_clientID;
 		ObjectID      m_resID;
+
+		void*         m_mem;
 
 		bool		  m_isPooled;
 	};
@@ -77,7 +81,8 @@ namespace ResourceFramework {
 	class ResourceService {
 	private:
 		//Contains pool of resource instances.. Makes use of allocator 
-		Pool<ResourceInfo*>        m_resPool;
+
+		Pool<ResourceInfo*, std::string> m_resPool;
 
 		typedef SolContract
 			<
@@ -118,7 +123,7 @@ namespace ResourceFramework {
 			
 			PooledWrapper<ResourceInfo*>& resourceWrapper = m_resPool.getObject(resHandle);
 
-			ResourceInfo* resource = resourceWrapper.getVal();
+			ResourceInfo* resource						  = resourceWrapper.getVal();
 
 			if (resource->m_isPooled) {
 
@@ -126,14 +131,17 @@ namespace ResourceFramework {
 
 			} else {
 
-				SOL_SERVICE.disconnectClient(&SOL_SERVICE.getClientState(resourceWrapper.ID).getVal().proxy);
+				SOL_SERVICE.disconnectClient(&SOL_SERVICE.getClientState(resource->m_clientID).getVal().proxy);
 
 			}
 		}
 
-		bool getResource(ResourceInfo* callerInfo, void** resPtr, ObjectID resHandle) {
+		bool getResource(ResourceInfo* callerInfo, void** resPtr, ObjectID resID) {
 
-			SOL_SERVICE.callClient(resHandle, "get_resource_ptr")->invoke({ *resPtr });
+			auto& infoWrapper = m_resPool.getObject(resID);
+			ResourceInfo* info = infoWrapper.getVal();
+
+			SOL_SERVICE.callClient(info->m_clientID, "get_resource_ptr")->invoke({ *resPtr });
 
 			return true;
 
@@ -144,27 +152,46 @@ namespace ResourceFramework {
 			ISolContract* staticContract = SOL_SERVICE.getEngine()->getTypeStaticContract(typeName);
 			size_t		  resSize		 = staticContract->getValues().at("size")->data<size_t>();
 
-			void* mem = SOL_SERVICE.getEngine()->getAllocator()->getMemory(resSize);
+			//ObjectID      newResID;
 
-			std::vector<void*> create_args;
+			if (m_resPool.hasFree(typeName)) {
 
-			create_args.push_back(mem);
-			create_args.push_back(SOL_SERVICE.getEngine());
+				PooledWrapper<ResourceInfo*>& instanceTrackPtr = m_resPool.getFree(typeName);
+				ObjectID	resID							   = instanceTrackPtr.getVal()->m_resID;
+				ObjectID    clientID						   = instanceTrackPtr.getVal()->m_clientID;
 
-			ObjectID id = 0;
-			staticContract->getFunctions().at("create_resource")->invoke(&id, create_args);
 
-			ResourceInfo& clientInstanceInfo = SOL_SERVICE.getClientState(id).getVal().clientInfo;
+				ResourceInfo& info = SOL_SERVICE.getClientState(clientID).getVal().clientInfo;
 
-			PooledWrapper<ResourceInfo*>& instanceTrackPtr = m_resPool.getFree();
+				info.m_parentCreatorInfo = parentCreatorInfo;
 
-			instanceTrackPtr.getVal() = &clientInstanceInfo;
+				return resID;
+			}
+			else {
+				PooledWrapper<ResourceInfo*>& instanceTrackPtr = m_resPool.getFree(typeName);
 
-			clientInstanceInfo.m_parentCreatorInfo = parentCreatorInfo;
-			clientInstanceInfo.m_resClientID = id;
-			clientInstanceInfo.m_resID = instanceTrackPtr.ID;
+				void* mem = SOL_SERVICE.getEngine()->getAllocator()->getMemory(resSize);
 
-			return instanceTrackPtr.ID;
+				std::vector<void*> create_args;
+
+				create_args.push_back(mem);
+				create_args.push_back(SOL_SERVICE.getEngine());
+
+				ObjectID clientID;
+				staticContract->getFunctions().at("create_resource")->invoke(&clientID, create_args);
+
+				ResourceInfo& info = SOL_SERVICE.getClientState(clientID).getVal().clientInfo;
+
+				instanceTrackPtr.getVal() = &info;
+
+				info.m_parentCreatorInfo = parentCreatorInfo;
+				info.m_clientID			 = clientID;
+				info.m_resID			 = instanceTrackPtr.ID;
+				info.m_mem				 = mem;
+
+				return info.m_resID;
+			}
+
 		}
 
 	};
