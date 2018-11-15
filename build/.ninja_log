@@ -1,0 +1,21 @@
+# ninja log v5
+4461	4638	1542227880	SolidumEngine	dabcdc7b358606d8
+0	4461	1542227879	CMakeFiles/SolidumEngine.dir/main.cpp.o	b7df1bd0aeb3064d
+1	4492	1542228556	CMakeFiles/SolidumEngine.dir/main.cpp.o	b7df1bd0aeb3064d
+4492	4666	1542228556	SolidumEngine	dabcdc7b358606d8
+1	4521	1542230811	CMakeFiles/SolidumEngine.dir/main.cpp.o	b7df1bd0aeb3064d
+4521	4754	1542230811	SolidumEngine	dabcdc7b358606d8
+1	4478	1542230909	CMakeFiles/SolidumEngine.dir/main.cpp.o	b7df1bd0aeb3064d
+4478	4656	1542230909	SolidumEngine	dabcdc7b358606d8
+1	4446	1542233325	CMakeFiles/SolidumEngine.dir/main.cpp.o	b7df1bd0aeb3064d
+4446	4621	1542233326	SolidumEngine	dabcdc7b358606d8
+1	4359	1542233405	CMakeFiles/SolidumEngine.dir/main.cpp.o	b7df1bd0aeb3064d
+4359	4533	1542233405	SolidumEngine	dabcdc7b358606d8
+1	4424	1542233481	CMakeFiles/SolidumEngine.dir/main.cpp.o	b7df1bd0aeb3064d
+4424	4601	1542233481	SolidumEngine	dabcdc7b358606d8
+0	4412	1542233503	CMakeFiles/SolidumEngine.dir/main.cpp.o	b7df1bd0aeb3064d
+4412	4592	1542233503	SolidumEngine	dabcdc7b358606d8
+1	4436	1542234717	CMakeFiles/SolidumEngine.dir/main.cpp.o	b7df1bd0aeb3064d
+4436	4611	1542234717	SolidumEngine	dabcdc7b358606d8
+1	4450	1542234814	CMakeFiles/SolidumEngine.dir/main.cpp.o	b7df1bd0aeb3064d
+4450	4630	1542234814	SolidumEngine	dabcdc7b358606d8
