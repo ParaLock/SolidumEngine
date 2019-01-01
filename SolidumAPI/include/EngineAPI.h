@@ -4,7 +4,7 @@
 
 class ISolInterface;
 
-class ISolAllocator {
+class IAllocator {
 private:
 public:
 	virtual void* getMemory(size_t size) 					   = 0;
@@ -17,7 +17,6 @@ public:
 	virtual void registerClient(ISolInterface* clientInterface) = 0;
 	virtual void unregisterClient(ISolInterface* clientInterface) = 0;
 
-
-	virtual ISolAllocator* getAllocator() = 0;
+	virtual IAllocator* getAllocator() = 0;
 };
 

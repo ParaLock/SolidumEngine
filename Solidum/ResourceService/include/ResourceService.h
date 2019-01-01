@@ -2,6 +2,9 @@
 
 #include "ResourceAPI.h"
 
+#include "EngineAPI.h"
+
+#include "IBus.h"
 #include "SolService.h"
 
 namespace ResourceFramework {
@@ -21,6 +24,13 @@ namespace ResourceFramework {
 	};
 
 	struct ClientInfo {
+		
+		ClientInfo() {
+			
+			m_resID.instanceID = -1;
+			m_resID.groupID    = -1;
+		}
+
 
 		ClientInfo* m_parentCreatorInfo;
 
@@ -37,8 +47,8 @@ namespace ResourceFramework {
 	class ResourceService {
 	public:
 
-		ResourceService(IEngine* engine) 
-			: SOL_SERVICE(engine)
+		ResourceService(IBus& bus) 
+			: SOL_SERVICE(bus)
 		{
 			
 			ContractBuilder& builder = SOL_SERVICE.getContractBuilder();
@@ -79,7 +89,7 @@ namespace ResourceFramework {
 			
 			if(info.types.find(name) == info.types.end()) {
 
-				info.types.insert({ name,{ Contract(SOL_SERVICE.getEngine()), name } });
+				info.types.insert({ name,{ Contract(), name } });
 
 				ResourceTypeStore::Type& type = info.types.at(name);
 
@@ -149,9 +159,9 @@ namespace ResourceFramework {
 				SolAnyImpl<size_t> typeSize;
 				typeContract.invokeCall("get_size", {}, &typeSize);
 
-				void* mem = SOL_SERVICE.getEngine()->getAllocator()->getMemory(typeSize.data());
+				void* mem = SOL_SERVICE.getServiceBus().getAllocator().getMemory(typeSize.data());
 
-				ArgPack<void*, IEngine*> create_args(mem, SOL_SERVICE.getEngine());
+				ArgPack<void*, IEngine*> create_args(mem, &SOL_SERVICE.getServiceBus().getEngine());
 
 				SolAnyImpl<ObjectID> clientID;
 				typeContract.invokeCall("create_resource", create_args.getArgs(), &clientID);

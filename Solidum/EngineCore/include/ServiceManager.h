@@ -2,7 +2,7 @@
 
 #include "EngineAPI.h"
 #include "ResourceAPI.h"
-#include "SolService.h"
+#include "IService.h"
 
 #include <map>
 #include <string>

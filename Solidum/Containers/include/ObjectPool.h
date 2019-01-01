@@ -75,7 +75,7 @@ namespace ObjectPool {
 
 		Pool() {
 			//Create index zero type pool for systems that only pool a single type.
-			m_pools.push_back(PoolStorage());
+			addDefaultGroup();
 		}
 
 
@@ -87,6 +87,14 @@ namespace ObjectPool {
 			m_pools.push_back(store);
 			m_groupIDMap.insert({ key, m_pools.size() - 1 });
 
+		}
+
+		void addDefaultGroup() {
+
+			PoolStorage store;
+			store.creator = []() { return T(); };
+
+			m_pools.push_back(store);
 		}
 
 		ObjectID getGroupID(std::string key) {
@@ -113,7 +121,7 @@ namespace ObjectPool {
 		}
 
 		PooledWrapper<T>& getFree(T_GROUP_KEY groupID) {
-
+			
 			unsigned int id = m_groupIDMap.at(groupID);
 
 			return getFreeInner(id);
@@ -137,8 +145,8 @@ namespace ObjectPool {
 
 		bool hasFree(T_GROUP_KEY key) {
 
-			if (m_groupIDMap.find(key) == m_groupIDMap.end()) {
-				addGroup(key, []() {return *new T();});
+			if(m_groupIDMap.find(key) == m_groupIDMap.end()) {
+				addGroup(key, []() {return T();});
 			}
 
 			return hasFree(m_groupIDMap.at(key));

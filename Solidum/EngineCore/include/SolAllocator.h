@@ -4,7 +4,7 @@
 #include <stdlib.h>
 
 //Yup this memory allocator sucks... Will improve later. Actually... Will implement later.
-class SolAllocator : public ISolAllocator {
+class SolAllocator : public IAllocator {
 private:
 public:
 

@@ -45,6 +45,7 @@
         "tuple": "cpp",
         "utility": "cpp",
         "cstring": "cpp",
-        "numeric": "cpp"
+        "numeric": "cpp",
+        "cstdarg": "cpp"
     }
 }

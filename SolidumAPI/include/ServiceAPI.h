@@ -15,8 +15,6 @@
 #include "ResourceAPI.h"
 #include "EngineAPI.h"
 
-
-
 template <typename ... Types> struct type_list {};
 
 struct SolServiceResponse {
@@ -170,14 +168,13 @@ private:
 	virtual void			   submitRequestAsync(std::string requestName, ObjectID argBufferID, std::function<void(SolServiceResponse&)> callback) = 0;
 	virtual SolServiceResponse submitRequest(std::string requestName, ObjectID argBufferID, SolAny* ret) = 0;
 	virtual SolServiceResponse submitRequest(std::string requestName, ObjectID argBufferID) = 0;
-	virtual IEngine*           getEngine() = 0;
 
 public:
 	virtual ObjectID ID() = 0;
 
 	virtual ContractBuilder& getContractBuilder() = 0;
 
-	virtual void endBuilder() = 0;
+	virtual void finalize() = 0;
 
 	template<typename T, typename... T_ARGS>
 	void callServiceAsync(std::string name, ISolFunction* callback, T_ARGS... args) {
@@ -268,5 +265,9 @@ struct SolInterface : ISolInterface {
 
 	void finalizeServiceMapping() {
 		m_engine->registerClient(this);
+	}
+
+	IEngine* getEngine() {
+		return m_engine;
 	}
 };

@@ -2,11 +2,14 @@
 
 #include "ObjectPool.h"
 
-#include "SolServiceBus.h"
+#include "Bus.h"
+#include "IScheduler.h"
 
 #include "EngineAPI.h"
 #include "ServiceAPI.h"
 #include "ResourceAPI.h"
+
+#include "IService.h"
 
 #include "Contract.h"
 
@@ -28,34 +31,14 @@ namespace SolService {
 		SolAny*        retBuffer;
 	};
 
-	class ISolService {
-	public:
-		virtual ObjectID             preCache(ObjectID clientID, std::string requestName, std::vector<SolAny*> args, std::vector<unsigned int> order) = 0;
-
-		virtual SolServiceResponse   submitRequest(Request& request) = 0;
-		virtual SolServiceResponse   submitRequestAsync(Request& request) = 0;
-
-		virtual std::string          getName() = 0;
-		virtual void				 setName(std::string name) = 0;
-
-		virtual void                 reloadClient(ObjectID clientID) = 0;
-
-		virtual ISolServiceProxy*    connectClient(ISolInterface* solInterface) = 0;
-		virtual void				 disconnectClient(ISolServiceProxy*) = 0;
-	};
 
 	class SolServiceProxy : public ISolServiceProxy {
 	private:
 		ObjectID       m_id;
-		IEngine*       m_engine;
 		ISolService*   m_service;
 
 		Contract       m_clientContract;
 		Contract*      m_serviceContract;
-
-		IEngine* getEngine() {
-			return m_engine;
-		}
 
 	protected:
 
@@ -65,9 +48,8 @@ namespace SolService {
 
 	public:
 
-		SolServiceProxy(IEngine* engine, Contract* serviceContract)
+		SolServiceProxy(Contract* serviceContract)
 		{
-			m_engine		  = engine;
 			m_serviceContract = serviceContract;
 		}
 
@@ -128,7 +110,7 @@ namespace SolService {
 			return m_service->submitRequest(request);
 		}
 
-		void endBuilder() {
+		void finalize() {
 
 			m_service->reloadClient(m_id);
 
@@ -139,7 +121,7 @@ namespace SolService {
 	template<typename T_REPO, typename T_CLIENT_INFO>
 	class Service : public ISolService {
 	private:
-
+		IBus&         m_parentBus;
 		BusRepo<T_REPO>		m_repo;
 
 		std::string			m_name;
@@ -171,16 +153,18 @@ namespace SolService {
 		}
 
 		ObjectID preCache(ObjectID clientID, std::string requestName, std::vector<SolAny*> args, std::vector<unsigned int> order) {
+
 			return m_contract.cacheArgs(requestName, args, order);
 		}
 
 	public:
 
-		Service(IEngine* engine)
+		Service(IBus& bus) : m_parentBus(bus)
 		{
-			m_engine = engine;
 			m_repo   = BusRepo<T_REPO>();
-			m_contract = Contract(engine);
+			m_contract = Contract();
+
+		
 		}
 
 		~Service() {
@@ -197,7 +181,22 @@ namespace SolService {
 		}
 
 		PooledWrapper<ClientState>& getClientState(ObjectID id) {
+			
 			return m_clients.getObject(id);
+		}
+
+		IBus& getServiceBus() {
+			return m_parentBus;
+		}
+
+		Contract& getServiceContract() {
+
+			return m_contract;
+		}
+
+		void splitExecution(std::string executor) {
+
+			getServiceBus().getServiceScheduler().addEntrypoint(this, executor);
 		}
 
 		ISolFunction* callClient(ObjectID clientId, std::string functionName) {
@@ -253,7 +252,10 @@ namespace SolService {
 		}
 
 		void setName(std::string name) {
+
 			m_name = name;
+
+			m_parentBus.attachService(this);
 		}
 
 		void disconnectClient(ISolServiceProxy* client) {
@@ -268,16 +270,12 @@ namespace SolService {
 			
 			ClientState& state = stateWrapper.getVal();
 
-			state.proxy		   = SolServiceProxy(m_engine, &m_contract);
+			state.proxy		   = SolServiceProxy(&m_contract);
 
 			state.proxy.setService(this);
 			state.proxy.ID(stateWrapper.ID);
 
 			return &state.proxy;
-		}
-
-		IEngine* getEngine() {
-			return m_engine;
 		}
 	};
 }

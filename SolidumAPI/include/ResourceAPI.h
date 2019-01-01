@@ -127,10 +127,12 @@ public:
 
 };
 
-
+struct IArgPack {
+	virtual std::vector<SolAny*>& getArgs() = 0;
+};
 
 template<typename... T_ARGS>
-struct ArgPack {
+struct ArgPack : IArgPack {
 	
 	std::tuple<SolAnyImpl<T_ARGS>...> tempStorage;
 	std::vector<SolAny*>              pArgs;

@@ -1,0 +1,988 @@
+desc: (none)
+cmd: ./SolidumEngine
+time_unit: i
+#-----------
+snapshot=0
+#-----------
+time=0
+mem_heap_B=0
+mem_heap_extra_B=0
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=1
+#-----------
+time=3943166
+mem_heap_B=105340
+mem_heap_extra_B=2764
+mem_stacks_B=0
+heap_tree=peak
+n8: 105340 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 72704 0x48F9469: _GLOBAL__sub_I_eh_alloc.cc (eh_alloc.cc:123)
+  n1: 72704 0x4010548: call_init.part.0 (in /usr/lib/ld-2.28.so)
+   n1: 72704 0x4010648: _dl_init (in /usr/lib/ld-2.28.so)
+    n0: 72704 0x4002038: ??? (in /usr/lib/ld-2.28.so)
+ n0: 9780 in 62 places, all below massif's threshold (1.00%)
+ n1: 8304 0x19783A: SolAllocator::getMemory(unsigned long) (SolAllocator.h:20)
+  n1: 8304 0x1989E3: ResourceFramework::ResourceService::createResourceInstance(ResourceFramework::ClientInfo*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<SolAny*, std::allocator<SolAny*> >*) (ResourceService.h:152)
+   n1: 8304 0x1AACD1: std::function<ObjectID (ResourceFramework::ClientInfo*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<SolAny*, std::allocator<SolAny*> >*)> objectBind<ObjectID, ResourceFramework::ResourceService, ResourceFramework::ClientInfo*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<SolAny*, std::allocator<SolAny*> >*>(ObjectID (ResourceFramework::ResourceService::*)(ResourceFramework::ClientInfo*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<SolAny*, std::allocator<SolAny*> >*), ResourceFramework::ResourceService*)::{lambda(ResourceFramework::ClientInfo*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<SolAny*, std::allocator<SolAny*> >*)#1}::operator()(ResourceFramework::ClientInfo*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<SolAny*, std::allocator<SolAny*> >*) const (ResourceAPI.h:525)
+    n1: 8304 0x1B7D8A: std::_Function_handler<ObjectID (ResourceFramework::ClientInfo*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<SolAny*, std::allocator<SolAny*> >*), std::function<ObjectID (ResourceFramework::ClientInfo*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<SolAny*, std::allocator<SolAny*> >*)> objectBind<ObjectID, ResourceFramework::ResourceService, ResourceFramework::ClientInfo*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<SolAny*, std::allocator<SolAny*> >*>(ObjectID (ResourceFramework::ResourceService::*)(ResourceFramework::ClientInfo*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<SolAny*, std::allocator<SolAny*> >*), ResourceFramework::ResourceService*)::{lambda(ResourceFramework::ClientInfo*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<SolAny*, std::allocator<SolAny*> >*)#1}>::_M_invoke(std::_Any_data const&, ResourceFramework::ClientInfo*&&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&, std::vector<SolAny*, std::allocator<SolAny*> >*&&) (std_function.h:282)
+     n1: 8304 0x1CFA68: std::function<ObjectID (ResourceFramework::ClientInfo*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<SolAny*, std::allocator<SolAny*> >*)>::operator()(ResourceFramework::ClientInfo*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<SolAny*, std::allocator<SolAny*> >*) const (std_function.h:687)
+      n1: 8304 0x1CC975: SolFunction<ObjectID (ResourceFramework::ResourceService::*)(ResourceFramework::ClientInfo*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<SolAny*, std::allocator<SolAny*> >*)>::invoke(SolAny*, std::vector<SolAny*, std::allocator<SolAny*> >) (ResourceAPI.h:482)
+       n1: 8304 0x1967DA: Contract::invokeCachedCall(SolAny*, unsigned int, ObjectID) (Contract.h:193)
+        n1: 8304 0x1966FC: Contract::invokeCachedCall(SolAny*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, ObjectID) (Contract.h:182)
+         n1: 8304 0x1CEC11: SolService::Service<ResourceFramework::ResourceTypeStore, ResourceFramework::ClientInfo>::submitRequest(SolService::Request&) (SolService.h:238)
+          n1: 8304 0x197289: SolService::SolServiceProxy::submitRequest(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, ObjectID, SolAny*) (SolService.h:111)
+           n2: 8304 0x19E480: ObjectID ISolServiceProxy::callService<ObjectID, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, decltype(nullptr)>(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, decltype(nullptr)) (ServiceAPI.h:203)
+            n1: 4152 0x199459: ResourceExample::testA(int, float) (main.cpp:93)
+             n1: 4152 0x199C23: Application::run() (main.cpp:163)
+              n0: 4152 0x19540E: main (main.cpp:182)
+            n1: 4152 0x199B38: Application::run() (main.cpp:155)
+             n0: 4152 0x19540E: main (main.cpp:182)
+ n1: 7560 0x1C0524: __gnu_cxx::new_allocator<ObjectPool::PooledWrapper<CallBuffer> >::allocate(unsigned long, void const*) (new_allocator.h:111)
+  n1: 7560 0x1BB878: std::allocator_traits<std::allocator<ObjectPool::PooledWrapper<CallBuffer> > >::allocate(std::allocator<ObjectPool::PooledWrapper<CallBuffer> >&, unsigned long) (alloc_traits.h:436)
+   n1: 7560 0x1B5B1A: std::_Deque_base<ObjectPool::PooledWrapper<CallBuffer>, std::allocator<ObjectPool::PooledWrapper<CallBuffer> > >::_M_allocate_node() (stl_deque.h:603)
+    n1: 7560 0x1B4C11: std::_Deque_base<ObjectPool::PooledWrapper<CallBuffer>, std::allocator<ObjectPool::PooledWrapper<CallBuffer> > >::_M_create_nodes(ObjectPool::PooledWrapper<CallBuffer>**, ObjectPool::PooledWrapper<CallBuffer>**) (stl_deque.h:728)
+     n2: 7560 0x1AE73F: std::_Deque_base<ObjectPool::PooledWrapper<CallBuffer>, std::allocator<ObjectPool::PooledWrapper<CallBuffer> > >::_M_initialize_map(unsigned long) (stl_deque.h:702)
+      n1: 7056 0x1C488D: std::_Deque_base<ObjectPool::PooledWrapper<CallBuffer>, std::allocator<ObjectPool::PooledWrapper<CallBuffer> > >::_Deque_base(std::allocator<ObjectPool::PooledWrapper<CallBuffer> > const&, unsigned long) (stl_deque.h:501)
+       n1: 7056 0x1C3989: std::deque<ObjectPool::PooledWrapper<CallBuffer>, std::allocator<ObjectPool::PooledWrapper<CallBuffer> > >::deque(std::deque<ObjectPool::PooledWrapper<CallBuffer>, std::allocator<ObjectPool::PooledWrapper<CallBuffer> > > const&) (stl_deque.h:959)
+        n1: 7056 0x1C252D: ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage::PoolStorage(ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage const&) (ObjectPool.h:28)
+         n1: 7056 0x1C25C3: void std::_Construct<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage, ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage const&>(ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage*, ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage const&) (stl_construct.h:75)
+          n1: 7056 0x1C012E: ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage* std::__uninitialized_copy<false>::__uninit_copy<__gnu_cxx::__normal_iterator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage const*, std::vector<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage, std::allocator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage> > >, ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage*>(__gnu_cxx::__normal_iterator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage const*, std::vector<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage, std::allocator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage> > >, __gnu_cxx::__normal_iterator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage const*, std::vector<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage, std::allocator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage> > >, ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage*) (stl_uninitialized.h:83)
+           n1: 7056 0x1BB27A: ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage* std::uninitialized_copy<__gnu_cxx::__normal_iterator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage const*, std::vector<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage, std::allocator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage> > >, ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage*>(__gnu_cxx::__normal_iterator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage const*, std::vector<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage, std::allocator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage> > >, __gnu_cxx::__normal_iterator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage const*, std::vector<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage, std::allocator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage> > >, ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage*) (stl_uninitialized.h:134)
+            n1: 7056 0x1B5595: ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage* std::__uninitialized_copy_a<__gnu_cxx::__normal_iterator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage const*, std::vector<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage, std::allocator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage> > >, ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage*, ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage>(__gnu_cxx::__normal_iterator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage const*, std::vector<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage, std::allocator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage> > >, __gnu_cxx::__normal_iterator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage const*, std::vector<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage, std::allocator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage> > >, ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage*, std::allocator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage>&) (stl_uninitialized.h:289)
+             n1: 7056 0x1AF301: std::vector<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage, std::allocator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage> >::vector(std::vector<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage, std::allocator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage> > const&) (stl_vector.h:463)
+              n1: 7056 0x1A83E1: ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::Pool(ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > const&) (ObjectPool.h:25)
+               n1: 7056 0x1A8427: Callable::Callable(Callable const&) (Contract.h:31)
+                n1: 7056 0x1A8481: void __gnu_cxx::new_allocator<Callable>::construct<Callable, Callable const&>(Callable*, Callable const&) (new_allocator.h:136)
+                 n2: 7056 0x1A1AD8: void std::allocator_traits<std::allocator<Callable> >::construct<Callable, Callable const&>(std::allocator<Callable>&, Callable*, Callable const&) (alloc_traits.h:475)
+                  n1: 6048 0x1A1C03: void std::vector<Callable, std::allocator<Callable> >::_M_realloc_insert<Callable const&>(__gnu_cxx::__normal_iterator<Callable*, std::vector<Callable, std::allocator<Callable> > >, Callable const&) (vector.tcc:436)
+                   n1: 6048 0x19B226: std::vector<Callable, std::allocator<Callable> >::push_back(Callable const&) (stl_vector.h:1085)
+                    n1: 6048 0x1964C4: Contract::addFunctions(std::vector<FuncElement, std::allocator<FuncElement> >) (Contract.h:152)
+                     n1: 6048 0x195FC1: Contract::getBuilder()::{lambda(std::vector<FuncElement, std::allocator<FuncElement> >&)#2}::operator()(std::vector<FuncElement, std::allocator<FuncElement> >&) const (Contract.h:86)
+                      n1: 6048 0x1A0F43: std::_Function_handler<void (std::vector<FuncElement, std::allocator<FuncElement> >&), Contract::getBuilder()::{lambda(std::vector<FuncElement, std::allocator<FuncElement> >&)#2}>::_M_invoke(std::_Any_data const&, std::vector<FuncElement, std::allocator<FuncElement> >&) (std_function.h:297)
+                       n3: 6048 0x1A4375: std::function<void (std::vector<FuncElement, std::allocator<FuncElement> >&)>::operator()(std::vector<FuncElement, std::allocator<FuncElement> >&) const (std_function.h:687)
+                        n1: 3024 0x19E0D2: void ContractBuilder::functions<ResourceExample, bool (ResourceExample::*)(int, float), void (ResourceExample::*)(), void (ResourceExample::*)(void**)>(std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >, ResourceExample*, bool (ResourceExample::*)(int, float), void (ResourceExample::*)(), void (ResourceExample::*)(void**)) (ServiceAPI.h:144)
+                         n1: 3024 0x199137: ResourceExample::ResourceExample(IEngine*) (main.cpp:55)
+                          n1: 3024 0x19930A: ResourceExample::create_resource(void*, IEngine*) (main.cpp:77)
+                           n1: 3024 0x1BF91D: std::_Function_handler<ObjectID (void*, IEngine*), ObjectID (*)(void*, IEngine*)>::_M_invoke(std::_Any_data const&, void*&&, IEngine*&&) (std_function.h:282)
+                            n1: 3024 0x1CF3F7: std::function<ObjectID (void*, IEngine*)>::operator()(void*, IEngine*) const (std_function.h:687)
+                             n1: 3024 0x1CAFF7: SolFunction<ObjectID (*)(void*, IEngine*)>::invoke(SolAny*, std::vector<SolAny*, std::allocator<SolAny*> >) (ResourceAPI.h:309)
+                              n0: 3024 0x196A32: Contract::invokeCall(unsigned int, std::vector<SolAny*, std::allocator<SolAny*> >, SolAny*) (Contract.h:212)
+                        n1: 2016 0x19C69D: void ContractBuilder::functions<ResourceFramework::ResourceService, void (ResourceFramework::ResourceService::*)(ResourceFramework::ClientInfo*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, void (*)(ContractBuilder&)), bool (ResourceFramework::ResourceService::*)(ResourceFramework::ClientInfo*, void**, ObjectID), void (ResourceFramework::ResourceService::*)(ResourceFramework::ClientInfo*, ObjectID), ObjectID (ResourceFramework::ResourceService::*)(ResourceFramework::ClientInfo*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<SolAny*, std::allocator<SolAny*> >*), void (ResourceFramework::ResourceService::*)(ResourceFramework::ClientInfo*, Contract*), void (ResourceFramework::ResourceService::*)(ResourceFramework::ClientInfo*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >)>(std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >, ResourceFramework::ResourceService*, void (ResourceFramework::ResourceService::*)(ResourceFramework::ClientInfo*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, void (*)(ContractBuilder&)), bool (ResourceFramework::ResourceService::*)(ResourceFramework::ClientInfo*, void**, ObjectID), void (ResourceFramework::ResourceService::*)(ResourceFramework::ClientInfo*, ObjectID), ObjectID (ResourceFramework::ResourceService::*)(ResourceFramework::ClientInfo*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<SolAny*, std::allocator<SolAny*> >*), void (ResourceFramework::ResourceService::*)(ResourceFramework::ClientInfo*, Contract*), void (ResourceFramework::ResourceService::*)(ResourceFramework::ClientInfo*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >)) (ServiceAPI.h:144)
+                         n1: 2016 0x197C2B: ResourceFramework::ResourceService::ResourceService(IEngine*) (ResourceService.h:46)
+                          n0: 2016 0x1953CD: main (main.cpp:178)
+                        n0: 1008 in 1 place, below massif's threshold (1.00%)
+                  n0: 1008 in 1 place, below massif's threshold (1.00%)
+      n0: 504 in 2 places, all below massif's threshold (1.00%)
+ n1: 2040 0x1BFF5E: __gnu_cxx::new_allocator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage>::allocate(unsigned long, void const*) (new_allocator.h:111)
+  n1: 2040 0x1BAF50: std::allocator_traits<std::allocator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage> >::allocate(std::allocator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage>&, unsigned long) (alloc_traits.h:436)
+   n2: 2040 0x1B50EC: std::_Vector_base<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage, std::allocator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage> >::_M_allocate(unsigned long) (stl_vector.h:296)
+    n1: 1904 0x1BB1ED: std::_Vector_base<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage, std::allocator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage> >::_M_create_storage(unsigned long) (stl_vector.h:311)
+     n1: 1904 0x1B549B: std::_Vector_base<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage, std::allocator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage> >::_Vector_base(unsigned long, std::allocator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage> const&) (stl_vector.h:260)
+      n1: 1904 0x1AF2B3: std::vector<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage, std::allocator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage> >::vector(std::vector<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage, std::allocator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage> > const&) (stl_vector.h:460)
+       n1: 1904 0x1A83E1: ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::Pool(ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > const&) (ObjectPool.h:25)
+        n1: 1904 0x1A8427: Callable::Callable(Callable const&) (Contract.h:31)
+         n1: 1904 0x1A8481: void __gnu_cxx::new_allocator<Callable>::construct<Callable, Callable const&>(Callable*, Callable const&) (new_allocator.h:136)
+          n2: 1904 0x1A1AD8: void std::allocator_traits<std::allocator<Callable> >::construct<Callable, Callable const&>(std::allocator<Callable>&, Callable*, Callable const&) (alloc_traits.h:475)
+           n1: 1632 0x1A1C03: void std::vector<Callable, std::allocator<Callable> >::_M_realloc_insert<Callable const&>(__gnu_cxx::__normal_iterator<Callable*, std::vector<Callable, std::allocator<Callable> > >, Callable const&) (vector.tcc:436)
+            n1: 1632 0x19B226: std::vector<Callable, std::allocator<Callable> >::push_back(Callable const&) (stl_vector.h:1085)
+             n1: 1632 0x1964C4: Contract::addFunctions(std::vector<FuncElement, std::allocator<FuncElement> >) (Contract.h:152)
+              n1: 1632 0x195FC1: Contract::getBuilder()::{lambda(std::vector<FuncElement, std::allocator<FuncElement> >&)#2}::operator()(std::vector<FuncElement, std::allocator<FuncElement> >&) const (Contract.h:86)
+               n1: 1632 0x1A0F43: std::_Function_handler<void (std::vector<FuncElement, std::allocator<FuncElement> >&), Contract::getBuilder()::{lambda(std::vector<FuncElement, std::allocator<FuncElement> >&)#2}>::_M_invoke(std::_Any_data const&, std::vector<FuncElement, std::allocator<FuncElement> >&) (std_function.h:297)
+                n1: 1632 0x1A4375: std::function<void (std::vector<FuncElement, std::allocator<FuncElement> >&)>::operator()(std::vector<FuncElement, std::allocator<FuncElement> >&) const (std_function.h:687)
+                 n0: 1632 in 3 places, all below massif's threshold (1.00%)
+           n0: 272 in 1 place, below massif's threshold (1.00%)
+    n0: 136 in 1 place, below massif's threshold (1.00%)
+ n1: 1696 0x1C3C81: __gnu_cxx::new_allocator<ObjectPool::PooledWrapper<SolService::Service<ResourceFramework::ResourceTypeStore, ResourceFramework::ClientInfo>::ClientState> >::allocate(unsigned long, void const*) (new_allocator.h:111)
+  n1: 1696 0x1C29BF: std::allocator_traits<std::allocator<ObjectPool::PooledWrapper<SolService::Service<ResourceFramework::ResourceTypeStore, ResourceFramework::ClientInfo>::ClientState> > >::allocate(std::allocator<ObjectPool::PooledWrapper<SolService::Service<ResourceFramework::ResourceTypeStore, ResourceFramework::ClientInfo>::ClientState> >&, unsigned long) (alloc_traits.h:436)
+   n2: 1696 0x1C0652: std::_Deque_base<ObjectPool::PooledWrapper<SolService::Service<ResourceFramework::ResourceTypeStore, ResourceFramework::ClientInfo>::ClientState>, std::allocator<ObjectPool::PooledWrapper<SolService::Service<ResourceFramework::ResourceTypeStore, ResourceFramework::ClientInfo>::ClientState> > >::_M_allocate_node() (stl_deque.h:603)
+    n1: 1272 0x1D1EBE: void std::deque<ObjectPool::PooledWrapper<SolService::Service<ResourceFramework::ResourceTypeStore, ResourceFramework::ClientInfo>::ClientState>, std::allocator<ObjectPool::PooledWrapper<SolService::Service<ResourceFramework::ResourceTypeStore, ResourceFramework::ClientInfo>::ClientState> > >::_M_push_back_aux<ObjectPool::PooledWrapper<SolService::Service<ResourceFramework::ResourceTypeStore, ResourceFramework::ClientInfo>::ClientState> const&>(ObjectPool::PooledWrapper<SolService::Service<ResourceFramework::ResourceTypeStore, ResourceFramework::ClientInfo>::ClientState> const&) (deque.tcc:488)
+     n1: 1272 0x1D137C: std::deque<ObjectPool::PooledWrapper<SolService::Service<ResourceFramework::ResourceTypeStore, ResourceFramework::ClientInfo>::ClientState>, std::allocator<ObjectPool::PooledWrapper<SolService::Service<ResourceFramework::ResourceTypeStore, ResourceFramework::ClientInfo>::ClientState> > >::push_back(ObjectPool::PooledWrapper<SolService::Service<ResourceFramework::ResourceTypeStore, ResourceFramework::ClientInfo>::ClientState> const&) (stl_deque.h:1562)
+      n1: 1272 0x1D0B8D: ObjectPool::Pool<SolService::Service<ResourceFramework::ResourceTypeStore, ResourceFramework::ClientInfo>::ClientState, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::getFreeInner(unsigned int) (ObjectPool.h:58)
+       n1: 1272 0x1D054C: ObjectPool::Pool<SolService::Service<ResourceFramework::ResourceTypeStore, ResourceFramework::ClientInfo>::ClientState, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::getFree(unsigned int) (ObjectPool.h:124)
+        n1: 1272 0x1CFF79: SolService::Service<ResourceFramework::ResourceTypeStore, ResourceFramework::ClientInfo>::getFreeClientState() (SolService.h:166)
+         n1: 1272 0x1CF12A: SolService::Service<ResourceFramework::ResourceTypeStore, ResourceFramework::ClientInfo>::connectClient(ISolInterface*) (SolService.h:267)
+          n1: 1272 0x197633: ServiceManager::registerServiceClient(ISolInterface*) (ServiceManager.h:35)
+           n1: 1272 0x1978EB: EngineInstance::registerClient(ISolInterface*) (EngineInstance.h:30)
+            n0: 1272 in 2 places, all below massif's threshold (1.00%)
+    n0: 424 in 1 place, below massif's threshold (1.00%)
+ n1: 1656 0x1C237C: __gnu_cxx::new_allocator<std::_Rb_tree_node<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> > >::allocate(unsigned long, void const*) (new_allocator.h:111)
+  n1: 1656 0x1BFFD4: std::allocator_traits<std::allocator<std::_Rb_tree_node<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> > > >::allocate(std::allocator<std::_Rb_tree_node<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> > >&, unsigned long) (alloc_traits.h:436)
+   n1: 1656 0x1BAFF5: std::_Rb_tree<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int>, std::_Select1st<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> >, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> > >::_M_get_node() (stl_tree.h:599)
+    n1: 1656 0x1B5330: std::_Rb_tree_node<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> >* std::_Rb_tree<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int>, std::_Select1st<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> >, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> > >::_M_create_node<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> >(std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int>&&) (stl_tree.h:653)
+     n1: 1656 0x1AF151: std::_Rb_tree_node<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> >* std::_Rb_tree<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int>, std::_Select1st<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> >, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> > >::_Alloc_node::operator()<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> >(std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int>&&) const (stl_tree.h:567)
+      n1: 1656 0x1A8002: std::_Rb_tree_iterator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> > std::_Rb_tree<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int>, std::_Select1st<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> >, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> > >::_M_insert_<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int>, std::_Rb_tree<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int>, std::_Select1st<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> >, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> > >::_Alloc_node>(std::_Rb_tree_node_base*, std::_Rb_tree_node_base*, std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int>&&, std::_Rb_tree<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int>, std::_Select1st<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> >, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> > >::_Alloc_node&) (stl_tree.h:1769)
+       n1: 1656 0x1A1745: std::pair<std::_Rb_tree_iterator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> >, bool> std::_Rb_tree<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int>, std::_Select1st<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> >, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> > >::_M_insert_unique<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> >(std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int>&&) (stl_tree.h:2112)
+        n1: 1656 0x19B12A: std::map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, unsigned int, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> > >::insert(std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int>&&) (stl_map.h:809)
+         n0: 1656 in 3 places, all below massif's threshold (1.00%)
+ n1: 1600 0x1B55FC: __gnu_cxx::new_allocator<Callable>::allocate(unsigned long, void const*) (new_allocator.h:111)
+  n1: 1600 0x1AF3AC: std::allocator_traits<std::allocator<Callable> >::allocate(std::allocator<Callable>&, unsigned long) (alloc_traits.h:436)
+   n1: 1600 0x1A8676: std::_Vector_base<Callable, std::allocator<Callable> >::_M_allocate(unsigned long) (stl_vector.h:296)
+    n1: 1600 0x1A1BB9: void std::vector<Callable, std::allocator<Callable> >::_M_realloc_insert<Callable const&>(__gnu_cxx::__normal_iterator<Callable*, std::vector<Callable, std::allocator<Callable> > >, Callable const&) (vector.tcc:427)
+     n1: 1600 0x19B226: std::vector<Callable, std::allocator<Callable> >::push_back(Callable const&) (stl_vector.h:1085)
+      n1: 1600 0x1964C4: Contract::addFunctions(std::vector<FuncElement, std::allocator<FuncElement> >) (Contract.h:152)
+       n1: 1600 0x195FC1: Contract::getBuilder()::{lambda(std::vector<FuncElement, std::allocator<FuncElement> >&)#2}::operator()(std::vector<FuncElement, std::allocator<FuncElement> >&) const (Contract.h:86)
+        n1: 1600 0x1A0F43: std::_Function_handler<void (std::vector<FuncElement, std::allocator<FuncElement> >&), Contract::getBuilder()::{lambda(std::vector<FuncElement, std::allocator<FuncElement> >&)#2}>::_M_invoke(std::_Any_data const&, std::vector<FuncElement, std::allocator<FuncElement> >&) (std_function.h:297)
+         n1: 1600 0x1A4375: std::function<void (std::vector<FuncElement, std::allocator<FuncElement> >&)>::operator()(std::vector<FuncElement, std::allocator<FuncElement> >&) const (std_function.h:687)
+          n0: 1600 in 3 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=2
+#-----------
+time=796187135
+mem_heap_B=104492
+mem_heap_extra_B=2724
+mem_stacks_B=0
+heap_tree=detailed
+n8: 104492 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 72704 0x48F9469: _GLOBAL__sub_I_eh_alloc.cc (eh_alloc.cc:123)
+  n1: 72704 0x4010548: call_init.part.0 (in /usr/lib/ld-2.28.so)
+   n1: 72704 0x4010648: _dl_init (in /usr/lib/ld-2.28.so)
+    n0: 72704 0x4002038: ??? (in /usr/lib/ld-2.28.so)
+ n0: 9732 in 66 places, all below massif's threshold (1.00%)
+ n1: 8304 0x19783A: SolAllocator::getMemory(unsigned long) (SolAllocator.h:20)
+  n1: 8304 0x1989E3: ResourceFramework::ResourceService::createResourceInstance(ResourceFramework::ClientInfo*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<SolAny*, std::allocator<SolAny*> >*) (ResourceService.h:152)
+   n1: 8304 0x1AACD1: std::function<ObjectID (ResourceFramework::ClientInfo*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<SolAny*, std::allocator<SolAny*> >*)> objectBind<ObjectID, ResourceFramework::ResourceService, ResourceFramework::ClientInfo*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<SolAny*, std::allocator<SolAny*> >*>(ObjectID (ResourceFramework::ResourceService::*)(ResourceFramework::ClientInfo*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<SolAny*, std::allocator<SolAny*> >*), ResourceFramework::ResourceService*)::{lambda(ResourceFramework::ClientInfo*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<SolAny*, std::allocator<SolAny*> >*)#1}::operator()(ResourceFramework::ClientInfo*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<SolAny*, std::allocator<SolAny*> >*) const (ResourceAPI.h:525)
+    n1: 8304 0x1B7D8A: std::_Function_handler<ObjectID (ResourceFramework::ClientInfo*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<SolAny*, std::allocator<SolAny*> >*), std::function<ObjectID (ResourceFramework::ClientInfo*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<SolAny*, std::allocator<SolAny*> >*)> objectBind<ObjectID, ResourceFramework::ResourceService, ResourceFramework::ClientInfo*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<SolAny*, std::allocator<SolAny*> >*>(ObjectID (ResourceFramework::ResourceService::*)(ResourceFramework::ClientInfo*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<SolAny*, std::allocator<SolAny*> >*), ResourceFramework::ResourceService*)::{lambda(ResourceFramework::ClientInfo*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<SolAny*, std::allocator<SolAny*> >*)#1}>::_M_invoke(std::_Any_data const&, ResourceFramework::ClientInfo*&&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&, std::vector<SolAny*, std::allocator<SolAny*> >*&&) (std_function.h:282)
+     n1: 8304 0x1CFA68: std::function<ObjectID (ResourceFramework::ClientInfo*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<SolAny*, std::allocator<SolAny*> >*)>::operator()(ResourceFramework::ClientInfo*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<SolAny*, std::allocator<SolAny*> >*) const (std_function.h:687)
+      n1: 8304 0x1CC975: SolFunction<ObjectID (ResourceFramework::ResourceService::*)(ResourceFramework::ClientInfo*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<SolAny*, std::allocator<SolAny*> >*)>::invoke(SolAny*, std::vector<SolAny*, std::allocator<SolAny*> >) (ResourceAPI.h:482)
+       n1: 8304 0x1967DA: Contract::invokeCachedCall(SolAny*, unsigned int, ObjectID) (Contract.h:193)
+        n1: 8304 0x1966FC: Contract::invokeCachedCall(SolAny*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, ObjectID) (Contract.h:182)
+         n1: 8304 0x1CEC11: SolService::Service<ResourceFramework::ResourceTypeStore, ResourceFramework::ClientInfo>::submitRequest(SolService::Request&) (SolService.h:238)
+          n1: 8304 0x197289: SolService::SolServiceProxy::submitRequest(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, ObjectID, SolAny*) (SolService.h:111)
+           n2: 8304 0x19E480: ObjectID ISolServiceProxy::callService<ObjectID, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, decltype(nullptr)>(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, decltype(nullptr)) (ServiceAPI.h:203)
+            n1: 4152 0x199459: ResourceExample::testA(int, float) (main.cpp:93)
+             n1: 4152 0x199C23: Application::run() (main.cpp:163)
+              n0: 4152 0x19540E: main (main.cpp:182)
+            n1: 4152 0x199B38: Application::run() (main.cpp:155)
+             n0: 4152 0x19540E: main (main.cpp:182)
+ n1: 7056 0x1C0524: __gnu_cxx::new_allocator<ObjectPool::PooledWrapper<CallBuffer> >::allocate(unsigned long, void const*) (new_allocator.h:111)
+  n1: 7056 0x1BB878: std::allocator_traits<std::allocator<ObjectPool::PooledWrapper<CallBuffer> > >::allocate(std::allocator<ObjectPool::PooledWrapper<CallBuffer> >&, unsigned long) (alloc_traits.h:436)
+   n1: 7056 0x1B5B1A: std::_Deque_base<ObjectPool::PooledWrapper<CallBuffer>, std::allocator<ObjectPool::PooledWrapper<CallBuffer> > >::_M_allocate_node() (stl_deque.h:603)
+    n1: 7056 0x1B4C11: std::_Deque_base<ObjectPool::PooledWrapper<CallBuffer>, std::allocator<ObjectPool::PooledWrapper<CallBuffer> > >::_M_create_nodes(ObjectPool::PooledWrapper<CallBuffer>**, ObjectPool::PooledWrapper<CallBuffer>**) (stl_deque.h:728)
+     n2: 7056 0x1AE73F: std::_Deque_base<ObjectPool::PooledWrapper<CallBuffer>, std::allocator<ObjectPool::PooledWrapper<CallBuffer> > >::_M_initialize_map(unsigned long) (stl_deque.h:702)
+      n1: 7056 0x1C488D: std::_Deque_base<ObjectPool::PooledWrapper<CallBuffer>, std::allocator<ObjectPool::PooledWrapper<CallBuffer> > >::_Deque_base(std::allocator<ObjectPool::PooledWrapper<CallBuffer> > const&, unsigned long) (stl_deque.h:501)
+       n1: 7056 0x1C3989: std::deque<ObjectPool::PooledWrapper<CallBuffer>, std::allocator<ObjectPool::PooledWrapper<CallBuffer> > >::deque(std::deque<ObjectPool::PooledWrapper<CallBuffer>, std::allocator<ObjectPool::PooledWrapper<CallBuffer> > > const&) (stl_deque.h:959)
+        n1: 7056 0x1C252D: ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage::PoolStorage(ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage const&) (ObjectPool.h:28)
+         n1: 7056 0x1C25C3: void std::_Construct<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage, ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage const&>(ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage*, ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage const&) (stl_construct.h:75)
+          n1: 7056 0x1C012E: ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage* std::__uninitialized_copy<false>::__uninit_copy<__gnu_cxx::__normal_iterator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage const*, std::vector<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage, std::allocator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage> > >, ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage*>(__gnu_cxx::__normal_iterator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage const*, std::vector<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage, std::allocator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage> > >, __gnu_cxx::__normal_iterator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage const*, std::vector<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage, std::allocator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage> > >, ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage*) (stl_uninitialized.h:83)
+           n1: 7056 0x1BB27A: ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage* std::uninitialized_copy<__gnu_cxx::__normal_iterator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage const*, std::vector<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage, std::allocator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage> > >, ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage*>(__gnu_cxx::__normal_iterator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage const*, std::vector<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage, std::allocator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage> > >, __gnu_cxx::__normal_iterator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage const*, std::vector<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage, std::allocator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage> > >, ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage*) (stl_uninitialized.h:134)
+            n1: 7056 0x1B5595: ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage* std::__uninitialized_copy_a<__gnu_cxx::__normal_iterator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage const*, std::vector<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage, std::allocator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage> > >, ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage*, ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage>(__gnu_cxx::__normal_iterator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage const*, std::vector<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage, std::allocator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage> > >, __gnu_cxx::__normal_iterator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage const*, std::vector<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage, std::allocator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage> > >, ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage*, std::allocator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage>&) (stl_uninitialized.h:289)
+             n1: 7056 0x1AF301: std::vector<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage, std::allocator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage> >::vector(std::vector<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage, std::allocator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage> > const&) (stl_vector.h:463)
+              n1: 7056 0x1A83E1: ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::Pool(ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > const&) (ObjectPool.h:25)
+               n1: 7056 0x1A8427: Callable::Callable(Callable const&) (Contract.h:31)
+                n1: 7056 0x1A8481: void __gnu_cxx::new_allocator<Callable>::construct<Callable, Callable const&>(Callable*, Callable const&) (new_allocator.h:136)
+                 n2: 7056 0x1A1AD8: void std::allocator_traits<std::allocator<Callable> >::construct<Callable, Callable const&>(std::allocator<Callable>&, Callable*, Callable const&) (alloc_traits.h:475)
+                  n1: 6048 0x1A1C03: void std::vector<Callable, std::allocator<Callable> >::_M_realloc_insert<Callable const&>(__gnu_cxx::__normal_iterator<Callable*, std::vector<Callable, std::allocator<Callable> > >, Callable const&) (vector.tcc:436)
+                   n1: 6048 0x19B226: std::vector<Callable, std::allocator<Callable> >::push_back(Callable const&) (stl_vector.h:1085)
+                    n1: 6048 0x1964C4: Contract::addFunctions(std::vector<FuncElement, std::allocator<FuncElement> >) (Contract.h:152)
+                     n1: 6048 0x195FC1: Contract::getBuilder()::{lambda(std::vector<FuncElement, std::allocator<FuncElement> >&)#2}::operator()(std::vector<FuncElement, std::allocator<FuncElement> >&) const (Contract.h:86)
+                      n1: 6048 0x1A0F43: std::_Function_handler<void (std::vector<FuncElement, std::allocator<FuncElement> >&), Contract::getBuilder()::{lambda(std::vector<FuncElement, std::allocator<FuncElement> >&)#2}>::_M_invoke(std::_Any_data const&, std::vector<FuncElement, std::allocator<FuncElement> >&) (std_function.h:297)
+                       n3: 6048 0x1A4375: std::function<void (std::vector<FuncElement, std::allocator<FuncElement> >&)>::operator()(std::vector<FuncElement, std::allocator<FuncElement> >&) const (std_function.h:687)
+                        n1: 3024 0x19E0D2: void ContractBuilder::functions<ResourceExample, bool (ResourceExample::*)(int, float), void (ResourceExample::*)(), void (ResourceExample::*)(void**)>(std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >, ResourceExample*, bool (ResourceExample::*)(int, float), void (ResourceExample::*)(), void (ResourceExample::*)(void**)) (ServiceAPI.h:144)
+                         n1: 3024 0x199137: ResourceExample::ResourceExample(IEngine*) (main.cpp:55)
+                          n1: 3024 0x19930A: ResourceExample::create_resource(void*, IEngine*) (main.cpp:77)
+                           n1: 3024 0x1BF91D: std::_Function_handler<ObjectID (void*, IEngine*), ObjectID (*)(void*, IEngine*)>::_M_invoke(std::_Any_data const&, void*&&, IEngine*&&) (std_function.h:282)
+                            n1: 3024 0x1CF3F7: std::function<ObjectID (void*, IEngine*)>::operator()(void*, IEngine*) const (std_function.h:687)
+                             n1: 3024 0x1CAFF7: SolFunction<ObjectID (*)(void*, IEngine*)>::invoke(SolAny*, std::vector<SolAny*, std::allocator<SolAny*> >) (ResourceAPI.h:309)
+                              n0: 3024 0x196A32: Contract::invokeCall(unsigned int, std::vector<SolAny*, std::allocator<SolAny*> >, SolAny*) (Contract.h:212)
+                        n1: 2016 0x19C69D: void ContractBuilder::functions<ResourceFramework::ResourceService, void (ResourceFramework::ResourceService::*)(ResourceFramework::ClientInfo*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, void (*)(ContractBuilder&)), bool (ResourceFramework::ResourceService::*)(ResourceFramework::ClientInfo*, void**, ObjectID), void (ResourceFramework::ResourceService::*)(ResourceFramework::ClientInfo*, ObjectID), ObjectID (ResourceFramework::ResourceService::*)(ResourceFramework::ClientInfo*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<SolAny*, std::allocator<SolAny*> >*), void (ResourceFramework::ResourceService::*)(ResourceFramework::ClientInfo*, Contract*), void (ResourceFramework::ResourceService::*)(ResourceFramework::ClientInfo*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >)>(std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >, ResourceFramework::ResourceService*, void (ResourceFramework::ResourceService::*)(ResourceFramework::ClientInfo*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, void (*)(ContractBuilder&)), bool (ResourceFramework::ResourceService::*)(ResourceFramework::ClientInfo*, void**, ObjectID), void (ResourceFramework::ResourceService::*)(ResourceFramework::ClientInfo*, ObjectID), ObjectID (ResourceFramework::ResourceService::*)(ResourceFramework::ClientInfo*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<SolAny*, std::allocator<SolAny*> >*), void (ResourceFramework::ResourceService::*)(ResourceFramework::ClientInfo*, Contract*), void (ResourceFramework::ResourceService::*)(ResourceFramework::ClientInfo*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >)) (ServiceAPI.h:144)
+                         n1: 2016 0x197C2B: ResourceFramework::ResourceService::ResourceService(IEngine*) (ResourceService.h:46)
+                          n0: 2016 0x1953CD: main (main.cpp:178)
+                        n0: 1008 in 1 place, below massif's threshold (1.00%)
+                  n0: 1008 in 1 place, below massif's threshold (1.00%)
+      n0: 0 in 2 places, all below massif's threshold (1.00%)
+ n1: 1904 0x1BFF5E: __gnu_cxx::new_allocator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage>::allocate(unsigned long, void const*) (new_allocator.h:111)
+  n1: 1904 0x1BAF50: std::allocator_traits<std::allocator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage> >::allocate(std::allocator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage>&, unsigned long) (alloc_traits.h:436)
+   n2: 1904 0x1B50EC: std::_Vector_base<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage, std::allocator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage> >::_M_allocate(unsigned long) (stl_vector.h:296)
+    n1: 1904 0x1BB1ED: std::_Vector_base<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage, std::allocator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage> >::_M_create_storage(unsigned long) (stl_vector.h:311)
+     n1: 1904 0x1B549B: std::_Vector_base<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage, std::allocator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage> >::_Vector_base(unsigned long, std::allocator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage> const&) (stl_vector.h:260)
+      n1: 1904 0x1AF2B3: std::vector<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage, std::allocator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage> >::vector(std::vector<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage, std::allocator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage> > const&) (stl_vector.h:460)
+       n1: 1904 0x1A83E1: ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::Pool(ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > const&) (ObjectPool.h:25)
+        n1: 1904 0x1A8427: Callable::Callable(Callable const&) (Contract.h:31)
+         n1: 1904 0x1A8481: void __gnu_cxx::new_allocator<Callable>::construct<Callable, Callable const&>(Callable*, Callable const&) (new_allocator.h:136)
+          n2: 1904 0x1A1AD8: void std::allocator_traits<std::allocator<Callable> >::construct<Callable, Callable const&>(std::allocator<Callable>&, Callable*, Callable const&) (alloc_traits.h:475)
+           n1: 1632 0x1A1C03: void std::vector<Callable, std::allocator<Callable> >::_M_realloc_insert<Callable const&>(__gnu_cxx::__normal_iterator<Callable*, std::vector<Callable, std::allocator<Callable> > >, Callable const&) (vector.tcc:436)
+            n1: 1632 0x19B226: std::vector<Callable, std::allocator<Callable> >::push_back(Callable const&) (stl_vector.h:1085)
+             n1: 1632 0x1964C4: Contract::addFunctions(std::vector<FuncElement, std::allocator<FuncElement> >) (Contract.h:152)
+              n1: 1632 0x195FC1: Contract::getBuilder()::{lambda(std::vector<FuncElement, std::allocator<FuncElement> >&)#2}::operator()(std::vector<FuncElement, std::allocator<FuncElement> >&) const (Contract.h:86)
+               n1: 1632 0x1A0F43: std::_Function_handler<void (std::vector<FuncElement, std::allocator<FuncElement> >&), Contract::getBuilder()::{lambda(std::vector<FuncElement, std::allocator<FuncElement> >&)#2}>::_M_invoke(std::_Any_data const&, std::vector<FuncElement, std::allocator<FuncElement> >&) (std_function.h:297)
+                n1: 1632 0x1A4375: std::function<void (std::vector<FuncElement, std::allocator<FuncElement> >&)>::operator()(std::vector<FuncElement, std::allocator<FuncElement> >&) const (std_function.h:687)
+                 n0: 1632 in 3 places, all below massif's threshold (1.00%)
+           n0: 272 in 1 place, below massif's threshold (1.00%)
+    n0: 0 in 1 place, below massif's threshold (1.00%)
+ n1: 1696 0x1C3C81: __gnu_cxx::new_allocator<ObjectPool::PooledWrapper<SolService::Service<ResourceFramework::ResourceTypeStore, ResourceFramework::ClientInfo>::ClientState> >::allocate(unsigned long, void const*) (new_allocator.h:111)
+  n1: 1696 0x1C29BF: std::allocator_traits<std::allocator<ObjectPool::PooledWrapper<SolService::Service<ResourceFramework::ResourceTypeStore, ResourceFramework::ClientInfo>::ClientState> > >::allocate(std::allocator<ObjectPool::PooledWrapper<SolService::Service<ResourceFramework::ResourceTypeStore, ResourceFramework::ClientInfo>::ClientState> >&, unsigned long) (alloc_traits.h:436)
+   n2: 1696 0x1C0652: std::_Deque_base<ObjectPool::PooledWrapper<SolService::Service<ResourceFramework::ResourceTypeStore, ResourceFramework::ClientInfo>::ClientState>, std::allocator<ObjectPool::PooledWrapper<SolService::Service<ResourceFramework::ResourceTypeStore, ResourceFramework::ClientInfo>::ClientState> > >::_M_allocate_node() (stl_deque.h:603)
+    n1: 1272 0x1D1EBE: void std::deque<ObjectPool::PooledWrapper<SolService::Service<ResourceFramework::ResourceTypeStore, ResourceFramework::ClientInfo>::ClientState>, std::allocator<ObjectPool::PooledWrapper<SolService::Service<ResourceFramework::ResourceTypeStore, ResourceFramework::ClientInfo>::ClientState> > >::_M_push_back_aux<ObjectPool::PooledWrapper<SolService::Service<ResourceFramework::ResourceTypeStore, ResourceFramework::ClientInfo>::ClientState> const&>(ObjectPool::PooledWrapper<SolService::Service<ResourceFramework::ResourceTypeStore, ResourceFramework::ClientInfo>::ClientState> const&) (deque.tcc:488)
+     n1: 1272 0x1D137C: std::deque<ObjectPool::PooledWrapper<SolService::Service<ResourceFramework::ResourceTypeStore, ResourceFramework::ClientInfo>::ClientState>, std::allocator<ObjectPool::PooledWrapper<SolService::Service<ResourceFramework::ResourceTypeStore, ResourceFramework::ClientInfo>::ClientState> > >::push_back(ObjectPool::PooledWrapper<SolService::Service<ResourceFramework::ResourceTypeStore, ResourceFramework::ClientInfo>::ClientState> const&) (stl_deque.h:1562)
+      n1: 1272 0x1D0B8D: ObjectPool::Pool<SolService::Service<ResourceFramework::ResourceTypeStore, ResourceFramework::ClientInfo>::ClientState, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::getFreeInner(unsigned int) (ObjectPool.h:58)
+       n1: 1272 0x1D054C: ObjectPool::Pool<SolService::Service<ResourceFramework::ResourceTypeStore, ResourceFramework::ClientInfo>::ClientState, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::getFree(unsigned int) (ObjectPool.h:124)
+        n1: 1272 0x1CFF79: SolService::Service<ResourceFramework::ResourceTypeStore, ResourceFramework::ClientInfo>::getFreeClientState() (SolService.h:166)
+         n1: 1272 0x1CF12A: SolService::Service<ResourceFramework::ResourceTypeStore, ResourceFramework::ClientInfo>::connectClient(ISolInterface*) (SolService.h:267)
+          n1: 1272 0x197633: ServiceManager::registerServiceClient(ISolInterface*) (ServiceManager.h:35)
+           n1: 1272 0x1978EB: EngineInstance::registerClient(ISolInterface*) (EngineInstance.h:30)
+            n0: 1272 in 2 places, all below massif's threshold (1.00%)
+    n0: 424 in 1 place, below massif's threshold (1.00%)
+ n1: 1656 0x1C237C: __gnu_cxx::new_allocator<std::_Rb_tree_node<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> > >::allocate(unsigned long, void const*) (new_allocator.h:111)
+  n1: 1656 0x1BFFD4: std::allocator_traits<std::allocator<std::_Rb_tree_node<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> > > >::allocate(std::allocator<std::_Rb_tree_node<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> > >&, unsigned long) (alloc_traits.h:436)
+   n1: 1656 0x1BAFF5: std::_Rb_tree<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int>, std::_Select1st<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> >, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> > >::_M_get_node() (stl_tree.h:599)
+    n1: 1656 0x1B5330: std::_Rb_tree_node<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> >* std::_Rb_tree<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int>, std::_Select1st<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> >, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> > >::_M_create_node<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> >(std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int>&&) (stl_tree.h:653)
+     n1: 1656 0x1AF151: std::_Rb_tree_node<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> >* std::_Rb_tree<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int>, std::_Select1st<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> >, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> > >::_Alloc_node::operator()<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> >(std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int>&&) const (stl_tree.h:567)
+      n1: 1656 0x1A8002: std::_Rb_tree_iterator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> > std::_Rb_tree<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int>, std::_Select1st<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> >, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> > >::_M_insert_<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int>, std::_Rb_tree<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int>, std::_Select1st<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> >, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> > >::_Alloc_node>(std::_Rb_tree_node_base*, std::_Rb_tree_node_base*, std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int>&&, std::_Rb_tree<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int>, std::_Select1st<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> >, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> > >::_Alloc_node&) (stl_tree.h:1769)
+       n1: 1656 0x1A1745: std::pair<std::_Rb_tree_iterator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> >, bool> std::_Rb_tree<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int>, std::_Select1st<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> >, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> > >::_M_insert_unique<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> >(std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int>&&) (stl_tree.h:2112)
+        n1: 1656 0x19B12A: std::map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, unsigned int, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> > >::insert(std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int>&&) (stl_map.h:809)
+         n0: 1656 in 3 places, all below massif's threshold (1.00%)
+ n1: 1440 0x1B55FC: __gnu_cxx::new_allocator<Callable>::allocate(unsigned long, void const*) (new_allocator.h:111)
+  n1: 1440 0x1AF3AC: std::allocator_traits<std::allocator<Callable> >::allocate(std::allocator<Callable>&, unsigned long) (alloc_traits.h:436)
+   n1: 1440 0x1A8676: std::_Vector_base<Callable, std::allocator<Callable> >::_M_allocate(unsigned long) (stl_vector.h:296)
+    n1: 1440 0x1A1BB9: void std::vector<Callable, std::allocator<Callable> >::_M_realloc_insert<Callable const&>(__gnu_cxx::__normal_iterator<Callable*, std::vector<Callable, std::allocator<Callable> > >, Callable const&) (vector.tcc:427)
+     n1: 1440 0x19B226: std::vector<Callable, std::allocator<Callable> >::push_back(Callable const&) (stl_vector.h:1085)
+      n1: 1440 0x1964C4: Contract::addFunctions(std::vector<FuncElement, std::allocator<FuncElement> >) (Contract.h:152)
+       n1: 1440 0x195FC1: Contract::getBuilder()::{lambda(std::vector<FuncElement, std::allocator<FuncElement> >&)#2}::operator()(std::vector<FuncElement, std::allocator<FuncElement> >&) const (Contract.h:86)
+        n1: 1440 0x1A0F43: std::_Function_handler<void (std::vector<FuncElement, std::allocator<FuncElement> >&), Contract::getBuilder()::{lambda(std::vector<FuncElement, std::allocator<FuncElement> >&)#2}>::_M_invoke(std::_Any_data const&, std::vector<FuncElement, std::allocator<FuncElement> >&) (std_function.h:297)
+         n1: 1440 0x1A4375: std::function<void (std::vector<FuncElement, std::allocator<FuncElement> >&)>::operator()(std::vector<FuncElement, std::allocator<FuncElement> >&) const (std_function.h:687)
+          n0: 1440 in 3 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=3
+#-----------
+time=1891200826
+mem_heap_B=104329
+mem_heap_extra_B=2719
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=4
+#-----------
+time=2792766565
+mem_heap_B=104320
+mem_heap_extra_B=2696
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=5
+#-----------
+time=3344402896
+mem_heap_B=104241
+mem_heap_extra_B=2671
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=6
+#-----------
+time=4285435233
+mem_heap_B=104329
+mem_heap_extra_B=2671
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=7
+#-----------
+time=5126207777
+mem_heap_B=104329
+mem_heap_extra_B=2671
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=8
+#-----------
+time=5966980321
+mem_heap_B=104329
+mem_heap_extra_B=2671
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=9
+#-----------
+time=6807752865
+mem_heap_B=104329
+mem_heap_extra_B=2671
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=10
+#-----------
+time=7806530004
+mem_heap_B=104467
+mem_heap_extra_B=2709
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=11
+#-----------
+time=9187675793
+mem_heap_B=104232
+mem_heap_extra_B=2648
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=12
+#-----------
+time=10162600634
+mem_heap_B=104319
+mem_heap_extra_B=2649
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=13
+#-----------
+time=11127846887
+mem_heap_B=104329
+mem_heap_extra_B=2719
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=14
+#-----------
+time=12044691611
+mem_heap_B=104320
+mem_heap_extra_B=2696
+mem_stacks_B=0
+heap_tree=detailed
+n8: 104320 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 72704 0x48F9469: _GLOBAL__sub_I_eh_alloc.cc (eh_alloc.cc:123)
+  n1: 72704 0x4010548: call_init.part.0 (in /usr/lib/ld-2.28.so)
+   n1: 72704 0x4010648: _dl_init (in /usr/lib/ld-2.28.so)
+    n0: 72704 0x4002038: ??? (in /usr/lib/ld-2.28.so)
+ n0: 9560 in 66 places, all below massif's threshold (1.00%)
+ n1: 8304 0x19783A: SolAllocator::getMemory(unsigned long) (SolAllocator.h:20)
+  n1: 8304 0x1989E3: ResourceFramework::ResourceService::createResourceInstance(ResourceFramework::ClientInfo*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<SolAny*, std::allocator<SolAny*> >*) (ResourceService.h:152)
+   n1: 8304 0x1AACD1: std::function<ObjectID (ResourceFramework::ClientInfo*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<SolAny*, std::allocator<SolAny*> >*)> objectBind<ObjectID, ResourceFramework::ResourceService, ResourceFramework::ClientInfo*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<SolAny*, std::allocator<SolAny*> >*>(ObjectID (ResourceFramework::ResourceService::*)(ResourceFramework::ClientInfo*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<SolAny*, std::allocator<SolAny*> >*), ResourceFramework::ResourceService*)::{lambda(ResourceFramework::ClientInfo*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<SolAny*, std::allocator<SolAny*> >*)#1}::operator()(ResourceFramework::ClientInfo*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<SolAny*, std::allocator<SolAny*> >*) const (ResourceAPI.h:525)
+    n1: 8304 0x1B7D8A: std::_Function_handler<ObjectID (ResourceFramework::ClientInfo*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<SolAny*, std::allocator<SolAny*> >*), std::function<ObjectID (ResourceFramework::ClientInfo*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<SolAny*, std::allocator<SolAny*> >*)> objectBind<ObjectID, ResourceFramework::ResourceService, ResourceFramework::ClientInfo*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<SolAny*, std::allocator<SolAny*> >*>(ObjectID (ResourceFramework::ResourceService::*)(ResourceFramework::ClientInfo*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<SolAny*, std::allocator<SolAny*> >*), ResourceFramework::ResourceService*)::{lambda(ResourceFramework::ClientInfo*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<SolAny*, std::allocator<SolAny*> >*)#1}>::_M_invoke(std::_Any_data const&, ResourceFramework::ClientInfo*&&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&, std::vector<SolAny*, std::allocator<SolAny*> >*&&) (std_function.h:282)
+     n1: 8304 0x1CFA68: std::function<ObjectID (ResourceFramework::ClientInfo*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<SolAny*, std::allocator<SolAny*> >*)>::operator()(ResourceFramework::ClientInfo*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<SolAny*, std::allocator<SolAny*> >*) const (std_function.h:687)
+      n1: 8304 0x1CC975: SolFunction<ObjectID (ResourceFramework::ResourceService::*)(ResourceFramework::ClientInfo*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<SolAny*, std::allocator<SolAny*> >*)>::invoke(SolAny*, std::vector<SolAny*, std::allocator<SolAny*> >) (ResourceAPI.h:482)
+       n1: 8304 0x1967DA: Contract::invokeCachedCall(SolAny*, unsigned int, ObjectID) (Contract.h:193)
+        n1: 8304 0x1966FC: Contract::invokeCachedCall(SolAny*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, ObjectID) (Contract.h:182)
+         n1: 8304 0x1CEC11: SolService::Service<ResourceFramework::ResourceTypeStore, ResourceFramework::ClientInfo>::submitRequest(SolService::Request&) (SolService.h:238)
+          n1: 8304 0x197289: SolService::SolServiceProxy::submitRequest(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, ObjectID, SolAny*) (SolService.h:111)
+           n2: 8304 0x19E480: ObjectID ISolServiceProxy::callService<ObjectID, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, decltype(nullptr)>(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, decltype(nullptr)) (ServiceAPI.h:203)
+            n1: 4152 0x199459: ResourceExample::testA(int, float) (main.cpp:93)
+             n1: 4152 0x199C23: Application::run() (main.cpp:163)
+              n0: 4152 0x19540E: main (main.cpp:182)
+            n1: 4152 0x199B38: Application::run() (main.cpp:155)
+             n0: 4152 0x19540E: main (main.cpp:182)
+ n1: 7056 0x1C0524: __gnu_cxx::new_allocator<ObjectPool::PooledWrapper<CallBuffer> >::allocate(unsigned long, void const*) (new_allocator.h:111)
+  n1: 7056 0x1BB878: std::allocator_traits<std::allocator<ObjectPool::PooledWrapper<CallBuffer> > >::allocate(std::allocator<ObjectPool::PooledWrapper<CallBuffer> >&, unsigned long) (alloc_traits.h:436)
+   n1: 7056 0x1B5B1A: std::_Deque_base<ObjectPool::PooledWrapper<CallBuffer>, std::allocator<ObjectPool::PooledWrapper<CallBuffer> > >::_M_allocate_node() (stl_deque.h:603)
+    n1: 7056 0x1B4C11: std::_Deque_base<ObjectPool::PooledWrapper<CallBuffer>, std::allocator<ObjectPool::PooledWrapper<CallBuffer> > >::_M_create_nodes(ObjectPool::PooledWrapper<CallBuffer>**, ObjectPool::PooledWrapper<CallBuffer>**) (stl_deque.h:728)
+     n2: 7056 0x1AE73F: std::_Deque_base<ObjectPool::PooledWrapper<CallBuffer>, std::allocator<ObjectPool::PooledWrapper<CallBuffer> > >::_M_initialize_map(unsigned long) (stl_deque.h:702)
+      n1: 7056 0x1C488D: std::_Deque_base<ObjectPool::PooledWrapper<CallBuffer>, std::allocator<ObjectPool::PooledWrapper<CallBuffer> > >::_Deque_base(std::allocator<ObjectPool::PooledWrapper<CallBuffer> > const&, unsigned long) (stl_deque.h:501)
+       n1: 7056 0x1C3989: std::deque<ObjectPool::PooledWrapper<CallBuffer>, std::allocator<ObjectPool::PooledWrapper<CallBuffer> > >::deque(std::deque<ObjectPool::PooledWrapper<CallBuffer>, std::allocator<ObjectPool::PooledWrapper<CallBuffer> > > const&) (stl_deque.h:959)
+        n1: 7056 0x1C252D: ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage::PoolStorage(ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage const&) (ObjectPool.h:28)
+         n1: 7056 0x1C25C3: void std::_Construct<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage, ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage const&>(ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage*, ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage const&) (stl_construct.h:75)
+          n1: 7056 0x1C012E: ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage* std::__uninitialized_copy<false>::__uninit_copy<__gnu_cxx::__normal_iterator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage const*, std::vector<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage, std::allocator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage> > >, ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage*>(__gnu_cxx::__normal_iterator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage const*, std::vector<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage, std::allocator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage> > >, __gnu_cxx::__normal_iterator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage const*, std::vector<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage, std::allocator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage> > >, ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage*) (stl_uninitialized.h:83)
+           n1: 7056 0x1BB27A: ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage* std::uninitialized_copy<__gnu_cxx::__normal_iterator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage const*, std::vector<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage, std::allocator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage> > >, ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage*>(__gnu_cxx::__normal_iterator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage const*, std::vector<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage, std::allocator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage> > >, __gnu_cxx::__normal_iterator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage const*, std::vector<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage, std::allocator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage> > >, ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage*) (stl_uninitialized.h:134)
+            n1: 7056 0x1B5595: ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage* std::__uninitialized_copy_a<__gnu_cxx::__normal_iterator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage const*, std::vector<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage, std::allocator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage> > >, ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage*, ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage>(__gnu_cxx::__normal_iterator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage const*, std::vector<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage, std::allocator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage> > >, __gnu_cxx::__normal_iterator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage const*, std::vector<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage, std::allocator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage> > >, ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage*, std::allocator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage>&) (stl_uninitialized.h:289)
+             n1: 7056 0x1AF301: std::vector<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage, std::allocator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage> >::vector(std::vector<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage, std::allocator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage> > const&) (stl_vector.h:463)
+              n1: 7056 0x1A83E1: ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::Pool(ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > const&) (ObjectPool.h:25)
+               n1: 7056 0x1A8427: Callable::Callable(Callable const&) (Contract.h:31)
+                n1: 7056 0x1A8481: void __gnu_cxx::new_allocator<Callable>::construct<Callable, Callable const&>(Callable*, Callable const&) (new_allocator.h:136)
+                 n2: 7056 0x1A1AD8: void std::allocator_traits<std::allocator<Callable> >::construct<Callable, Callable const&>(std::allocator<Callable>&, Callable*, Callable const&) (alloc_traits.h:475)
+                  n1: 6048 0x1A1C03: void std::vector<Callable, std::allocator<Callable> >::_M_realloc_insert<Callable const&>(__gnu_cxx::__normal_iterator<Callable*, std::vector<Callable, std::allocator<Callable> > >, Callable const&) (vector.tcc:436)
+                   n1: 6048 0x19B226: std::vector<Callable, std::allocator<Callable> >::push_back(Callable const&) (stl_vector.h:1085)
+                    n1: 6048 0x1964C4: Contract::addFunctions(std::vector<FuncElement, std::allocator<FuncElement> >) (Contract.h:152)
+                     n1: 6048 0x195FC1: Contract::getBuilder()::{lambda(std::vector<FuncElement, std::allocator<FuncElement> >&)#2}::operator()(std::vector<FuncElement, std::allocator<FuncElement> >&) const (Contract.h:86)
+                      n1: 6048 0x1A0F43: std::_Function_handler<void (std::vector<FuncElement, std::allocator<FuncElement> >&), Contract::getBuilder()::{lambda(std::vector<FuncElement, std::allocator<FuncElement> >&)#2}>::_M_invoke(std::_Any_data const&, std::vector<FuncElement, std::allocator<FuncElement> >&) (std_function.h:297)
+                       n3: 6048 0x1A4375: std::function<void (std::vector<FuncElement, std::allocator<FuncElement> >&)>::operator()(std::vector<FuncElement, std::allocator<FuncElement> >&) const (std_function.h:687)
+                        n1: 3024 0x19E0D2: void ContractBuilder::functions<ResourceExample, bool (ResourceExample::*)(int, float), void (ResourceExample::*)(), void (ResourceExample::*)(void**)>(std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >, ResourceExample*, bool (ResourceExample::*)(int, float), void (ResourceExample::*)(), void (ResourceExample::*)(void**)) (ServiceAPI.h:144)
+                         n1: 3024 0x199137: ResourceExample::ResourceExample(IEngine*) (main.cpp:55)
+                          n1: 3024 0x19930A: ResourceExample::create_resource(void*, IEngine*) (main.cpp:77)
+                           n1: 3024 0x1BF91D: std::_Function_handler<ObjectID (void*, IEngine*), ObjectID (*)(void*, IEngine*)>::_M_invoke(std::_Any_data const&, void*&&, IEngine*&&) (std_function.h:282)
+                            n1: 3024 0x1CF3F7: std::function<ObjectID (void*, IEngine*)>::operator()(void*, IEngine*) const (std_function.h:687)
+                             n1: 3024 0x1CAFF7: SolFunction<ObjectID (*)(void*, IEngine*)>::invoke(SolAny*, std::vector<SolAny*, std::allocator<SolAny*> >) (ResourceAPI.h:309)
+                              n0: 3024 0x196A32: Contract::invokeCall(unsigned int, std::vector<SolAny*, std::allocator<SolAny*> >, SolAny*) (Contract.h:212)
+                        n1: 2016 0x19C69D: void ContractBuilder::functions<ResourceFramework::ResourceService, void (ResourceFramework::ResourceService::*)(ResourceFramework::ClientInfo*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, void (*)(ContractBuilder&)), bool (ResourceFramework::ResourceService::*)(ResourceFramework::ClientInfo*, void**, ObjectID), void (ResourceFramework::ResourceService::*)(ResourceFramework::ClientInfo*, ObjectID), ObjectID (ResourceFramework::ResourceService::*)(ResourceFramework::ClientInfo*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<SolAny*, std::allocator<SolAny*> >*), void (ResourceFramework::ResourceService::*)(ResourceFramework::ClientInfo*, Contract*), void (ResourceFramework::ResourceService::*)(ResourceFramework::ClientInfo*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >)>(std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >, ResourceFramework::ResourceService*, void (ResourceFramework::ResourceService::*)(ResourceFramework::ClientInfo*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, void (*)(ContractBuilder&)), bool (ResourceFramework::ResourceService::*)(ResourceFramework::ClientInfo*, void**, ObjectID), void (ResourceFramework::ResourceService::*)(ResourceFramework::ClientInfo*, ObjectID), ObjectID (ResourceFramework::ResourceService::*)(ResourceFramework::ClientInfo*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<SolAny*, std::allocator<SolAny*> >*), void (ResourceFramework::ResourceService::*)(ResourceFramework::ClientInfo*, Contract*), void (ResourceFramework::ResourceService::*)(ResourceFramework::ClientInfo*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >)) (ServiceAPI.h:144)
+                         n1: 2016 0x197C2B: ResourceFramework::ResourceService::ResourceService(IEngine*) (ResourceService.h:46)
+                          n0: 2016 0x1953CD: main (main.cpp:178)
+                        n0: 1008 in 1 place, below massif's threshold (1.00%)
+                  n0: 1008 in 1 place, below massif's threshold (1.00%)
+      n0: 0 in 2 places, all below massif's threshold (1.00%)
+ n1: 1904 0x1BFF5E: __gnu_cxx::new_allocator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage>::allocate(unsigned long, void const*) (new_allocator.h:111)
+  n1: 1904 0x1BAF50: std::allocator_traits<std::allocator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage> >::allocate(std::allocator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage>&, unsigned long) (alloc_traits.h:436)
+   n2: 1904 0x1B50EC: std::_Vector_base<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage, std::allocator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage> >::_M_allocate(unsigned long) (stl_vector.h:296)
+    n1: 1904 0x1BB1ED: std::_Vector_base<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage, std::allocator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage> >::_M_create_storage(unsigned long) (stl_vector.h:311)
+     n1: 1904 0x1B549B: std::_Vector_base<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage, std::allocator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage> >::_Vector_base(unsigned long, std::allocator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage> const&) (stl_vector.h:260)
+      n1: 1904 0x1AF2B3: std::vector<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage, std::allocator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage> >::vector(std::vector<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage, std::allocator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage> > const&) (stl_vector.h:460)
+       n1: 1904 0x1A83E1: ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::Pool(ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > const&) (ObjectPool.h:25)
+        n1: 1904 0x1A8427: Callable::Callable(Callable const&) (Contract.h:31)
+         n1: 1904 0x1A8481: void __gnu_cxx::new_allocator<Callable>::construct<Callable, Callable const&>(Callable*, Callable const&) (new_allocator.h:136)
+          n2: 1904 0x1A1AD8: void std::allocator_traits<std::allocator<Callable> >::construct<Callable, Callable const&>(std::allocator<Callable>&, Callable*, Callable const&) (alloc_traits.h:475)
+           n1: 1632 0x1A1C03: void std::vector<Callable, std::allocator<Callable> >::_M_realloc_insert<Callable const&>(__gnu_cxx::__normal_iterator<Callable*, std::vector<Callable, std::allocator<Callable> > >, Callable const&) (vector.tcc:436)
+            n1: 1632 0x19B226: std::vector<Callable, std::allocator<Callable> >::push_back(Callable const&) (stl_vector.h:1085)
+             n1: 1632 0x1964C4: Contract::addFunctions(std::vector<FuncElement, std::allocator<FuncElement> >) (Contract.h:152)
+              n1: 1632 0x195FC1: Contract::getBuilder()::{lambda(std::vector<FuncElement, std::allocator<FuncElement> >&)#2}::operator()(std::vector<FuncElement, std::allocator<FuncElement> >&) const (Contract.h:86)
+               n1: 1632 0x1A0F43: std::_Function_handler<void (std::vector<FuncElement, std::allocator<FuncElement> >&), Contract::getBuilder()::{lambda(std::vector<FuncElement, std::allocator<FuncElement> >&)#2}>::_M_invoke(std::_Any_data const&, std::vector<FuncElement, std::allocator<FuncElement> >&) (std_function.h:297)
+                n1: 1632 0x1A4375: std::function<void (std::vector<FuncElement, std::allocator<FuncElement> >&)>::operator()(std::vector<FuncElement, std::allocator<FuncElement> >&) const (std_function.h:687)
+                 n0: 1632 in 3 places, all below massif's threshold (1.00%)
+           n0: 272 in 1 place, below massif's threshold (1.00%)
+    n0: 0 in 1 place, below massif's threshold (1.00%)
+ n1: 1696 0x1C3C81: __gnu_cxx::new_allocator<ObjectPool::PooledWrapper<SolService::Service<ResourceFramework::ResourceTypeStore, ResourceFramework::ClientInfo>::ClientState> >::allocate(unsigned long, void const*) (new_allocator.h:111)
+  n1: 1696 0x1C29BF: std::allocator_traits<std::allocator<ObjectPool::PooledWrapper<SolService::Service<ResourceFramework::ResourceTypeStore, ResourceFramework::ClientInfo>::ClientState> > >::allocate(std::allocator<ObjectPool::PooledWrapper<SolService::Service<ResourceFramework::ResourceTypeStore, ResourceFramework::ClientInfo>::ClientState> >&, unsigned long) (alloc_traits.h:436)
+   n2: 1696 0x1C0652: std::_Deque_base<ObjectPool::PooledWrapper<SolService::Service<ResourceFramework::ResourceTypeStore, ResourceFramework::ClientInfo>::ClientState>, std::allocator<ObjectPool::PooledWrapper<SolService::Service<ResourceFramework::ResourceTypeStore, ResourceFramework::ClientInfo>::ClientState> > >::_M_allocate_node() (stl_deque.h:603)
+    n1: 1272 0x1D1EBE: void std::deque<ObjectPool::PooledWrapper<SolService::Service<ResourceFramework::ResourceTypeStore, ResourceFramework::ClientInfo>::ClientState>, std::allocator<ObjectPool::PooledWrapper<SolService::Service<ResourceFramework::ResourceTypeStore, ResourceFramework::ClientInfo>::ClientState> > >::_M_push_back_aux<ObjectPool::PooledWrapper<SolService::Service<ResourceFramework::ResourceTypeStore, ResourceFramework::ClientInfo>::ClientState> const&>(ObjectPool::PooledWrapper<SolService::Service<ResourceFramework::ResourceTypeStore, ResourceFramework::ClientInfo>::ClientState> const&) (deque.tcc:488)
+     n1: 1272 0x1D137C: std::deque<ObjectPool::PooledWrapper<SolService::Service<ResourceFramework::ResourceTypeStore, ResourceFramework::ClientInfo>::ClientState>, std::allocator<ObjectPool::PooledWrapper<SolService::Service<ResourceFramework::ResourceTypeStore, ResourceFramework::ClientInfo>::ClientState> > >::push_back(ObjectPool::PooledWrapper<SolService::Service<ResourceFramework::ResourceTypeStore, ResourceFramework::ClientInfo>::ClientState> const&) (stl_deque.h:1562)
+      n1: 1272 0x1D0B8D: ObjectPool::Pool<SolService::Service<ResourceFramework::ResourceTypeStore, ResourceFramework::ClientInfo>::ClientState, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::getFreeInner(unsigned int) (ObjectPool.h:58)
+       n1: 1272 0x1D054C: ObjectPool::Pool<SolService::Service<ResourceFramework::ResourceTypeStore, ResourceFramework::ClientInfo>::ClientState, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::getFree(unsigned int) (ObjectPool.h:124)
+        n1: 1272 0x1CFF79: SolService::Service<ResourceFramework::ResourceTypeStore, ResourceFramework::ClientInfo>::getFreeClientState() (SolService.h:166)
+         n1: 1272 0x1CF12A: SolService::Service<ResourceFramework::ResourceTypeStore, ResourceFramework::ClientInfo>::connectClient(ISolInterface*) (SolService.h:267)
+          n1: 1272 0x197633: ServiceManager::registerServiceClient(ISolInterface*) (ServiceManager.h:35)
+           n1: 1272 0x1978EB: EngineInstance::registerClient(ISolInterface*) (EngineInstance.h:30)
+            n0: 1272 in 2 places, all below massif's threshold (1.00%)
+    n0: 424 in 1 place, below massif's threshold (1.00%)
+ n1: 1656 0x1C237C: __gnu_cxx::new_allocator<std::_Rb_tree_node<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> > >::allocate(unsigned long, void const*) (new_allocator.h:111)
+  n1: 1656 0x1BFFD4: std::allocator_traits<std::allocator<std::_Rb_tree_node<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> > > >::allocate(std::allocator<std::_Rb_tree_node<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> > >&, unsigned long) (alloc_traits.h:436)
+   n1: 1656 0x1BAFF5: std::_Rb_tree<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int>, std::_Select1st<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> >, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> > >::_M_get_node() (stl_tree.h:599)
+    n1: 1656 0x1B5330: std::_Rb_tree_node<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> >* std::_Rb_tree<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int>, std::_Select1st<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> >, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> > >::_M_create_node<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> >(std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int>&&) (stl_tree.h:653)
+     n1: 1656 0x1AF151: std::_Rb_tree_node<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> >* std::_Rb_tree<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int>, std::_Select1st<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> >, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> > >::_Alloc_node::operator()<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> >(std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int>&&) const (stl_tree.h:567)
+      n1: 1656 0x1A8002: std::_Rb_tree_iterator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> > std::_Rb_tree<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int>, std::_Select1st<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> >, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> > >::_M_insert_<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int>, std::_Rb_tree<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int>, std::_Select1st<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> >, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> > >::_Alloc_node>(std::_Rb_tree_node_base*, std::_Rb_tree_node_base*, std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int>&&, std::_Rb_tree<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int>, std::_Select1st<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> >, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> > >::_Alloc_node&) (stl_tree.h:1769)
+       n1: 1656 0x1A1745: std::pair<std::_Rb_tree_iterator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> >, bool> std::_Rb_tree<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int>, std::_Select1st<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> >, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> > >::_M_insert_unique<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> >(std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int>&&) (stl_tree.h:2112)
+        n1: 1656 0x19B12A: std::map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, unsigned int, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> > >::insert(std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int>&&) (stl_map.h:809)
+         n0: 1656 in 3 places, all below massif's threshold (1.00%)
+ n1: 1440 0x1B55FC: __gnu_cxx::new_allocator<Callable>::allocate(unsigned long, void const*) (new_allocator.h:111)
+  n1: 1440 0x1AF3AC: std::allocator_traits<std::allocator<Callable> >::allocate(std::allocator<Callable>&, unsigned long) (alloc_traits.h:436)
+   n1: 1440 0x1A8676: std::_Vector_base<Callable, std::allocator<Callable> >::_M_allocate(unsigned long) (stl_vector.h:296)
+    n1: 1440 0x1A1BB9: void std::vector<Callable, std::allocator<Callable> >::_M_realloc_insert<Callable const&>(__gnu_cxx::__normal_iterator<Callable*, std::vector<Callable, std::allocator<Callable> > >, Callable const&) (vector.tcc:427)
+     n1: 1440 0x19B226: std::vector<Callable, std::allocator<Callable> >::push_back(Callable const&) (stl_vector.h:1085)
+      n1: 1440 0x1964C4: Contract::addFunctions(std::vector<FuncElement, std::allocator<FuncElement> >) (Contract.h:152)
+       n1: 1440 0x195FC1: Contract::getBuilder()::{lambda(std::vector<FuncElement, std::allocator<FuncElement> >&)#2}::operator()(std::vector<FuncElement, std::allocator<FuncElement> >&) const (Contract.h:86)
+        n1: 1440 0x1A0F43: std::_Function_handler<void (std::vector<FuncElement, std::allocator<FuncElement> >&), Contract::getBuilder()::{lambda(std::vector<FuncElement, std::allocator<FuncElement> >&)#2}>::_M_invoke(std::_Any_data const&, std::vector<FuncElement, std::allocator<FuncElement> >&) (std_function.h:297)
+         n1: 1440 0x1A4375: std::function<void (std::vector<FuncElement, std::allocator<FuncElement> >&)>::operator()(std::vector<FuncElement, std::allocator<FuncElement> >&) const (std_function.h:687)
+          n0: 1440 in 3 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=15
+#-----------
+time=13267153185
+mem_heap_B=104320
+mem_heap_extra_B=2696
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=16
+#-----------
+time=14031191624
+mem_heap_B=104388
+mem_heap_extra_B=2732
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=17
+#-----------
+time=15253653198
+mem_heap_B=104388
+mem_heap_extra_B=2732
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=18
+#-----------
+time=15712076334
+mem_heap_B=104320
+mem_heap_extra_B=2696
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=19
+#-----------
+time=16934537908
+mem_heap_B=104320
+mem_heap_extra_B=2696
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=20
+#-----------
+time=18309807716
+mem_heap_B=104270
+mem_heap_extra_B=2618
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=21
+#-----------
+time=19102889095
+mem_heap_B=104225
+mem_heap_extra_B=2615
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=22
+#-----------
+time=20077820563
+mem_heap_B=104371
+mem_heap_extra_B=2701
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=23
+#-----------
+time=20809020511
+mem_heap_B=104164
+mem_heap_extra_B=2580
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=24
+#-----------
+time=21783952218
+mem_heap_B=104215
+mem_heap_extra_B=2609
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=25
+#-----------
+time=22758884341
+mem_heap_B=104204
+mem_heap_extra_B=2708
+mem_stacks_B=0
+heap_tree=detailed
+n8: 104204 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 72704 0x48F9469: _GLOBAL__sub_I_eh_alloc.cc (eh_alloc.cc:123)
+  n1: 72704 0x4010548: call_init.part.0 (in /usr/lib/ld-2.28.so)
+   n1: 72704 0x4010648: _dl_init (in /usr/lib/ld-2.28.so)
+    n0: 72704 0x4002038: ??? (in /usr/lib/ld-2.28.so)
+ n0: 9444 in 66 places, all below massif's threshold (1.00%)
+ n1: 8304 0x19783A: SolAllocator::getMemory(unsigned long) (SolAllocator.h:20)
+  n1: 8304 0x1989E3: ResourceFramework::ResourceService::createResourceInstance(ResourceFramework::ClientInfo*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<SolAny*, std::allocator<SolAny*> >*) (ResourceService.h:152)
+   n1: 8304 0x1AACD1: std::function<ObjectID (ResourceFramework::ClientInfo*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<SolAny*, std::allocator<SolAny*> >*)> objectBind<ObjectID, ResourceFramework::ResourceService, ResourceFramework::ClientInfo*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<SolAny*, std::allocator<SolAny*> >*>(ObjectID (ResourceFramework::ResourceService::*)(ResourceFramework::ClientInfo*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<SolAny*, std::allocator<SolAny*> >*), ResourceFramework::ResourceService*)::{lambda(ResourceFramework::ClientInfo*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<SolAny*, std::allocator<SolAny*> >*)#1}::operator()(ResourceFramework::ClientInfo*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<SolAny*, std::allocator<SolAny*> >*) const (ResourceAPI.h:525)
+    n1: 8304 0x1B7D8A: std::_Function_handler<ObjectID (ResourceFramework::ClientInfo*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<SolAny*, std::allocator<SolAny*> >*), std::function<ObjectID (ResourceFramework::ClientInfo*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<SolAny*, std::allocator<SolAny*> >*)> objectBind<ObjectID, ResourceFramework::ResourceService, ResourceFramework::ClientInfo*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<SolAny*, std::allocator<SolAny*> >*>(ObjectID (ResourceFramework::ResourceService::*)(ResourceFramework::ClientInfo*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<SolAny*, std::allocator<SolAny*> >*), ResourceFramework::ResourceService*)::{lambda(ResourceFramework::ClientInfo*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<SolAny*, std::allocator<SolAny*> >*)#1}>::_M_invoke(std::_Any_data const&, ResourceFramework::ClientInfo*&&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&, std::vector<SolAny*, std::allocator<SolAny*> >*&&) (std_function.h:282)
+     n1: 8304 0x1CFA68: std::function<ObjectID (ResourceFramework::ClientInfo*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<SolAny*, std::allocator<SolAny*> >*)>::operator()(ResourceFramework::ClientInfo*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<SolAny*, std::allocator<SolAny*> >*) const (std_function.h:687)
+      n1: 8304 0x1CC975: SolFunction<ObjectID (ResourceFramework::ResourceService::*)(ResourceFramework::ClientInfo*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<SolAny*, std::allocator<SolAny*> >*)>::invoke(SolAny*, std::vector<SolAny*, std::allocator<SolAny*> >) (ResourceAPI.h:482)
+       n1: 8304 0x1967DA: Contract::invokeCachedCall(SolAny*, unsigned int, ObjectID) (Contract.h:193)
+        n1: 8304 0x1966FC: Contract::invokeCachedCall(SolAny*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, ObjectID) (Contract.h:182)
+         n1: 8304 0x1CEC11: SolService::Service<ResourceFramework::ResourceTypeStore, ResourceFramework::ClientInfo>::submitRequest(SolService::Request&) (SolService.h:238)
+          n1: 8304 0x197289: SolService::SolServiceProxy::submitRequest(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, ObjectID, SolAny*) (SolService.h:111)
+           n2: 8304 0x19E480: ObjectID ISolServiceProxy::callService<ObjectID, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, decltype(nullptr)>(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, decltype(nullptr)) (ServiceAPI.h:203)
+            n1: 4152 0x199459: ResourceExample::testA(int, float) (main.cpp:93)
+             n1: 4152 0x199C23: Application::run() (main.cpp:163)
+              n0: 4152 0x19540E: main (main.cpp:182)
+            n1: 4152 0x199B38: Application::run() (main.cpp:155)
+             n0: 4152 0x19540E: main (main.cpp:182)
+ n1: 7056 0x1C0524: __gnu_cxx::new_allocator<ObjectPool::PooledWrapper<CallBuffer> >::allocate(unsigned long, void const*) (new_allocator.h:111)
+  n1: 7056 0x1BB878: std::allocator_traits<std::allocator<ObjectPool::PooledWrapper<CallBuffer> > >::allocate(std::allocator<ObjectPool::PooledWrapper<CallBuffer> >&, unsigned long) (alloc_traits.h:436)
+   n1: 7056 0x1B5B1A: std::_Deque_base<ObjectPool::PooledWrapper<CallBuffer>, std::allocator<ObjectPool::PooledWrapper<CallBuffer> > >::_M_allocate_node() (stl_deque.h:603)
+    n1: 7056 0x1B4C11: std::_Deque_base<ObjectPool::PooledWrapper<CallBuffer>, std::allocator<ObjectPool::PooledWrapper<CallBuffer> > >::_M_create_nodes(ObjectPool::PooledWrapper<CallBuffer>**, ObjectPool::PooledWrapper<CallBuffer>**) (stl_deque.h:728)
+     n2: 7056 0x1AE73F: std::_Deque_base<ObjectPool::PooledWrapper<CallBuffer>, std::allocator<ObjectPool::PooledWrapper<CallBuffer> > >::_M_initialize_map(unsigned long) (stl_deque.h:702)
+      n1: 7056 0x1C488D: std::_Deque_base<ObjectPool::PooledWrapper<CallBuffer>, std::allocator<ObjectPool::PooledWrapper<CallBuffer> > >::_Deque_base(std::allocator<ObjectPool::PooledWrapper<CallBuffer> > const&, unsigned long) (stl_deque.h:501)
+       n1: 7056 0x1C3989: std::deque<ObjectPool::PooledWrapper<CallBuffer>, std::allocator<ObjectPool::PooledWrapper<CallBuffer> > >::deque(std::deque<ObjectPool::PooledWrapper<CallBuffer>, std::allocator<ObjectPool::PooledWrapper<CallBuffer> > > const&) (stl_deque.h:959)
+        n1: 7056 0x1C252D: ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage::PoolStorage(ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage const&) (ObjectPool.h:28)
+         n1: 7056 0x1C25C3: void std::_Construct<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage, ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage const&>(ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage*, ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage const&) (stl_construct.h:75)
+          n1: 7056 0x1C012E: ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage* std::__uninitialized_copy<false>::__uninit_copy<__gnu_cxx::__normal_iterator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage const*, std::vector<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage, std::allocator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage> > >, ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage*>(__gnu_cxx::__normal_iterator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage const*, std::vector<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage, std::allocator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage> > >, __gnu_cxx::__normal_iterator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage const*, std::vector<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage, std::allocator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage> > >, ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage*) (stl_uninitialized.h:83)
+           n1: 7056 0x1BB27A: ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage* std::uninitialized_copy<__gnu_cxx::__normal_iterator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage const*, std::vector<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage, std::allocator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage> > >, ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage*>(__gnu_cxx::__normal_iterator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage const*, std::vector<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage, std::allocator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage> > >, __gnu_cxx::__normal_iterator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage const*, std::vector<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage, std::allocator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage> > >, ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage*) (stl_uninitialized.h:134)
+            n1: 7056 0x1B5595: ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage* std::__uninitialized_copy_a<__gnu_cxx::__normal_iterator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage const*, std::vector<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage, std::allocator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage> > >, ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage*, ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage>(__gnu_cxx::__normal_iterator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage const*, std::vector<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage, std::allocator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage> > >, __gnu_cxx::__normal_iterator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage const*, std::vector<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage, std::allocator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage> > >, ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage*, std::allocator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage>&) (stl_uninitialized.h:289)
+             n1: 7056 0x1AF301: std::vector<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage, std::allocator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage> >::vector(std::vector<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage, std::allocator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage> > const&) (stl_vector.h:463)
+              n1: 7056 0x1A83E1: ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::Pool(ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > const&) (ObjectPool.h:25)
+               n1: 7056 0x1A8427: Callable::Callable(Callable const&) (Contract.h:31)
+                n1: 7056 0x1A8481: void __gnu_cxx::new_allocator<Callable>::construct<Callable, Callable const&>(Callable*, Callable const&) (new_allocator.h:136)
+                 n2: 7056 0x1A1AD8: void std::allocator_traits<std::allocator<Callable> >::construct<Callable, Callable const&>(std::allocator<Callable>&, Callable*, Callable const&) (alloc_traits.h:475)
+                  n1: 6048 0x1A1C03: void std::vector<Callable, std::allocator<Callable> >::_M_realloc_insert<Callable const&>(__gnu_cxx::__normal_iterator<Callable*, std::vector<Callable, std::allocator<Callable> > >, Callable const&) (vector.tcc:436)
+                   n1: 6048 0x19B226: std::vector<Callable, std::allocator<Callable> >::push_back(Callable const&) (stl_vector.h:1085)
+                    n1: 6048 0x1964C4: Contract::addFunctions(std::vector<FuncElement, std::allocator<FuncElement> >) (Contract.h:152)
+                     n1: 6048 0x195FC1: Contract::getBuilder()::{lambda(std::vector<FuncElement, std::allocator<FuncElement> >&)#2}::operator()(std::vector<FuncElement, std::allocator<FuncElement> >&) const (Contract.h:86)
+                      n1: 6048 0x1A0F43: std::_Function_handler<void (std::vector<FuncElement, std::allocator<FuncElement> >&), Contract::getBuilder()::{lambda(std::vector<FuncElement, std::allocator<FuncElement> >&)#2}>::_M_invoke(std::_Any_data const&, std::vector<FuncElement, std::allocator<FuncElement> >&) (std_function.h:297)
+                       n3: 6048 0x1A4375: std::function<void (std::vector<FuncElement, std::allocator<FuncElement> >&)>::operator()(std::vector<FuncElement, std::allocator<FuncElement> >&) const (std_function.h:687)
+                        n1: 3024 0x19E0D2: void ContractBuilder::functions<ResourceExample, bool (ResourceExample::*)(int, float), void (ResourceExample::*)(), void (ResourceExample::*)(void**)>(std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >, ResourceExample*, bool (ResourceExample::*)(int, float), void (ResourceExample::*)(), void (ResourceExample::*)(void**)) (ServiceAPI.h:144)
+                         n1: 3024 0x199137: ResourceExample::ResourceExample(IEngine*) (main.cpp:55)
+                          n1: 3024 0x19930A: ResourceExample::create_resource(void*, IEngine*) (main.cpp:77)
+                           n1: 3024 0x1BF91D: std::_Function_handler<ObjectID (void*, IEngine*), ObjectID (*)(void*, IEngine*)>::_M_invoke(std::_Any_data const&, void*&&, IEngine*&&) (std_function.h:282)
+                            n1: 3024 0x1CF3F7: std::function<ObjectID (void*, IEngine*)>::operator()(void*, IEngine*) const (std_function.h:687)
+                             n1: 3024 0x1CAFF7: SolFunction<ObjectID (*)(void*, IEngine*)>::invoke(SolAny*, std::vector<SolAny*, std::allocator<SolAny*> >) (ResourceAPI.h:309)
+                              n0: 3024 0x196A32: Contract::invokeCall(unsigned int, std::vector<SolAny*, std::allocator<SolAny*> >, SolAny*) (Contract.h:212)
+                        n1: 2016 0x19C69D: void ContractBuilder::functions<ResourceFramework::ResourceService, void (ResourceFramework::ResourceService::*)(ResourceFramework::ClientInfo*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, void (*)(ContractBuilder&)), bool (ResourceFramework::ResourceService::*)(ResourceFramework::ClientInfo*, void**, ObjectID), void (ResourceFramework::ResourceService::*)(ResourceFramework::ClientInfo*, ObjectID), ObjectID (ResourceFramework::ResourceService::*)(ResourceFramework::ClientInfo*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<SolAny*, std::allocator<SolAny*> >*), void (ResourceFramework::ResourceService::*)(ResourceFramework::ClientInfo*, Contract*), void (ResourceFramework::ResourceService::*)(ResourceFramework::ClientInfo*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >)>(std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >, ResourceFramework::ResourceService*, void (ResourceFramework::ResourceService::*)(ResourceFramework::ClientInfo*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, void (*)(ContractBuilder&)), bool (ResourceFramework::ResourceService::*)(ResourceFramework::ClientInfo*, void**, ObjectID), void (ResourceFramework::ResourceService::*)(ResourceFramework::ClientInfo*, ObjectID), ObjectID (ResourceFramework::ResourceService::*)(ResourceFramework::ClientInfo*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<SolAny*, std::allocator<SolAny*> >*), void (ResourceFramework::ResourceService::*)(ResourceFramework::ClientInfo*, Contract*), void (ResourceFramework::ResourceService::*)(ResourceFramework::ClientInfo*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >)) (ServiceAPI.h:144)
+                         n1: 2016 0x197C2B: ResourceFramework::ResourceService::ResourceService(IEngine*) (ResourceService.h:46)
+                          n0: 2016 0x1953CD: main (main.cpp:178)
+                        n0: 1008 in 1 place, below massif's threshold (1.00%)
+                  n0: 1008 in 1 place, below massif's threshold (1.00%)
+      n0: 0 in 2 places, all below massif's threshold (1.00%)
+ n1: 1904 0x1BFF5E: __gnu_cxx::new_allocator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage>::allocate(unsigned long, void const*) (new_allocator.h:111)
+  n1: 1904 0x1BAF50: std::allocator_traits<std::allocator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage> >::allocate(std::allocator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage>&, unsigned long) (alloc_traits.h:436)
+   n2: 1904 0x1B50EC: std::_Vector_base<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage, std::allocator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage> >::_M_allocate(unsigned long) (stl_vector.h:296)
+    n1: 1904 0x1BB1ED: std::_Vector_base<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage, std::allocator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage> >::_M_create_storage(unsigned long) (stl_vector.h:311)
+     n1: 1904 0x1B549B: std::_Vector_base<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage, std::allocator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage> >::_Vector_base(unsigned long, std::allocator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage> const&) (stl_vector.h:260)
+      n1: 1904 0x1AF2B3: std::vector<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage, std::allocator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage> >::vector(std::vector<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage, std::allocator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage> > const&) (stl_vector.h:460)
+       n1: 1904 0x1A83E1: ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::Pool(ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > const&) (ObjectPool.h:25)
+        n1: 1904 0x1A8427: Callable::Callable(Callable const&) (Contract.h:31)
+         n1: 1904 0x1A8481: void __gnu_cxx::new_allocator<Callable>::construct<Callable, Callable const&>(Callable*, Callable const&) (new_allocator.h:136)
+          n2: 1904 0x1A1AD8: void std::allocator_traits<std::allocator<Callable> >::construct<Callable, Callable const&>(std::allocator<Callable>&, Callable*, Callable const&) (alloc_traits.h:475)
+           n1: 1632 0x1A1C03: void std::vector<Callable, std::allocator<Callable> >::_M_realloc_insert<Callable const&>(__gnu_cxx::__normal_iterator<Callable*, std::vector<Callable, std::allocator<Callable> > >, Callable const&) (vector.tcc:436)
+            n1: 1632 0x19B226: std::vector<Callable, std::allocator<Callable> >::push_back(Callable const&) (stl_vector.h:1085)
+             n1: 1632 0x1964C4: Contract::addFunctions(std::vector<FuncElement, std::allocator<FuncElement> >) (Contract.h:152)
+              n1: 1632 0x195FC1: Contract::getBuilder()::{lambda(std::vector<FuncElement, std::allocator<FuncElement> >&)#2}::operator()(std::vector<FuncElement, std::allocator<FuncElement> >&) const (Contract.h:86)
+               n1: 1632 0x1A0F43: std::_Function_handler<void (std::vector<FuncElement, std::allocator<FuncElement> >&), Contract::getBuilder()::{lambda(std::vector<FuncElement, std::allocator<FuncElement> >&)#2}>::_M_invoke(std::_Any_data const&, std::vector<FuncElement, std::allocator<FuncElement> >&) (std_function.h:297)
+                n1: 1632 0x1A4375: std::function<void (std::vector<FuncElement, std::allocator<FuncElement> >&)>::operator()(std::vector<FuncElement, std::allocator<FuncElement> >&) const (std_function.h:687)
+                 n0: 1632 in 3 places, all below massif's threshold (1.00%)
+           n0: 272 in 1 place, below massif's threshold (1.00%)
+    n0: 0 in 1 place, below massif's threshold (1.00%)
+ n1: 1696 0x1C3C81: __gnu_cxx::new_allocator<ObjectPool::PooledWrapper<SolService::Service<ResourceFramework::ResourceTypeStore, ResourceFramework::ClientInfo>::ClientState> >::allocate(unsigned long, void const*) (new_allocator.h:111)
+  n1: 1696 0x1C29BF: std::allocator_traits<std::allocator<ObjectPool::PooledWrapper<SolService::Service<ResourceFramework::ResourceTypeStore, ResourceFramework::ClientInfo>::ClientState> > >::allocate(std::allocator<ObjectPool::PooledWrapper<SolService::Service<ResourceFramework::ResourceTypeStore, ResourceFramework::ClientInfo>::ClientState> >&, unsigned long) (alloc_traits.h:436)
+   n2: 1696 0x1C0652: std::_Deque_base<ObjectPool::PooledWrapper<SolService::Service<ResourceFramework::ResourceTypeStore, ResourceFramework::ClientInfo>::ClientState>, std::allocator<ObjectPool::PooledWrapper<SolService::Service<ResourceFramework::ResourceTypeStore, ResourceFramework::ClientInfo>::ClientState> > >::_M_allocate_node() (stl_deque.h:603)
+    n1: 1272 0x1D1EBE: void std::deque<ObjectPool::PooledWrapper<SolService::Service<ResourceFramework::ResourceTypeStore, ResourceFramework::ClientInfo>::ClientState>, std::allocator<ObjectPool::PooledWrapper<SolService::Service<ResourceFramework::ResourceTypeStore, ResourceFramework::ClientInfo>::ClientState> > >::_M_push_back_aux<ObjectPool::PooledWrapper<SolService::Service<ResourceFramework::ResourceTypeStore, ResourceFramework::ClientInfo>::ClientState> const&>(ObjectPool::PooledWrapper<SolService::Service<ResourceFramework::ResourceTypeStore, ResourceFramework::ClientInfo>::ClientState> const&) (deque.tcc:488)
+     n1: 1272 0x1D137C: std::deque<ObjectPool::PooledWrapper<SolService::Service<ResourceFramework::ResourceTypeStore, ResourceFramework::ClientInfo>::ClientState>, std::allocator<ObjectPool::PooledWrapper<SolService::Service<ResourceFramework::ResourceTypeStore, ResourceFramework::ClientInfo>::ClientState> > >::push_back(ObjectPool::PooledWrapper<SolService::Service<ResourceFramework::ResourceTypeStore, ResourceFramework::ClientInfo>::ClientState> const&) (stl_deque.h:1562)
+      n1: 1272 0x1D0B8D: ObjectPool::Pool<SolService::Service<ResourceFramework::ResourceTypeStore, ResourceFramework::ClientInfo>::ClientState, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::getFreeInner(unsigned int) (ObjectPool.h:58)
+       n1: 1272 0x1D054C: ObjectPool::Pool<SolService::Service<ResourceFramework::ResourceTypeStore, ResourceFramework::ClientInfo>::ClientState, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::getFree(unsigned int) (ObjectPool.h:124)
+        n1: 1272 0x1CFF79: SolService::Service<ResourceFramework::ResourceTypeStore, ResourceFramework::ClientInfo>::getFreeClientState() (SolService.h:166)
+         n1: 1272 0x1CF12A: SolService::Service<ResourceFramework::ResourceTypeStore, ResourceFramework::ClientInfo>::connectClient(ISolInterface*) (SolService.h:267)
+          n1: 1272 0x197633: ServiceManager::registerServiceClient(ISolInterface*) (ServiceManager.h:35)
+           n1: 1272 0x1978EB: EngineInstance::registerClient(ISolInterface*) (EngineInstance.h:30)
+            n0: 1272 in 2 places, all below massif's threshold (1.00%)
+    n0: 424 in 1 place, below massif's threshold (1.00%)
+ n1: 1656 0x1C237C: __gnu_cxx::new_allocator<std::_Rb_tree_node<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> > >::allocate(unsigned long, void const*) (new_allocator.h:111)
+  n1: 1656 0x1BFFD4: std::allocator_traits<std::allocator<std::_Rb_tree_node<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> > > >::allocate(std::allocator<std::_Rb_tree_node<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> > >&, unsigned long) (alloc_traits.h:436)
+   n1: 1656 0x1BAFF5: std::_Rb_tree<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int>, std::_Select1st<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> >, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> > >::_M_get_node() (stl_tree.h:599)
+    n1: 1656 0x1B5330: std::_Rb_tree_node<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> >* std::_Rb_tree<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int>, std::_Select1st<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> >, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> > >::_M_create_node<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> >(std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int>&&) (stl_tree.h:653)
+     n1: 1656 0x1AF151: std::_Rb_tree_node<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> >* std::_Rb_tree<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int>, std::_Select1st<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> >, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> > >::_Alloc_node::operator()<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> >(std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int>&&) const (stl_tree.h:567)
+      n1: 1656 0x1A8002: std::_Rb_tree_iterator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> > std::_Rb_tree<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int>, std::_Select1st<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> >, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> > >::_M_insert_<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int>, std::_Rb_tree<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int>, std::_Select1st<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> >, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> > >::_Alloc_node>(std::_Rb_tree_node_base*, std::_Rb_tree_node_base*, std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int>&&, std::_Rb_tree<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int>, std::_Select1st<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> >, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> > >::_Alloc_node&) (stl_tree.h:1769)
+       n1: 1656 0x1A1745: std::pair<std::_Rb_tree_iterator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> >, bool> std::_Rb_tree<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int>, std::_Select1st<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> >, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> > >::_M_insert_unique<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> >(std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int>&&) (stl_tree.h:2112)
+        n1: 1656 0x19B12A: std::map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, unsigned int, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> > >::insert(std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int>&&) (stl_map.h:809)
+         n0: 1656 in 3 places, all below massif's threshold (1.00%)
+ n1: 1440 0x1B55FC: __gnu_cxx::new_allocator<Callable>::allocate(unsigned long, void const*) (new_allocator.h:111)
+  n1: 1440 0x1AF3AC: std::allocator_traits<std::allocator<Callable> >::allocate(std::allocator<Callable>&, unsigned long) (alloc_traits.h:436)
+   n1: 1440 0x1A8676: std::_Vector_base<Callable, std::allocator<Callable> >::_M_allocate(unsigned long) (stl_vector.h:296)
+    n1: 1440 0x1A1BB9: void std::vector<Callable, std::allocator<Callable> >::_M_realloc_insert<Callable const&>(__gnu_cxx::__normal_iterator<Callable*, std::vector<Callable, std::allocator<Callable> > >, Callable const&) (vector.tcc:427)
+     n1: 1440 0x19B226: std::vector<Callable, std::allocator<Callable> >::push_back(Callable const&) (stl_vector.h:1085)
+      n1: 1440 0x1964C4: Contract::addFunctions(std::vector<FuncElement, std::allocator<FuncElement> >) (Contract.h:152)
+       n1: 1440 0x195FC1: Contract::getBuilder()::{lambda(std::vector<FuncElement, std::allocator<FuncElement> >&)#2}::operator()(std::vector<FuncElement, std::allocator<FuncElement> >&) const (Contract.h:86)
+        n1: 1440 0x1A0F43: std::_Function_handler<void (std::vector<FuncElement, std::allocator<FuncElement> >&), Contract::getBuilder()::{lambda(std::vector<FuncElement, std::allocator<FuncElement> >&)#2}>::_M_invoke(std::_Any_data const&, std::vector<FuncElement, std::allocator<FuncElement> >&) (std_function.h:297)
+         n1: 1440 0x1A4375: std::function<void (std::vector<FuncElement, std::allocator<FuncElement> >&)>::operator()(std::vector<FuncElement, std::allocator<FuncElement> >&) const (std_function.h:687)
+          n0: 1440 in 3 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=26
+#-----------
+time=23733815078
+mem_heap_B=104240
+mem_heap_extra_B=2664
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=27
+#-----------
+time=24952481264
+mem_heap_B=104164
+mem_heap_extra_B=2580
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=28
+#-----------
+time=25927412971
+mem_heap_B=104215
+mem_heap_extra_B=2609
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=29
+#-----------
+time=26902345093
+mem_heap_B=104204
+mem_heap_extra_B=2708
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=30
+#-----------
+time=27877275830
+mem_heap_B=104240
+mem_heap_extra_B=2664
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=31
+#-----------
+time=29095942016
+mem_heap_B=104164
+mem_heap_extra_B=2580
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=32
+#-----------
+time=30070873723
+mem_heap_B=104215
+mem_heap_extra_B=2609
+mem_stacks_B=0
+heap_tree=detailed
+n8: 104215 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 72704 0x48F9469: _GLOBAL__sub_I_eh_alloc.cc (eh_alloc.cc:123)
+  n1: 72704 0x4010548: call_init.part.0 (in /usr/lib/ld-2.28.so)
+   n1: 72704 0x4010648: _dl_init (in /usr/lib/ld-2.28.so)
+    n0: 72704 0x4002038: ??? (in /usr/lib/ld-2.28.so)
+ n0: 9455 in 66 places, all below massif's threshold (1.00%)
+ n1: 8304 0x19783A: SolAllocator::getMemory(unsigned long) (SolAllocator.h:20)
+  n1: 8304 0x1989E3: ResourceFramework::ResourceService::createResourceInstance(ResourceFramework::ClientInfo*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<SolAny*, std::allocator<SolAny*> >*) (ResourceService.h:152)
+   n1: 8304 0x1AACD1: std::function<ObjectID (ResourceFramework::ClientInfo*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<SolAny*, std::allocator<SolAny*> >*)> objectBind<ObjectID, ResourceFramework::ResourceService, ResourceFramework::ClientInfo*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<SolAny*, std::allocator<SolAny*> >*>(ObjectID (ResourceFramework::ResourceService::*)(ResourceFramework::ClientInfo*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<SolAny*, std::allocator<SolAny*> >*), ResourceFramework::ResourceService*)::{lambda(ResourceFramework::ClientInfo*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<SolAny*, std::allocator<SolAny*> >*)#1}::operator()(ResourceFramework::ClientInfo*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<SolAny*, std::allocator<SolAny*> >*) const (ResourceAPI.h:525)
+    n1: 8304 0x1B7D8A: std::_Function_handler<ObjectID (ResourceFramework::ClientInfo*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<SolAny*, std::allocator<SolAny*> >*), std::function<ObjectID (ResourceFramework::ClientInfo*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<SolAny*, std::allocator<SolAny*> >*)> objectBind<ObjectID, ResourceFramework::ResourceService, ResourceFramework::ClientInfo*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<SolAny*, std::allocator<SolAny*> >*>(ObjectID (ResourceFramework::ResourceService::*)(ResourceFramework::ClientInfo*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<SolAny*, std::allocator<SolAny*> >*), ResourceFramework::ResourceService*)::{lambda(ResourceFramework::ClientInfo*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<SolAny*, std::allocator<SolAny*> >*)#1}>::_M_invoke(std::_Any_data const&, ResourceFramework::ClientInfo*&&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&, std::vector<SolAny*, std::allocator<SolAny*> >*&&) (std_function.h:282)
+     n1: 8304 0x1CFA68: std::function<ObjectID (ResourceFramework::ClientInfo*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<SolAny*, std::allocator<SolAny*> >*)>::operator()(ResourceFramework::ClientInfo*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<SolAny*, std::allocator<SolAny*> >*) const (std_function.h:687)
+      n1: 8304 0x1CC975: SolFunction<ObjectID (ResourceFramework::ResourceService::*)(ResourceFramework::ClientInfo*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<SolAny*, std::allocator<SolAny*> >*)>::invoke(SolAny*, std::vector<SolAny*, std::allocator<SolAny*> >) (ResourceAPI.h:482)
+       n1: 8304 0x1967DA: Contract::invokeCachedCall(SolAny*, unsigned int, ObjectID) (Contract.h:193)
+        n1: 8304 0x1966FC: Contract::invokeCachedCall(SolAny*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, ObjectID) (Contract.h:182)
+         n1: 8304 0x1CEC11: SolService::Service<ResourceFramework::ResourceTypeStore, ResourceFramework::ClientInfo>::submitRequest(SolService::Request&) (SolService.h:238)
+          n1: 8304 0x197289: SolService::SolServiceProxy::submitRequest(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, ObjectID, SolAny*) (SolService.h:111)
+           n2: 8304 0x19E480: ObjectID ISolServiceProxy::callService<ObjectID, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, decltype(nullptr)>(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, decltype(nullptr)) (ServiceAPI.h:203)
+            n1: 4152 0x199459: ResourceExample::testA(int, float) (main.cpp:93)
+             n1: 4152 0x199C23: Application::run() (main.cpp:163)
+              n0: 4152 0x19540E: main (main.cpp:182)
+            n1: 4152 0x199B38: Application::run() (main.cpp:155)
+             n0: 4152 0x19540E: main (main.cpp:182)
+ n1: 7056 0x1C0524: __gnu_cxx::new_allocator<ObjectPool::PooledWrapper<CallBuffer> >::allocate(unsigned long, void const*) (new_allocator.h:111)
+  n1: 7056 0x1BB878: std::allocator_traits<std::allocator<ObjectPool::PooledWrapper<CallBuffer> > >::allocate(std::allocator<ObjectPool::PooledWrapper<CallBuffer> >&, unsigned long) (alloc_traits.h:436)
+   n1: 7056 0x1B5B1A: std::_Deque_base<ObjectPool::PooledWrapper<CallBuffer>, std::allocator<ObjectPool::PooledWrapper<CallBuffer> > >::_M_allocate_node() (stl_deque.h:603)
+    n1: 7056 0x1B4C11: std::_Deque_base<ObjectPool::PooledWrapper<CallBuffer>, std::allocator<ObjectPool::PooledWrapper<CallBuffer> > >::_M_create_nodes(ObjectPool::PooledWrapper<CallBuffer>**, ObjectPool::PooledWrapper<CallBuffer>**) (stl_deque.h:728)
+     n2: 7056 0x1AE73F: std::_Deque_base<ObjectPool::PooledWrapper<CallBuffer>, std::allocator<ObjectPool::PooledWrapper<CallBuffer> > >::_M_initialize_map(unsigned long) (stl_deque.h:702)
+      n1: 7056 0x1C488D: std::_Deque_base<ObjectPool::PooledWrapper<CallBuffer>, std::allocator<ObjectPool::PooledWrapper<CallBuffer> > >::_Deque_base(std::allocator<ObjectPool::PooledWrapper<CallBuffer> > const&, unsigned long) (stl_deque.h:501)
+       n1: 7056 0x1C3989: std::deque<ObjectPool::PooledWrapper<CallBuffer>, std::allocator<ObjectPool::PooledWrapper<CallBuffer> > >::deque(std::deque<ObjectPool::PooledWrapper<CallBuffer>, std::allocator<ObjectPool::PooledWrapper<CallBuffer> > > const&) (stl_deque.h:959)
+        n1: 7056 0x1C252D: ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage::PoolStorage(ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage const&) (ObjectPool.h:28)
+         n1: 7056 0x1C25C3: void std::_Construct<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage, ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage const&>(ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage*, ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage const&) (stl_construct.h:75)
+          n1: 7056 0x1C012E: ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage* std::__uninitialized_copy<false>::__uninit_copy<__gnu_cxx::__normal_iterator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage const*, std::vector<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage, std::allocator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage> > >, ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage*>(__gnu_cxx::__normal_iterator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage const*, std::vector<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage, std::allocator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage> > >, __gnu_cxx::__normal_iterator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage const*, std::vector<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage, std::allocator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage> > >, ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage*) (stl_uninitialized.h:83)
+           n1: 7056 0x1BB27A: ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage* std::uninitialized_copy<__gnu_cxx::__normal_iterator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage const*, std::vector<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage, std::allocator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage> > >, ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage*>(__gnu_cxx::__normal_iterator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage const*, std::vector<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage, std::allocator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage> > >, __gnu_cxx::__normal_iterator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage const*, std::vector<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage, std::allocator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage> > >, ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage*) (stl_uninitialized.h:134)
+            n1: 7056 0x1B5595: ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage* std::__uninitialized_copy_a<__gnu_cxx::__normal_iterator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage const*, std::vector<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage, std::allocator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage> > >, ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage*, ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage>(__gnu_cxx::__normal_iterator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage const*, std::vector<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage, std::allocator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage> > >, __gnu_cxx::__normal_iterator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage const*, std::vector<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage, std::allocator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage> > >, ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage*, std::allocator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage>&) (stl_uninitialized.h:289)
+             n1: 7056 0x1AF301: std::vector<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage, std::allocator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage> >::vector(std::vector<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage, std::allocator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage> > const&) (stl_vector.h:463)
+              n1: 7056 0x1A83E1: ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::Pool(ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > const&) (ObjectPool.h:25)
+               n1: 7056 0x1A8427: Callable::Callable(Callable const&) (Contract.h:31)
+                n1: 7056 0x1A8481: void __gnu_cxx::new_allocator<Callable>::construct<Callable, Callable const&>(Callable*, Callable const&) (new_allocator.h:136)
+                 n2: 7056 0x1A1AD8: void std::allocator_traits<std::allocator<Callable> >::construct<Callable, Callable const&>(std::allocator<Callable>&, Callable*, Callable const&) (alloc_traits.h:475)
+                  n1: 6048 0x1A1C03: void std::vector<Callable, std::allocator<Callable> >::_M_realloc_insert<Callable const&>(__gnu_cxx::__normal_iterator<Callable*, std::vector<Callable, std::allocator<Callable> > >, Callable const&) (vector.tcc:436)
+                   n1: 6048 0x19B226: std::vector<Callable, std::allocator<Callable> >::push_back(Callable const&) (stl_vector.h:1085)
+                    n1: 6048 0x1964C4: Contract::addFunctions(std::vector<FuncElement, std::allocator<FuncElement> >) (Contract.h:152)
+                     n1: 6048 0x195FC1: Contract::getBuilder()::{lambda(std::vector<FuncElement, std::allocator<FuncElement> >&)#2}::operator()(std::vector<FuncElement, std::allocator<FuncElement> >&) const (Contract.h:86)
+                      n1: 6048 0x1A0F43: std::_Function_handler<void (std::vector<FuncElement, std::allocator<FuncElement> >&), Contract::getBuilder()::{lambda(std::vector<FuncElement, std::allocator<FuncElement> >&)#2}>::_M_invoke(std::_Any_data const&, std::vector<FuncElement, std::allocator<FuncElement> >&) (std_function.h:297)
+                       n3: 6048 0x1A4375: std::function<void (std::vector<FuncElement, std::allocator<FuncElement> >&)>::operator()(std::vector<FuncElement, std::allocator<FuncElement> >&) const (std_function.h:687)
+                        n1: 3024 0x19E0D2: void ContractBuilder::functions<ResourceExample, bool (ResourceExample::*)(int, float), void (ResourceExample::*)(), void (ResourceExample::*)(void**)>(std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >, ResourceExample*, bool (ResourceExample::*)(int, float), void (ResourceExample::*)(), void (ResourceExample::*)(void**)) (ServiceAPI.h:144)
+                         n1: 3024 0x199137: ResourceExample::ResourceExample(IEngine*) (main.cpp:55)
+                          n1: 3024 0x19930A: ResourceExample::create_resource(void*, IEngine*) (main.cpp:77)
+                           n1: 3024 0x1BF91D: std::_Function_handler<ObjectID (void*, IEngine*), ObjectID (*)(void*, IEngine*)>::_M_invoke(std::_Any_data const&, void*&&, IEngine*&&) (std_function.h:282)
+                            n1: 3024 0x1CF3F7: std::function<ObjectID (void*, IEngine*)>::operator()(void*, IEngine*) const (std_function.h:687)
+                             n1: 3024 0x1CAFF7: SolFunction<ObjectID (*)(void*, IEngine*)>::invoke(SolAny*, std::vector<SolAny*, std::allocator<SolAny*> >) (ResourceAPI.h:309)
+                              n0: 3024 0x196A32: Contract::invokeCall(unsigned int, std::vector<SolAny*, std::allocator<SolAny*> >, SolAny*) (Contract.h:212)
+                        n1: 2016 0x19C69D: void ContractBuilder::functions<ResourceFramework::ResourceService, void (ResourceFramework::ResourceService::*)(ResourceFramework::ClientInfo*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, void (*)(ContractBuilder&)), bool (ResourceFramework::ResourceService::*)(ResourceFramework::ClientInfo*, void**, ObjectID), void (ResourceFramework::ResourceService::*)(ResourceFramework::ClientInfo*, ObjectID), ObjectID (ResourceFramework::ResourceService::*)(ResourceFramework::ClientInfo*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<SolAny*, std::allocator<SolAny*> >*), void (ResourceFramework::ResourceService::*)(ResourceFramework::ClientInfo*, Contract*), void (ResourceFramework::ResourceService::*)(ResourceFramework::ClientInfo*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >)>(std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >, ResourceFramework::ResourceService*, void (ResourceFramework::ResourceService::*)(ResourceFramework::ClientInfo*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, void (*)(ContractBuilder&)), bool (ResourceFramework::ResourceService::*)(ResourceFramework::ClientInfo*, void**, ObjectID), void (ResourceFramework::ResourceService::*)(ResourceFramework::ClientInfo*, ObjectID), ObjectID (ResourceFramework::ResourceService::*)(ResourceFramework::ClientInfo*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<SolAny*, std::allocator<SolAny*> >*), void (ResourceFramework::ResourceService::*)(ResourceFramework::ClientInfo*, Contract*), void (ResourceFramework::ResourceService::*)(ResourceFramework::ClientInfo*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >)) (ServiceAPI.h:144)
+                         n1: 2016 0x197C2B: ResourceFramework::ResourceService::ResourceService(IEngine*) (ResourceService.h:46)
+                          n0: 2016 0x1953CD: main (main.cpp:178)
+                        n0: 1008 in 1 place, below massif's threshold (1.00%)
+                  n0: 1008 in 1 place, below massif's threshold (1.00%)
+      n0: 0 in 2 places, all below massif's threshold (1.00%)
+ n1: 1904 0x1BFF5E: __gnu_cxx::new_allocator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage>::allocate(unsigned long, void const*) (new_allocator.h:111)
+  n1: 1904 0x1BAF50: std::allocator_traits<std::allocator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage> >::allocate(std::allocator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage>&, unsigned long) (alloc_traits.h:436)
+   n2: 1904 0x1B50EC: std::_Vector_base<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage, std::allocator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage> >::_M_allocate(unsigned long) (stl_vector.h:296)
+    n1: 1904 0x1BB1ED: std::_Vector_base<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage, std::allocator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage> >::_M_create_storage(unsigned long) (stl_vector.h:311)
+     n1: 1904 0x1B549B: std::_Vector_base<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage, std::allocator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage> >::_Vector_base(unsigned long, std::allocator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage> const&) (stl_vector.h:260)
+      n1: 1904 0x1AF2B3: std::vector<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage, std::allocator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage> >::vector(std::vector<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage, std::allocator<ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::PoolStorage> > const&) (stl_vector.h:460)
+       n1: 1904 0x1A83E1: ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::Pool(ObjectPool::Pool<CallBuffer, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > const&) (ObjectPool.h:25)
+        n1: 1904 0x1A8427: Callable::Callable(Callable const&) (Contract.h:31)
+         n1: 1904 0x1A8481: void __gnu_cxx::new_allocator<Callable>::construct<Callable, Callable const&>(Callable*, Callable const&) (new_allocator.h:136)
+          n2: 1904 0x1A1AD8: void std::allocator_traits<std::allocator<Callable> >::construct<Callable, Callable const&>(std::allocator<Callable>&, Callable*, Callable const&) (alloc_traits.h:475)
+           n1: 1632 0x1A1C03: void std::vector<Callable, std::allocator<Callable> >::_M_realloc_insert<Callable const&>(__gnu_cxx::__normal_iterator<Callable*, std::vector<Callable, std::allocator<Callable> > >, Callable const&) (vector.tcc:436)
+            n1: 1632 0x19B226: std::vector<Callable, std::allocator<Callable> >::push_back(Callable const&) (stl_vector.h:1085)
+             n1: 1632 0x1964C4: Contract::addFunctions(std::vector<FuncElement, std::allocator<FuncElement> >) (Contract.h:152)
+              n1: 1632 0x195FC1: Contract::getBuilder()::{lambda(std::vector<FuncElement, std::allocator<FuncElement> >&)#2}::operator()(std::vector<FuncElement, std::allocator<FuncElement> >&) const (Contract.h:86)
+               n1: 1632 0x1A0F43: std::_Function_handler<void (std::vector<FuncElement, std::allocator<FuncElement> >&), Contract::getBuilder()::{lambda(std::vector<FuncElement, std::allocator<FuncElement> >&)#2}>::_M_invoke(std::_Any_data const&, std::vector<FuncElement, std::allocator<FuncElement> >&) (std_function.h:297)
+                n1: 1632 0x1A4375: std::function<void (std::vector<FuncElement, std::allocator<FuncElement> >&)>::operator()(std::vector<FuncElement, std::allocator<FuncElement> >&) const (std_function.h:687)
+                 n0: 1632 in 3 places, all below massif's threshold (1.00%)
+           n0: 272 in 1 place, below massif's threshold (1.00%)
+    n0: 0 in 1 place, below massif's threshold (1.00%)
+ n1: 1696 0x1C3C81: __gnu_cxx::new_allocator<ObjectPool::PooledWrapper<SolService::Service<ResourceFramework::ResourceTypeStore, ResourceFramework::ClientInfo>::ClientState> >::allocate(unsigned long, void const*) (new_allocator.h:111)
+  n1: 1696 0x1C29BF: std::allocator_traits<std::allocator<ObjectPool::PooledWrapper<SolService::Service<ResourceFramework::ResourceTypeStore, ResourceFramework::ClientInfo>::ClientState> > >::allocate(std::allocator<ObjectPool::PooledWrapper<SolService::Service<ResourceFramework::ResourceTypeStore, ResourceFramework::ClientInfo>::ClientState> >&, unsigned long) (alloc_traits.h:436)
+   n2: 1696 0x1C0652: std::_Deque_base<ObjectPool::PooledWrapper<SolService::Service<ResourceFramework::ResourceTypeStore, ResourceFramework::ClientInfo>::ClientState>, std::allocator<ObjectPool::PooledWrapper<SolService::Service<ResourceFramework::ResourceTypeStore, ResourceFramework::ClientInfo>::ClientState> > >::_M_allocate_node() (stl_deque.h:603)
+    n1: 1272 0x1D1EBE: void std::deque<ObjectPool::PooledWrapper<SolService::Service<ResourceFramework::ResourceTypeStore, ResourceFramework::ClientInfo>::ClientState>, std::allocator<ObjectPool::PooledWrapper<SolService::Service<ResourceFramework::ResourceTypeStore, ResourceFramework::ClientInfo>::ClientState> > >::_M_push_back_aux<ObjectPool::PooledWrapper<SolService::Service<ResourceFramework::ResourceTypeStore, ResourceFramework::ClientInfo>::ClientState> const&>(ObjectPool::PooledWrapper<SolService::Service<ResourceFramework::ResourceTypeStore, ResourceFramework::ClientInfo>::ClientState> const&) (deque.tcc:488)
+     n1: 1272 0x1D137C: std::deque<ObjectPool::PooledWrapper<SolService::Service<ResourceFramework::ResourceTypeStore, ResourceFramework::ClientInfo>::ClientState>, std::allocator<ObjectPool::PooledWrapper<SolService::Service<ResourceFramework::ResourceTypeStore, ResourceFramework::ClientInfo>::ClientState> > >::push_back(ObjectPool::PooledWrapper<SolService::Service<ResourceFramework::ResourceTypeStore, ResourceFramework::ClientInfo>::ClientState> const&) (stl_deque.h:1562)
+      n1: 1272 0x1D0B8D: ObjectPool::Pool<SolService::Service<ResourceFramework::ResourceTypeStore, ResourceFramework::ClientInfo>::ClientState, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::getFreeInner(unsigned int) (ObjectPool.h:58)
+       n1: 1272 0x1D054C: ObjectPool::Pool<SolService::Service<ResourceFramework::ResourceTypeStore, ResourceFramework::ClientInfo>::ClientState, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::getFree(unsigned int) (ObjectPool.h:124)
+        n1: 1272 0x1CFF79: SolService::Service<ResourceFramework::ResourceTypeStore, ResourceFramework::ClientInfo>::getFreeClientState() (SolService.h:166)
+         n1: 1272 0x1CF12A: SolService::Service<ResourceFramework::ResourceTypeStore, ResourceFramework::ClientInfo>::connectClient(ISolInterface*) (SolService.h:267)
+          n1: 1272 0x197633: ServiceManager::registerServiceClient(ISolInterface*) (ServiceManager.h:35)
+           n1: 1272 0x1978EB: EngineInstance::registerClient(ISolInterface*) (EngineInstance.h:30)
+            n0: 1272 in 2 places, all below massif's threshold (1.00%)
+    n0: 424 in 1 place, below massif's threshold (1.00%)
+ n1: 1656 0x1C237C: __gnu_cxx::new_allocator<std::_Rb_tree_node<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> > >::allocate(unsigned long, void const*) (new_allocator.h:111)
+  n1: 1656 0x1BFFD4: std::allocator_traits<std::allocator<std::_Rb_tree_node<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> > > >::allocate(std::allocator<std::_Rb_tree_node<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> > >&, unsigned long) (alloc_traits.h:436)
+   n1: 1656 0x1BAFF5: std::_Rb_tree<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int>, std::_Select1st<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> >, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> > >::_M_get_node() (stl_tree.h:599)
+    n1: 1656 0x1B5330: std::_Rb_tree_node<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> >* std::_Rb_tree<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int>, std::_Select1st<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> >, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> > >::_M_create_node<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> >(std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int>&&) (stl_tree.h:653)
+     n1: 1656 0x1AF151: std::_Rb_tree_node<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> >* std::_Rb_tree<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int>, std::_Select1st<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> >, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> > >::_Alloc_node::operator()<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> >(std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int>&&) const (stl_tree.h:567)
+      n1: 1656 0x1A8002: std::_Rb_tree_iterator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> > std::_Rb_tree<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int>, std::_Select1st<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> >, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> > >::_M_insert_<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int>, std::_Rb_tree<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int>, std::_Select1st<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> >, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> > >::_Alloc_node>(std::_Rb_tree_node_base*, std::_Rb_tree_node_base*, std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int>&&, std::_Rb_tree<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int>, std::_Select1st<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> >, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> > >::_Alloc_node&) (stl_tree.h:1769)
+       n1: 1656 0x1A1745: std::pair<std::_Rb_tree_iterator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> >, bool> std::_Rb_tree<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int>, std::_Select1st<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> >, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> > >::_M_insert_unique<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> >(std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int>&&) (stl_tree.h:2112)
+        n1: 1656 0x19B12A: std::map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, unsigned int, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int> > >::insert(std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, unsigned int>&&) (stl_map.h:809)
+         n0: 1656 in 3 places, all below massif's threshold (1.00%)
+ n1: 1440 0x1B55FC: __gnu_cxx::new_allocator<Callable>::allocate(unsigned long, void const*) (new_allocator.h:111)
+  n1: 1440 0x1AF3AC: std::allocator_traits<std::allocator<Callable> >::allocate(std::allocator<Callable>&, unsigned long) (alloc_traits.h:436)
+   n1: 1440 0x1A8676: std::_Vector_base<Callable, std::allocator<Callable> >::_M_allocate(unsigned long) (stl_vector.h:296)
+    n1: 1440 0x1A1BB9: void std::vector<Callable, std::allocator<Callable> >::_M_realloc_insert<Callable const&>(__gnu_cxx::__normal_iterator<Callable*, std::vector<Callable, std::allocator<Callable> > >, Callable const&) (vector.tcc:427)
+     n1: 1440 0x19B226: std::vector<Callable, std::allocator<Callable> >::push_back(Callable const&) (stl_vector.h:1085)
+      n1: 1440 0x1964C4: Contract::addFunctions(std::vector<FuncElement, std::allocator<FuncElement> >) (Contract.h:152)
+       n1: 1440 0x195FC1: Contract::getBuilder()::{lambda(std::vector<FuncElement, std::allocator<FuncElement> >&)#2}::operator()(std::vector<FuncElement, std::allocator<FuncElement> >&) const (Contract.h:86)
+        n1: 1440 0x1A0F43: std::_Function_handler<void (std::vector<FuncElement, std::allocator<FuncElement> >&), Contract::getBuilder()::{lambda(std::vector<FuncElement, std::allocator<FuncElement> >&)#2}>::_M_invoke(std::_Any_data const&, std::vector<FuncElement, std::allocator<FuncElement> >&) (std_function.h:297)
+         n1: 1440 0x1A4375: std::function<void (std::vector<FuncElement, std::allocator<FuncElement> >&)>::operator()(std::vector<FuncElement, std::allocator<FuncElement> >&) const (std_function.h:687)
+          n0: 1440 in 3 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=33
+#-----------
+time=30802072630
+mem_heap_B=104300
+mem_heap_extra_B=2668
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=34
+#-----------
+time=31777003856
+mem_heap_B=104328
+mem_heap_extra_B=2656
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=35
+#-----------
+time=32426955959
+mem_heap_B=104479
+mem_heap_extra_B=2745
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=36
+#-----------
+time=33401884344
+mem_heap_B=104241
+mem_heap_extra_B=2743
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=37
+#-----------
+time=34051837783
+mem_heap_B=104231
+mem_heap_extra_B=2617
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=38
+#-----------
+time=35351745927
+mem_heap_B=104329
+mem_heap_extra_B=2719
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=39
+#-----------
+time=36651650313
+mem_heap_B=104343
+mem_heap_extra_B=2673
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=40
+#-----------
+time=37951552962
+mem_heap_B=104240
+mem_heap_extra_B=2664
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=41
+#-----------
+time=38601505797
+mem_heap_B=104343
+mem_heap_extra_B=2673
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=42
+#-----------
+time=39901408446
+mem_heap_B=104240
+mem_heap_extra_B=2664
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=43
+#-----------
+time=40551361281
+mem_heap_B=104343
+mem_heap_extra_B=2673
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=44
+#-----------
+time=41851263930
+mem_heap_B=104240
+mem_heap_extra_B=2664
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=45
+#-----------
+time=42501216765
+mem_heap_B=104343
+mem_heap_extra_B=2673
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=46
+#-----------
+time=43801119413
+mem_heap_B=104240
+mem_heap_extra_B=2664
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=47
+#-----------
+time=44451072248
+mem_heap_B=104343
+mem_heap_extra_B=2673
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=48
+#-----------
+time=45750974897
+mem_heap_B=104240
+mem_heap_extra_B=2664
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=49
+#-----------
+time=47050878830
+mem_heap_B=104329
+mem_heap_extra_B=2719
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=50
+#-----------
+time=47509302181
+mem_heap_B=104347
+mem_heap_extra_B=2709
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=51
+#-----------
+time=47967726672
+mem_heap_B=104320
+mem_heap_extra_B=2696
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=52
+#-----------
+time=48426150779
+mem_heap_B=104204
+mem_heap_extra_B=2708
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=53
+#-----------
+time=48884578324
+mem_heap_B=104492
+mem_heap_extra_B=2724
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=54
+#-----------
+time=49343001885
+mem_heap_B=104253
+mem_heap_extra_B=2707
+mem_stacks_B=0
+heap_tree=empty

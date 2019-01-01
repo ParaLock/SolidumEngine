@@ -37,7 +37,6 @@ struct Callable {
 struct Contract {
 
 	ContractBuilder m_builder;
-	IEngine* m_engine;
 
 	std::map<std::string, unsigned int> elementIDByName;
 
@@ -56,16 +55,10 @@ struct Contract {
 	} m_attribs;
 
 	
-	Contract(IEngine* engine) {
-		
-		m_engine = engine;
-
-
-	}
-
 	Contract() {
 
 	}
+
 
 	~Contract() {
 
@@ -96,16 +89,21 @@ struct Contract {
 		return m_builder;
 	}
 
+
+
 	ISolFunction* getFunction(unsigned int id) {
+
 		return m_functions.functionList[id].function;
 	}
 
 	ISolFunction* getFunction(std::string name) {
+
 		unsigned int id = elementIDByName.at(name);
 		return m_functions.functionList[id].function;
 	}
 
 	SolAny* getMember(unsigned int id) {
+
 		return m_attribs.attribList[id];
 	}
 
@@ -143,10 +141,7 @@ struct Contract {
 
 			call.function = funcs.at(i).func;
 
-			std::string testA = funcs.at(i).name;
-			size_t testB = m_functions.functionList.size();
-
-			elementIDByName.insert({ testA, testB });
+			elementIDByName.insert({ funcs.at(i).name, m_functions.functionList.size() });
 
 			m_functions.names.push_back(funcs.at(i).name);
 			m_functions.functionList.push_back(call);
@@ -179,6 +174,7 @@ struct Contract {
 	}
 
 	void invokeCachedCall(SolAny* ret, std::string callName, ObjectID buffID) {
+		
 		invokeCachedCall(ret, elementIDByName.at(callName), buffID);
 	}
 
@@ -209,23 +205,27 @@ struct Contract {
 		auto& call = m_functions.functionList.at(callID);
 
 		if (call.function->hasRet()) {
+
 			call.function->invoke(ret, args);
 			if (ret != nullptr)
 				ret->copyTo(ret);
 		}
 		else {
+
 			call.function->invoke(args);
 		}
 
 	}
 
 	ObjectID cacheArgs(std::string callName, std::vector<SolAny*> args,std::vector<unsigned int> order) {
+
 		ObjectID fakeID;
 		fakeID.isActive = false;
 		return cacheArgs(elementIDByName.at(callName), args, order, fakeID);
 	}
 
 	ObjectID cacheMoreArgs(std::string callName, std::vector<SolAny*> args, std::vector<unsigned int> order, ObjectID callBuffID) {
+
 		return cacheArgs(elementIDByName.at(callName), args, order, callBuffID);
 	}
 
@@ -237,6 +237,7 @@ struct Contract {
 		auto& buff		  = buffWrapper.getVal();
 
 		if (!buff.isInitialized) {
+
 			call.function->createCallBuffer(buff.bufferPtrs, &buff.retBuffer);
 			buff.isInitialized = true;
 		}
