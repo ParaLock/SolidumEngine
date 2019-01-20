@@ -35,6 +35,7 @@ public:
 
 	//@NOTE: Due to linker issues, functions are defined in header. WILL FIX!
 	void registerClient(ISolInterface* clientInterface) {
+
 		m_serviceManager.registerServiceClient(clientInterface);
 	}
 
@@ -44,13 +45,18 @@ public:
 	}
 
 	ServiceManager& getServiceManager() {
+
 		return m_serviceManager;
 	}
 
 	void unregisterClient(ISolInterface * clientInterface) {
+
 		m_serviceManager.unregisterServiceClient(clientInterface);
 	}
 
+	void start() {
+		m_scheduler.start();
+	}
 
 	IAllocator* getAllocator() { return &m_allocator; };
 };

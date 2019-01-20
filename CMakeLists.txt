@@ -12,3 +12,7 @@ file(GLOB_RECURSE SOURCES *.cpp)
 add_executable(SolidumEngine main.cpp)
 
 set(CMAKE_BUILD_TYPE Debug)
+
+set(THREADS_PREFER_PTHREAD_FLAG ON)
+find_package(Threads REQUIRED)
+target_link_libraries(SolidumEngine Threads::Threads)

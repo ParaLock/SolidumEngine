@@ -1,7 +1,7 @@
 [
 {
   "directory": "/home/linux_dev/projects/solidum_engine/SolidumEngine/build",
-  "command": "/usr/bin/g++   -I../Solidum/Containers/include -I../Solidum/EngineCore/include -I../SolidumAPI/include  -g   -std=c++17 -o CMakeFiles/SolidumEngine.dir/main.cpp.o -c /home/linux_dev/projects/solidum_engine/SolidumEngine/main.cpp",
+  "command": "/usr/bin/g++   -I../Solidum/Containers/include -I../Solidum/EngineCore/include -I../SolidumAPI/include  -g   -std=c++17 -pthread -o CMakeFiles/SolidumEngine.dir/main.cpp.o -c /home/linux_dev/projects/solidum_engine/SolidumEngine/main.cpp",
   "file": "/home/linux_dev/projects/solidum_engine/SolidumEngine/main.cpp"
 }
 ]

@@ -22,6 +22,10 @@ struct ObjectID {
 	ObjectID() {
 		groupID = -1;
 	}
+
+	bool operator==(ObjectID& id) {
+		return id.groupID == groupID && id.instanceID == instanceID;
+	}
 };
 
 class SolAny {
@@ -129,17 +133,32 @@ public:
 
 struct IArgPack {
 	virtual std::vector<SolAny*>& getArgs() = 0;
+	virtual std::vector<std::string>& getNames() = 0;
 };
 
 template<typename... T_ARGS>
 struct ArgPack : IArgPack {
 	
-	std::tuple<SolAnyImpl<T_ARGS>...> tempStorage;
-	std::vector<SolAny*>              pArgs;
+	bool isNamed;
+
+	std::tuple<SolAnyImpl<T_ARGS>...> 						  tempStorage;
+	std::tuple<std::pair<SolAnyImpl<T_ARGS>, std::string>...> tempNamedStorage;
+	std::vector<SolAny*>              						  pArgs;
+	std::vector<std::string>								  names;
 
 	ArgPack(SolAnyImpl<T_ARGS>... args) : tempStorage(args...) {
 
+		isNamed = false;
+
 		packArgs<0, T_ARGS...>();
+
+	}
+
+	ArgPack(std::pair<SolAnyImpl<T_ARGS>, std::string>... args) : tempNamedStorage(args...) {
+
+		isNamed = true;
+
+		packNamedArgs<0, T_ARGS...>();
 
 	}
 
@@ -149,22 +168,63 @@ struct ArgPack : IArgPack {
 		pArgs.push_back(&std::get<Index>(tempStorage));
 	}
 
+
+	template<int index, typename FirstArg>
+	void packArgs()
+	{
+		packArg<index>();
+	}
+
+	template<int index, typename FirstArg, typename SecondArg, typename... RestOfArgs>
+	void packArgs()
+	{
+		packArg<index>();
+		packArgs<index + 1, SecondArg, RestOfArgs...>();
+	}
+
+	// template<unsigned Index, typename First>
+	// void packArgs() {
+
+	// 	packArg<Index>();
+	// }
+
+
+	// template<unsigned Index, typename First, typename Second, typename... Rest>
+	// void packArgs() {
+
+	// 	packArg<Index>();
+	// 	packArgs<Index + 1, Rest...>();
+	// }
+
+	template<unsigned Index>
+	void packNamedArg() {
+
+		pArgs.push_back(&std::get<Index>(tempNamedStorage).first);
+		names.push_back(std::get<Index>(tempNamedStorage).second);
+	}
+
 	template<unsigned Index, typename First>
-	void packArgs() {
-		packArg<Index>();
+	void packNamedArgs() {
+		packNamedArg<Index>();
 	}
 
 
 	template<unsigned Index, typename First, typename Second, typename... Rest>
-	void packArgs() {
+	void packNamedArgs() {
 
-		packArg<Index>();
-		packArg<Index + 1>();
+		packNamedArg<Index>();
+		packNamedArg<Index + 1>();
 	}
+
 
 	std::vector<SolAny*>& getArgs() {
 
 		return pArgs;
+	}
+
+	std::vector<std::string>& getNames() {
+
+		return names;
 	}
 };
 

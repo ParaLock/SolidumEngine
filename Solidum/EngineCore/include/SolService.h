@@ -180,6 +180,11 @@ namespace SolService {
 			return m_contract.getBuilder();
 		}
 
+		Contract& getClientContract(ObjectID id) {
+
+			return m_clients.getObject(id).getVal().proxy.getClientContract();
+		}
+
 		PooledWrapper<ClientState>& getClientState(ObjectID id) {
 			
 			return m_clients.getObject(id);
@@ -211,10 +216,12 @@ namespace SolService {
 
 			auto& clientState = getClientState(clientID).getVal();
 			
+			clientState.clientInfo.clientID = clientID;
+
 			SolAnyImpl<T_CLIENT_INFO*> client_info(&clientState.clientInfo);
 			SolAnyImpl<Contract*>      client_attribs(&clientState.proxy.getClientContract());
 
-			m_contract.invokeCall("client_reload", { &client_info, &client_attribs});
+			m_contract.invokeCall("meta+client_reload", { &client_info, &client_attribs});
 
 		}
 
@@ -231,7 +238,7 @@ namespace SolService {
 
 			ClientState& clientState = m_clients.getObject(request.client).getVal();
 
-			SolAnyImpl<ClientState*> arg_client(&clientState);
+			SolAnyImpl<T_CLIENT_INFO*> arg_client(&clientState.clientInfo);
 
 			m_contract.cacheMoreArgs(request.callName, { &arg_client }, { 0 }, request.argBufferID);
 			m_contract.invokeCachedCall(request.retBuffer, request.callName, request.argBufferID);

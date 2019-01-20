@@ -159,7 +159,6 @@ struct ContractBuilder {
 
 };
 
-
 class ISolServiceProxy {
 private:
 
@@ -223,6 +222,10 @@ struct SolInterface : ISolInterface {
 	std::list<std::pair<std::string, ISolServiceProxy**>>	requestedServices;
 
 	IEngine*												m_engine;
+
+	SolInterface() {
+		
+	}
 
 	SolInterface(IEngine* engine) {
 

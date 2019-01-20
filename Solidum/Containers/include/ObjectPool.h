@@ -92,7 +92,6 @@ namespace ObjectPool {
 		void addDefaultGroup() {
 
 			PoolStorage store;
-			store.creator = []() { return T(); };
 
 			m_pools.push_back(store);
 		}

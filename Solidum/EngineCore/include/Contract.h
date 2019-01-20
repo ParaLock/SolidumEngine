@@ -89,7 +89,13 @@ struct Contract {
 		return m_builder;
 	}
 
+	std::vector<std::string> getContractKeys() {
+		
+		std::vector<std::string> keys = m_functions.names;
+		keys.insert( keys.end(), m_attribs.names.begin(), m_attribs.names.end() );
 
+		return keys;
+	}
 
 	ISolFunction* getFunction(unsigned int id) {
 
@@ -177,6 +183,7 @@ struct Contract {
 		
 		invokeCachedCall(ret, elementIDByName.at(callName), buffID);
 	}
+
 
 	void invokeCachedCall(SolAny* out, unsigned int callID, ObjectID buffID) {
 

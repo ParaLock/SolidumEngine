@@ -36,7 +36,7 @@ namespace ResourceFramework {
 
 		std::string   m_typeName;
 
-		ObjectID	  m_clientID;
+		ObjectID	  clientID;
 		ObjectID      m_resID;
 
 		void*         m_mem;
@@ -59,7 +59,7 @@ namespace ResourceFramework {
 						"get_resource", 
 						"unload_resource", 
 						"create_resource_instance",
-						"client_reload",
+						"meta+client_reload",
 						"testABC"
 					}, 
 					this,
@@ -111,7 +111,7 @@ namespace ResourceFramework {
 
 			} else {
 
-				SOL_SERVICE.disconnectClient(&SOL_SERVICE.getClientState(resource->m_clientID).getVal().proxy);
+				SOL_SERVICE.disconnectClient(&SOL_SERVICE.getClientState(resource->clientID).getVal().proxy);
 
 			}
 		}
@@ -123,7 +123,7 @@ namespace ResourceFramework {
 
 			SolAnyImpl<void**> arg_res_ptr(resPtr);
 
-			SOL_SERVICE.callClient(info->m_clientID, "get_resource_ptr")->invoke({ &arg_res_ptr });
+			SOL_SERVICE.callClient(info->clientID, "get_resource_ptr")->invoke({ &arg_res_ptr });
 
 			return true;
 
@@ -140,7 +140,7 @@ namespace ResourceFramework {
 
 				PooledWrapper<ClientInfo*>& instanceTrackPtr = m_resPool.getFree(typeName);
 				ObjectID	resID							   = instanceTrackPtr.getVal()->m_resID;
-				ObjectID    clientID						   = instanceTrackPtr.getVal()->m_clientID;
+				ObjectID    clientID						   = instanceTrackPtr.getVal()->clientID;
 
 
 				ClientInfo& info = SOL_SERVICE.getClientState(clientID).getVal().clientInfo;
@@ -171,7 +171,6 @@ namespace ResourceFramework {
 				instanceTrackPtr.getVal() = &info;
 
 				info.m_parentCreatorInfo = parentCreatorInfo;
-				info.m_clientID			 = clientID.data();
 				info.m_resID			 = instanceTrackPtr.ID;
 				info.m_mem				 = mem;
 
