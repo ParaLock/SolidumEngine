@@ -17,8 +17,7 @@ The SolidumEngine architecture is based on the following primary design consider
 
 # Contracts
 
-A critically important component of the SolidumEngine framework is what I call the dynamic contract. A dynamic contract is a unique data structure which allows a given object to build an outword facing representation of both its functionality as well as it's properties relative to another system. Ok so what does that even mean.. Well let me give you an example of a dynamic contract:
-
+A critically important component of the SolidumEngine framework is the dynamic contract. A dynamic contract is a unique data structure which defines the dynamic relationship between a client and a service. The meaning behind "dynamic" in this context is that, depending on what behavior and attributes the client specifies in the contract, the service may treat the client differently. For example: if I have some client of lets say the "ResourceService", and this client wants to be loadable from disk, said client may specify "isLoadable" = true in their contract. This however does not mean that all clients must be loadable from disk. 
 
 
 # Client/Service Model
