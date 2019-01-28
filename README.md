@@ -15,7 +15,7 @@ The SolidumEngine architecture is based on the following primary design consider
 4) Framework must address some of the primary limitations present in modern App Dev frameworks such as Qt5.
 5) Framework must provide a level of language interoperability.
 
-# Contracts
+## Contracts
 
 A critically important component of the SolidumEngine framework is the dynamic contract. A dynamic contract is a unique data structure which defines the dynamic relationship between a client and a service. The meaning behind "dynamic" in this context is that, depending on what behavior and attributes the client specifies in the contract, the service may treat the client differently. For example: if I have some client of lets say the "ResourceService", and this client wants to be loadable from disk, said client may specify "isLoadable" = true in their contract. This however does not mean that all clients must be loadable from disk. Furthermore not all clients need be aware that there is a possible isLoadable attribute available to them.
 
@@ -23,7 +23,7 @@ A critically important component of the SolidumEngine framework is the dynamic c
 
 
 
-# Client/Service Model
+## Client/Service Model
 
 The SolidumEngine framework is built around a Client/Service model. What this means is that the engine provides to the user a set of powerful services. These services provide, well, services such as resource management, job scheduling, inter-object communication and most importantly, "executive" and "feature" code paths (More on this below).
 
