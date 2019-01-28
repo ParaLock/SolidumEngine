@@ -4,3 +4,6 @@ The SolidumEngine is an applications development platform designed for the agile
 The following is a simplified diagram of the Solidum architecture: More detailed specification provided below diagram.
 
 ![Spec](sol_spec.jpg)
+
+# Archtecture Overview
+
