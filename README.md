@@ -12,7 +12,7 @@ The SolidumEngine architecture is based on the following primary design consider
 1) Framework must implement a flexible and data oriented API. Providing powerful functionality to the client whilst having the ability to mutate during runtime, based on the requirements of the client.
 2) Framework API must be EXTREMELY non intrusive.
 3) Framework must harness the power of a data driven paradigm (eg. Those present in game engines) to allow for the rapid, efficient and robust developement of all manner of generic applications.
-4) Framework must address some of the primary limitations present in modern App Dev frameworks such as Qt5.
+4) Framework must address some of the limitations present in modern App Dev frameworks such as Qt5.
 5) Framework must provide a level of language interoperability.
 
 ## Client/Service Model
@@ -29,11 +29,15 @@ All callable contract elements support full marshalling of arguments. This means
 
 **For an example of contract use, look at main.cpp in the root project directory**
 
-# Executives And the Working Set
+## Executives And the Working Set
 
 Now we will begin to discuss some of the core designated features of Solidum. An "Executive" is a user defined, service assisted entity, which governs the flow of data through a set of user defined, service assisted, "Features" (discussed below). An executive takes in a Working Set each execution cycle and may read data from, or write data too the Working Set. Essentially you may look at an executive as being like a subsystem of an application and the working set as being the partitioned data shared between all executives.
 
-# Features
+## Features
 
-A feature is the atom of your application with regards to Solidum. A feature has some set of inputs, a set of outputs and some sort of executed behavior. Features are enabled by the "Feature Service" and are associated in the form of a directed graph. Features are passed data by their respective parent "Executives" with said executives able to gather statistical information on the features through the "Executive Service" and "Feature Service". 
+A feature is the atom of your application with regards to Solidum. A feature has some set of inputs, a set of outputs and some sort of executed behavior. Features are enabled by the "Feature Service" and are associated in the form of a directed graph. Features are passed data by their respective parent "Executives" with said executives able to gather statistical information on the features through the "Executive Service" and "Feature Service".
+
+## Execution Loop And Scheduling
+
+Solidum execution is bound to a flexible yet consistent execution structure. Within the framework there exist two primary schedulers. The service scheduler, and the job scheduler. Upon framework start, all available services are registered with the service scheduler. Next the service scheduler will immediately begin providing each service with processor time. The exact method of time allocation used here will depend on the defined scheduler class(eg. RoundRobin/Threaded). Finally we have the Job scheduler which exists as a component of the "Job Service". This scheduler is highly configurable and provides scheduling functionality to both other service such as the "Feature Service" and more general application clients.
 
