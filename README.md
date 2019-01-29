@@ -9,7 +9,7 @@ The following is a simplified diagram of the Solidum architecture: **More detail
 # Architecture Overview
 
 The SolidumEngine architecture is based on the following primary design considerations: 
-1) Framework must implement a flexible and data oriented API which provides powerful features to the client whilst having the ability to mutate during runtime, based on the requirements of the API client.
+1) Framework must implement a flexible and data oriented API. Providing powerful functionality to the client whilst having the ability to mutate during runtime, based on the requirements of the client.
 2) Framework API must be EXTREMELY non intrusive.
 3) Framework must harness the power of a data driven paradigm (eg. Those present in game engines) to allow for the rapid, efficient and robust developement of all manner of generic applications.
 4) Framework must address some of the primary limitations present in modern App Dev frameworks such as Qt5.
@@ -17,11 +17,11 @@ The SolidumEngine architecture is based on the following primary design consider
 
 ## Client/Service Model
 
-The SolidumEngine framework is built around a Client/Service model. What this means is that the engine provides to the user a set of powerful services. These services provide, well, services such as resource management, job scheduling, inter-object communication and most importantly, "executive" and "feature" code paths (More on this below).
+The SolidumEngine framework is built around a Client/Service model. Meaning the engine provides the user with a set of powerful services. These sevices enable such things as resource management, job scheduling, inter-object communication and most importantly, "executive" and "feature" code paths (More on that below).
 
 ## Contracts
 
-A critically important component of the SolidumEngine framework is the dynamic contract. A dynamic contract is a unique data structure which defines the dynamic relationship between a client and a service. The meaning behind "dynamic" in this context is that, depending on what behavior and attributes the client specifies in the contract, the service may treat the client differently. For example: if I have some client of lets say the "ResourceService", and this client wants to be loadable from disk, said client may specify "isLoadable" = true in their contract. This however does not mean that all clients must be loadable from disk. Furthermore not all clients need be aware that there is a possible isLoadable attribute available to them.
+A critically important component of the SolidumEngine framework is the "Dynamic Contract" or just "Contract". A dynamic contract is a unique data structure which defines a relationship between a client and a service or two clients. The meaning behind "dynamic" in this context is that, depending on what behavior and attributes the client specifies in the contract, the service may treat the client differently. For example: if I have a client of the "ResourceService", and this client wants to be loadable from disk, said client may specify "isLoadable" = true in their contract. This however does not mean that all clients must be loadable from disk. Furthermore not all clients need be aware that there is a possible isLoadable attribute available to them.
 
 #### Contract Calling Convention
 
@@ -31,9 +31,9 @@ All callable contract elements support full marshalling of arguments. This means
 
 # Executives And the Working Set !Todo
 
-Now we will begin to discuss some of the core designated features of Solidum. An "Executive" is a user defined/service assisted entity which governs the flow of data through a set of user defined/service assisted "Features" (discussed below). An executive takes in a Working Set each execution cycle and may read data from or write data too the Working Set. Essentially you may look at an executive as being like a subsystem of an application and the working set as being the partitioned data shared between all executives.
+Now we will begin to discuss some of the core designated features of Solidum. An "Executive" is a user defined, service assisted entity, which governs the flow of data through a set of user defined, service assisted, "Features" (discussed below). An executive takes in a Working Set each execution cycle and may read data from, or write data too the Working Set. Essentially you may look at an executive as being like a subsystem of an application and the working set as being the partitioned data shared between all executives.
 
-# Features
+# Features !Todo
 
-A feature is the atom of your application with regards to Solidum. A feature has some set of inputs, a set of outputs and some sort of executed behavior. Features are enabled by the "Feature Service" and are connected in the form of a directed graph. Features are feed data by their respective parent "Executives" with said executives able to gather statistical information on the features through the "Executive Service" and "Feature Service". 
+A feature is the atom of your application with regards to Solidum. A feature has some set of inputs, a set of outputs and some sort of executed behavior. Features are enabled by the "Feature Service" and are associated in the form of a directed graph. Features are passed data by their respective parent "Executives" with said executives able to gather statistical information on the features through the "Executive Service" and "Feature Service". 
 
