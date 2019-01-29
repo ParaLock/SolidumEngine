@@ -29,6 +29,11 @@ All callable contract elements support full marshalling of arguments. This means
 
 **For an example of contract use, look at main.cpp in the root project directory**
 
+# Executives And the Working Set !Todo
 
+Now we will begin to discuss some of the core designated features of Solidum. An "Executive" is a user defined/service assisted entity which governs the flow of data through a set of user defined/service assisted "Features" (discussed below). An executive takes in a Working Set each execution cycle and may read data from or write data too the Working Set. Essentially you may look at an executive as being like a subsystem of an application and the working set as being the partitioned data shared between all executives.
 
+# Features
+
+A feature is the atom of your application with regards to Solidum. A feature has some set of inputs, a set of outputs and some sort of executed behavior. Features are enabled by the "Feature Service" and are connected in the form of a directed graph. Features are feed data by their respective parent "Executives" with said executives able to gather statistical information on the features through the "Executive Service" and "Feature Service". 
 
