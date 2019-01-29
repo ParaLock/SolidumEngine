@@ -25,7 +25,7 @@ A critically important component of the SolidumEngine framework is the dynamic c
 
 #### Contract Calling Convention
 
-Further side note on contracts: All callable contract elements support full marshalling of arguments. This means that filter stages may be applied to all contractcallable element invokationsinvocations, plus, contractelement calls may be cached or otherwise modified at runtime in a very flexible manner.
+All callable contract elements support full marshalling of arguments. This means that filter stages may be applied to all element invocations, plus, element calls may be cached or otherwise modified at runtime in a very flexible manner.
 
 **For an example of contract use, look at main.cpp in the root project directory**
 
