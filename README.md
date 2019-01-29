@@ -23,9 +23,9 @@ The SolidumEngine framework is built around a Client/Service model. What this me
 
 A critically important component of the SolidumEngine framework is the dynamic contract. A dynamic contract is a unique data structure which defines the dynamic relationship between a client and a service. The meaning behind "dynamic" in this context is that, depending on what behavior and attributes the client specifies in the contract, the service may treat the client differently. For example: if I have some client of lets say the "ResourceService", and this client wants to be loadable from disk, said client may specify "isLoadable" = true in their contract. This however does not mean that all clients must be loadable from disk. Furthermore not all clients need be aware that there is a possible isLoadable attribute available to them.
 
-### Contract Calling Convention
+#### Contract Calling Convention
 
-Further side note on contracts: All callable contract elements support full marshalling of arguments. This means that filter stages may be applied to all contract element invokations, plus, contract calls may be cached or otherwise modified at runtime in a very flexible manner.
+Further side note on contracts: All callable contract elements support full marshalling of arguments. This means that filter stages may be applied to all contractcallable element invokationsinvocations, plus, contractelement calls may be cached or otherwise modified at runtime in a very flexible manner.
 
 **For an example of contract use, look at main.cpp in the root project directory**
 
