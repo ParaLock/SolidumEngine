@@ -17,7 +17,7 @@ The SolidumEngine architecture is based on the following primary design consider
 
 ## Client/Service Model
 
-The SolidumEngine framework is built around a Client/Service model. Meaning the engine provides the user with a set of powerful services. These sevices enable such things as resource management, job scheduling, inter-object communication and most importantly, "executive" and "feature" code paths (More on that below).
+The SolidumEngine framework is built around a Client/Service model. Meaning the engine provides the user with a set of powerful services. These sevices enable such things as resource management, job scheduling, inter-object communication and most importantly, "Executive" and "Feature" code paths (More on that below).
 
 ## Contracts
 
