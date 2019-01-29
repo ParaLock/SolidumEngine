@@ -21,7 +21,7 @@ The SolidumEngine framework is built around a Client/Service model. Meaning the 
 
 ## Contracts
 
-A critically important component of the SolidumEngine framework is the "Dynamic Contract" or just "Contract". A dynamic contract is a unique data structure which defines a relationship between a client and a service or between two clients. The meaning behind "dynamic" in this context is that, depending on what behavior and attributes the client specifies in the contract, the service may treat the client differently. For example: if I have a client of the "ResourceService", and this client wants to be loadable from disk, said client may specify "isLoadable" = true in their contract. This however does not mean that all clients must be loadable from disk. Furthermore not all clients need be aware that there is a possible isLoadable attribute available to them.
+A critically important component of the SolidumEngine framework is the "Dynamic Contract" or just "Contract". A dynamic contract is a unique data structure which defines a relationship between a client and a service or between two clients. The meaning behind "dynamic" in this context is that, depending on what behavior and attributes the client specifies in the contract, the service may treat the client differently. For example: if I have a client of the "ResourceService", and this client wants to be loadable from disk, said client may specify "isLoadable" = true in their contract. This however does not mean that all clients must be loadable from disk. Furthermore not all clients need be aware that there is a possible isLoadable attribute available to them. The API will adapt.
 
 #### Contract Calling Convention
 
