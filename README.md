@@ -9,11 +9,11 @@ The following is a simplified diagram of the Solidum architecture: **More detail
 # Architecture Overview
 
 The SolidumEngine architecture is based on the following primary design considerations: 
-1) Framework must implement a flexible and data oriented API. Providing powerful functionality to the client whilst having the ability to mutate during runtime, based on the requirements of the client.
-2) Framework API must be EXTREMELY non intrusive.
-3) Framework must harness the power of a data driven paradigm (eg. Those present in game engines) to allow for the rapid, efficient and robust developement of all manner of generic applications.
-4) Framework must address some of the limitations present in modern App Dev frameworks such as Qt5.
-5) Framework must provide a level of language interoperability.
+1) Platform must implement a flexible and data oriented API. Providing powerful functionality to the client whilst having the ability to mutate during runtime, based on the requirements of the client.
+2) Platform API must be EXTREMELY non intrusive.
+3) Platform must harness the power of a data driven paradigm (eg. Those present in game engines) to allow for the rapid, efficient and robust developement of all manner of generic applications.
+4) Platform must address some of the limitations present in modern App Dev frameworks such as Qt5.
+5) Platform must provide a level of language interoperability.
 
 ## Client/Service Model
 
