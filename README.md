@@ -35,7 +35,7 @@ Now we will begin to discuss some of the core designated features of Solidum. An
 
 ## Features
 
-A feature is the atom of your application with regards to Solidum. A feature has some set of inputs, a set of outputs and some sort of executed behavior. Features are enabled by the "Feature Service" and are associated in the form of a directed graph. Features are passed data by their respective parent "Executives" with said executives able to gather statistical information on the features through the "Executive Service" and "Feature Service".
+A "Feature" is the atom of your application with regards to Solidum. A "Feature" has some set of inputs, a set of outputs and some sort of executed behavior. Features are enabled by the "Feature Service" and are associated in the form of an undirected graph. Features are passed data by their respective parent "Executives" with said executives able to gather statistical information on the features through the "Executive Service" and "Feature Service".
 
 ## Execution Loop, Concurrency And Scheduling
 
