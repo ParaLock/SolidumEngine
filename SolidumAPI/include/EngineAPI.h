@@ -2,7 +2,7 @@
 #include <map>
 #include <unordered_map>
 
-class ISolInterface;
+struct ISolInterface;
 
 class IAllocator {
 private:

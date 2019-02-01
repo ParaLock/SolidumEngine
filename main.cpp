@@ -35,7 +35,7 @@ private:
 	float myVal;
 public:
 
-
+	//Big buffer used to detect memory leaks.
 	char data[4096];
 
 	ResourceExample() {
@@ -50,6 +50,8 @@ public:
 			std::make_pair("CommandService",  Services::CommandService)
 			//...
 		);
+
+		//*************RESOURCE SERVICE INIT*************
 
 		ContractBuilder& resBuilder = SOL.service(Services::ResourceService)->getContractBuilder();
 
@@ -77,6 +79,9 @@ public:
 
 		SOL.service(Services::ResourceService)->finalize();
 
+		//***********************************************
+
+		//*************COMMAND SERVICE INIT*************
 
 		ContractBuilder& cmdBuilder = SOL.service(Services::CommandService)->getContractBuilder();
 
@@ -90,6 +95,8 @@ public:
 			&ResourceExample::cmd_handlerB
 		);
 
+		//@NOTE: Here is an example of attrib meta tokens. Each token is seperated by a +.
+		// Meta tokens simply provide the service with extra information about a given attribute.
 		cmdBuilder.attribs
 			(
 				std::make_pair("name", std::string("resource_example")),
@@ -99,10 +106,12 @@ public:
 
 		SOL.service(Services::CommandService)->finalize();
 
+		//**********************************************
+
 		myVal = 7.3f;
 
 	}
-
+	//@Cleanup: These kind of functions should probably be generated automatically by the SolInterface class.
 	static ObjectID create_resource(void* mem, IEngine* engine) {
 
 		ResourceExample* instance = new(mem) ResourceExample(engine);
@@ -278,7 +287,6 @@ public:
 				&cmd2Data
 			);
 
-
 	}
 
 };
@@ -309,7 +317,7 @@ public:
 			std::make_pair("CommandService", Services::CommandService)
 		);
 
-		//Note, cmd graph should be loaded from disk... -> That would be an interesting example of inter-service communication.
+		//Note, cmd graph should be loaded from disk... -> That would be an interesting example of inter-service communication, eg Command Service -> Resource Service.
 		SOL.service(Services::CommandService)->callService<void>
 			(
 				"link_nodes",
@@ -327,40 +335,35 @@ public:
 
 	void run() {
 
-		// SOL.service(Services::ResourceService)->callService<void>
-		// 					(
-		// 						"register_type", 
-		// 						std::string("ResourceExample"), 
-		// 						&ResourceExample::getStaticContract
-		// 					);
+		SOL.service(Services::ResourceService)->callService<void>
+		 					(
+		 						"register_type", 
+		 						std::string("ResourceExample"), 
+								&ResourceExample::getStaticContract
+		 					);
 
-		// ObjectID fooID = SOL.service(Services::ResourceService)->callService<ObjectID>
-		// 					(
-		// 						"create_resource_instance", 
-		// 						std::string("ResourceExample"), 
-		// 						nullptr
-		// 					);
+		ObjectID fooID = SOL.service(Services::ResourceService)->callService<ObjectID>
+		 					(
+		 						"create_resource_instance", 
+		 						std::string("ResourceExample"), 
+								nullptr
+		 					);
 		
-		// ResourceExample* example = nullptr;
-		// SOL.service(Services::ResourceService)->callService<ObjectID>
-		// 					(
-		// 						"get_resource", 
-		// 						&example, 
-		// 						fooID
-		// 					);
+		ResourceExample* example = nullptr;
+		SOL.service(Services::ResourceService)->callService<ObjectID>
+		 					(
+		 						"get_resource", 
+								&example, 
+								fooID
+		 					);
+
+		example->testA(3, 3.3f);
 
 		exampleA.testB();
 		exampleB.testB();
 
 
-		while(true) {
-
-
-			
-		};
-		//example->testA(7, 3.3f);
-
-		int test = 1;
+		while(true) {};
 	}
 
 };
@@ -368,6 +371,7 @@ public:
 int main(int argc, char** argv)
 {
 
+	//****************COMMAND GRAPH TEST*****************
 
 	// CommandGraph<std::string> testGraph;
 
@@ -406,6 +410,8 @@ int main(int argc, char** argv)
 	// for(int i = 0; i < 8; i++) {
 	// 	std::cout << *nodes[i] << std::endl;
 	// }
+
+	//***************************************************
 
 	RoundRobinScheduler scheduler;
 

@@ -12,8 +12,8 @@
 #include <stack>
 #include <numeric>
 
-#include "ResourceAPI.h"
-#include "EngineAPI.h"
+#include "./ResourceAPI.h"
+#include "./EngineAPI.h"
 
 template <typename ... Types> struct type_list {};
 

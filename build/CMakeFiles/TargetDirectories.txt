@@ -1,5 +1,0 @@
-/home/linux_dev/projects/solidum_engine/SolidumEngine/build/CMakeFiles/rebuild_cache.dir
-/home/linux_dev/projects/solidum_engine/SolidumEngine/build/CMakeFiles/edit_cache.dir
-/home/linux_dev/projects/solidum_engine/SolidumEngine/build/CMakeFiles/SolidumEngine.dir
-/home/linux_dev/projects/solidum_engine/SolidumEngine/build/CMakeFiles/package_source.dir
-/home/linux_dev/projects/solidum_engine/SolidumEngine/build/CMakeFiles/package.dir

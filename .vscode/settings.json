@@ -46,6 +46,7 @@
         "utility": "cpp",
         "cstring": "cpp",
         "numeric": "cpp",
-        "cstdarg": "cpp"
+        "cstdarg": "cpp",
+        "map": "cpp"
     }
 }
