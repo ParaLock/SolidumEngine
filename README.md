@@ -43,7 +43,7 @@ Solidum execution is bound to a flexible yet consistent execution structure. Wit
 
 # Application Example
 
-The following is a possible conceptual implementation of a word processing application, using the Solidum paradigm.
+The following is a possible conceptual implementation of a word processing application, using the Solidum paradigm. Note that given the nature of the Solidum platform, the actual implementation of the below application (in C++ for example) would follow the diagram structure almost exactly. In fact, it is planed to allow the construction of applications entirely by importing said diagrams directly.
 
 ![Example](sol_app_example.jpg)
 
