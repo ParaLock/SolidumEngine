@@ -41,7 +41,7 @@ A "Feature" is the atom of your application with regards to Solidum. A "Feature"
 
 Solidum execution is bound to a flexible yet consistent execution structure. Within the framework there exist two primary schedulers. The service scheduler, and the job scheduler. Upon framework start, all available services are registered with the service scheduler. Next the service scheduler will immediately begin providing each service with processor time. The exact method of time allocation used here will depend on the defined scheduler class(eg. RoundRobin/Threaded). Finally we have the Job scheduler which exists as a component of the "Job Service". This scheduler is highly configurable and provides scheduling functionality to both other services such as the "Feature Service" and more general application clients. NOTE: Within Solidum, a client of the Job Service may create. 1) A timed task, 2) A persistent task or 3) A signallable task. Any client which requires concurrent or timed execution of some behaviour MUST use the Job Service to facilitate this functionality. This allows all tasks to be managed, controlled and scheduled from a central point. Further, The Job Service will break up tasks into individual "Jobs" hence the name, and relate all task creators (clients) through the use of a graph (reminiscent of the "Command Service"). This allows for immense flexibility and configuration.  
 
-# Application Conceptual Example
+# Application Example
 
 The following is a possible conceptual implementation of a word processing application, using the Solidum paradigm.
 
